@@ -17,6 +17,8 @@ class MessageEventFactory {
                 return createKickEvent(client, msg);
             case "/member":
                 return createMemberEvent(client, msg);
+            case "/help":
+                return createShowHelpEvent(client, msg);
             default:
                 return createSendMessageEvent(client, msg);
         }
@@ -90,6 +92,16 @@ class MessageEventFactory {
         }
 
         return new MessageEvent(client, Command.SHOW_MEMBER, "");
+    }
+
+    private static MessageEvent createShowHelpEvent(Client client, String msg) {
+         String[] msgs = msg.split(" ");
+         if (msgs.length > 1) {
+             System.err.println("unknown option `" + msgs[1] + "`");
+             return null;
+         }
+
+         return new MessageEvent(client, Command.SHOW_HELP, msg);
     }
 
     private static MessageEvent createSendMessageEvent(Client client, String msg) {

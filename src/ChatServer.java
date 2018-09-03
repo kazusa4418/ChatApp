@@ -49,6 +49,9 @@ class ChatServer {
             case MAKE_ROOM:
                 makeRoom(sender, body);
                 break;
+            case SHOW_HELP:
+                showHelp(sender);
+                break;
         }
     }
 
@@ -62,7 +65,7 @@ class ChatServer {
 
         room.remove(client);
 
-        sendMessage(client, client.getName() + "さんが退出しました。");
+        sendMessage(client, client.getName() + "さんが退出しました。", room);
     }
 
     private void sendMessage(Client client, String body) {
@@ -86,5 +89,10 @@ class ChatServer {
         newRoom.add(client);
 
         client.send("make a new room ! welcome " + newRoom.getName() + " !");
+    }
+
+    private void showHelp(Client client) {
+        String helpMsg = "show help";
+        client.send(helpMsg);
     }
 }
