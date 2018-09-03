@@ -24,7 +24,6 @@ public class Client implements Runnable {
     public void run() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
             while (!socket.isClosed()) {
-                System.out.println("mugen loop");
                 if (!reader.ready()) {
                     continue;
                 }

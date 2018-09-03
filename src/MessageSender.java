@@ -40,7 +40,6 @@ class MessageSender implements Runnable {
             writer.write(msg);
             writer.newLine();
             writer.flush();
-            System.out.println(msg);
         }
         catch (IOException err) {
             err.printStackTrace();
