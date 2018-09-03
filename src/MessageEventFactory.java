@@ -25,7 +25,7 @@ class MessageEventFactory {
     private static MessageEvent createExitEvent(Client client, String msg) {
         String[] msgs = msg.split(" ");
         if (msgs.length > 1) {
-            System.err.println("unknown option `" + msgs[1] + "`");
+            client.send("unknown option `" + msgs[1] + "`");
             return null;
         }
 
@@ -35,7 +35,7 @@ class MessageEventFactory {
     private static MessageEvent createShowEvent(Client client, String msg) {
         String[] msgs = msg.split(" ");
         if (msgs.length > 1) {
-            System.err.println("unknown option `" + msgs[1] + "`");
+            client.send("unknown option `" + msgs[1] + "`");
             return null;
         }
 
@@ -45,7 +45,7 @@ class MessageEventFactory {
     private static MessageEvent createAddEvent(Client client, String msg) {
         String[] msgs = msg.split(" ");
         if (msgs.length > 2) {
-            System.err.println("unknown option `" + msgs[2] + "`");
+            client.send("unknown option `" + msgs[2] + "`");
             return null;
         }
 
@@ -55,7 +55,7 @@ class MessageEventFactory {
     private static MessageEvent createMakeEvent(Client client, String msg) {
          String[] msgs = msg.split(" ");
          if (msgs.length > 2) {
-             System.err.println("unknown option `" + msgs[2] + "`");
+             client.send("unknown option `" + msgs[2] + "`");
              return null;
          }
 
@@ -65,7 +65,7 @@ class MessageEventFactory {
     private static MessageEvent createRemoveEvent(Client client, String msg) {
         String[] msgs = msg.split(" ");
         if (msgs.length > 1) {
-            System.err.println("unknown option `" + msgs[1] + "`");
+            client.send("unknown option `" + msgs[1] + "`");
             return null;
         }
 
@@ -75,7 +75,7 @@ class MessageEventFactory {
     private static MessageEvent createKickEvent(Client client, String msg) {
         String[] msgs = msg.split(" ");
         if (msgs.length > 2) {
-            System.err.println("unknown option `" + msgs[2] + "`");
+            client.send("unknown option `" + msgs[2] + "`");
             return null;
         }
 
@@ -85,7 +85,7 @@ class MessageEventFactory {
     private static MessageEvent createMemberEvent(Client client, String msg) {
         String[] msgs = msg.split(" ");
         if (msgs.length > 1) {
-            System.err.println("unknown option `" + msgs[1] + "`");
+            client.send("unknown option `" + msgs[1] + "`");
             return null;
         }
 
