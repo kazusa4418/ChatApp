@@ -1,7 +1,7 @@
 public enum Command {
     EXIT,
     SEND_MESSAGE,
-    ADD_ROOM,
+    CHANGE_ROOM,
     MAKE_ROOM,
     SHOW_ROOM,
     REMOVE_ROOM,
