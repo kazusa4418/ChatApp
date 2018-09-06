@@ -9,7 +9,7 @@ class ChatServer {
     ChatServer() {
         try {
             // ポートを指定してServerSocketを立てる
-            server = new ServerSocket(10000);
+            server = new ServerSocket(33333);
         }
         catch (IOException err) {
             err.printStackTrace();
