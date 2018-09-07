@@ -28,7 +28,6 @@ class ChatRoom {
 
     void remove(Client client){
         clients.remove(client);
-        DEFAULT_ROOM.add(client);
     }
 
     boolean contains(Client client) {

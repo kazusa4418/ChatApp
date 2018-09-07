@@ -17,6 +17,12 @@ public class ChatRoomList {
         return null;
     }
 
+    ChatRoom createNewRoom(String roomName, Client admin) {
+        ChatRoom newRoom = new ChatRoom(roomName, admin);
+        roomList.add(newRoom);
+        return newRoom;
+    }
+
     void addRoom(ChatRoom room) {
         roomList.add(room);
     }
