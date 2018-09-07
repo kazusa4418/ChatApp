@@ -4,9 +4,9 @@ public enum Command {
     EXIT,
     SEND_MESSAGE,
     JOIN_ROOM,
+    LEAVE_ROOM,
     MAKE_ROOM,
     SHOW_ROOM,
-    REMOVE_ROOM,
     KICK_USER,
     SHOW_MEMBER;
 
