@@ -5,16 +5,14 @@ public class MessageEventFactory {
         // TODO: ここなんかダサい気がする。
         String firstMsg = msg.split(" ")[0];
         switch(firstMsg) {
-            case "/exit":
-                return createExitEvent(msg);
             case "/show":
                 return createShowEvent(msg);
             case "/join":
                 return createJoinEvent(msg);
+            case "/leave":
+                return createLeaveEvent(msg);
             case "/make":
                 return createMakeEvent(msg);
-            case "/remove":
-                return createRemoveEvent(msg);
             case "/kick":
                 return createKickEvent(msg);
             case "/member":
@@ -51,22 +49,22 @@ public class MessageEventFactory {
         return new MessageEvent(Command.JOIN_ROOM, msgs[1]);
     }
 
-    private static MessageEvent createMakeEvent(String msg) {
+    private static MessageEvent createLeaveEvent(String msg) {
          String[] msgs = msg.split(" ");
-         if (msgs.length > 2) {
+         if (msgs.length > 1) {
              return null;
          }
 
-         return new MessageEvent(Command.MAKE_ROOM, msgs[1]);
+         return new MessageEvent(Command.LEAVE_ROOM, "");
     }
 
-    private static MessageEvent createRemoveEvent(String msg) {
+    private static MessageEvent createMakeEvent(String msg) {
         String[] msgs = msg.split(" ");
-        if (msgs.length > 1) {
+        if (msgs.length > 2) {
             return null;
         }
 
-        return new MessageEvent(Command.REMOVE_ROOM, "");
+        return new MessageEvent(Command.MAKE_ROOM, msgs[1]);
     }
 
     private static MessageEvent createKickEvent(String msg) {

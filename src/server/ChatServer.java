@@ -57,22 +57,14 @@ public class ChatServer {
             case JOIN_ROOM:
                 joinRoom(sender, body);
                 break;
-
+            case LEAVE_ROOM:
+                leaveRoom(sender);
+                break;
         }
     }
 
     private void exit(Client client) {
-        ChatRoom room = roomList.getRoomWith(client);
 
-        if (roomList.getRoomWith(client) == ChatRoom.getDefaultRoom()) {
-            client.send("デフォルトルームは抜けられません。");
-            return;
-        }
-
-        room.remove(client);
-        ChatRoom.getDefaultRoom().add(client);
-
-        sendMessage(client, client.getName() + "さんが退出しました。", room);
     }
 
     private void sendMessage(Client client, String body) {
@@ -137,5 +129,23 @@ public class ChatServer {
         client.send("## you joined the room `" + joinedRoom.getName() + "`.");
         // 新しいメンバーが参加したことを参加したルームのメンバーに通知する
         sendMessageToMembersExceptMyself(client, "## user `" + client.getName() + "` joined this room.");
+    }
+
+    private void leaveRoom(Client client) {
+         // 自分の参加しているルームを取得する
+        ChatRoom room = roomList.getRoomWith(client);
+
+        // 自分の参加しているルームがロビーだったら抜けられない
+        if (roomList.getRoomWith(client) == ChatRoom.getDefaultRoom()) {
+            client.send("## you have not joined the room.");
+            return;
+        }
+
+        // ルームから自分を削除（抜ける）してルームのメンバーにそのことを通知する
+        room.remove(client);
+        sendMessageToMembersExceptMyself(client, "## user `" + client.getName() + "` left this room.", room);
+        // ロビーに参加（戻る）して自分にそのことを通知する
+        ChatRoom.getDefaultRoom().add(client);
+        client.send("## you returned to the lobby.");
     }
 }
