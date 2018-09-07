@@ -72,7 +72,7 @@ public class ChatServer {
         room.remove(client);
         ChatRoom.getDefaultRoom().add(client);
 
-        sendMessage(client, client.getName() + "さんが退出しました。");
+        sendMessage(client, client.getName() + "さんが退出しました。", room);
     }
 
     private void sendMessage(Client client, String body) {
