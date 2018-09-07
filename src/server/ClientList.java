@@ -1,3 +1,7 @@
+package server;
+
+import server.Client;
+
 import java.util.ArrayList;
 import java.util.List;
 

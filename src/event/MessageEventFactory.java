@@ -1,5 +1,7 @@
-class MessageEventFactory {
-     static MessageEvent createMessageEvent(String msg) {
+package event;
+
+public class MessageEventFactory {
+     public static MessageEvent createMessageEvent(String msg) {
         // TODO: ここなんかダサい気がする。
         String firstMsg = msg.split(" ")[0];
         switch(firstMsg) {

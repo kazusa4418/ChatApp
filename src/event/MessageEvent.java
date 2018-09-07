@@ -1,6 +1,10 @@
+package event;
+
+import server.Client;
+
 import java.io.Serializable;
 
-class MessageEvent implements Serializable {
+public class MessageEvent implements Serializable {
     private Client creator;
     private Command command;
     private String body;
@@ -10,19 +14,19 @@ class MessageEvent implements Serializable {
         this.body = body;
     }
 
-    Client getCreator() {
+    public Client getCreator() {
         return creator;
     }
 
-    void setCreator(Client client) {
+    public void setCreator(Client client) {
         this.creator = client;
     }
 
-    Command getCommand() {
+    public Command getCommand() {
         return command;
     }
 
-    String getBody() {
+    public String getBody() {
         return body;
     }
 }

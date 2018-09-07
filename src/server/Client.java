@@ -1,3 +1,9 @@
+package server;
+
+import event.MessageEvent;
+import server.ChatRoom;
+import server.ChatServer;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -27,7 +33,7 @@ public class Client implements Runnable {
                 MessageEvent event = (MessageEvent) reader.readObject();
 
                 if (event != null) {
-                    // 送信者は自分
+                    // TODO: ここで自分が送信したことを記録するのはダサくない？
                     event.setCreator(this);
                     server.receiveEvent(event);
                 }
