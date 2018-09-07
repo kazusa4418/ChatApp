@@ -35,7 +35,7 @@ class ChatServer {
     }
 
     void receiveEvent(MessageEvent event) {
-        Client sender = event.getClient();
+        Client sender = event.getCreator();
         Command command = event.getCommand();
         String body = event.getBody();
 

@@ -2,13 +2,13 @@ import java.io.*;
 import java.net.Socket;
 
 class MessageSender implements Runnable {
-    private BufferedWriter writer;
+    private ObjectOutputStream writer;
 
     private Thread thread;
 
     MessageSender(Socket socket) {
         try {
-            writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+            writer = new ObjectOutputStream(socket.getOutputStream());
         }
         catch (IOException err) {
             throw new AssertionError(err);
@@ -37,8 +37,8 @@ class MessageSender implements Runnable {
 
     private void send(String msg) {
         try {
-            writer.write(msg);
-            writer.newLine();
+            MessageEvent event = MessageEventFactory.createMessageEvent(msg);
+            writer.writeObject(event);
             writer.flush();
         }
         catch (IOException err) {

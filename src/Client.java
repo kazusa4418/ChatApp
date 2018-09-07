@@ -22,20 +22,13 @@ public class Client implements Runnable {
     }
 
     public void run() {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
+        try (ObjectInputStream reader = new ObjectInputStream(socket.getInputStream())) {
             while (!socket.isClosed()) {
-                if (!reader.ready()) {
-                    continue;
-                }
+                MessageEvent event = (MessageEvent) reader.readObject();
 
-                String msg = reader.readLine();
-
-                if (msg == null) {
-                    continue;
-                }
-                // TODO: ここのthis渡しをどうにかできないか検討する
-                MessageEvent event = MessageEventFactory.createMessageEvent(this, msg);
                 if (event != null) {
+                    // 送信者は自分
+                    event.setCreator(this);
                     server.receiveEvent(event);
                 }
             }
@@ -43,6 +36,10 @@ public class Client implements Runnable {
         catch (IOException err) {
             err.printStackTrace();
             throw new AssertionError(err);
+        }
+        catch (ClassNotFoundException err) {
+            err.printStackTrace();
+            throw new AssertionError();
         }
     }
 
