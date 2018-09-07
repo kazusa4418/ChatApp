@@ -65,6 +65,7 @@ class ChatServer {
         }
 
         room.remove(client);
+        ChatRoom.getDefaultRoom().add(client);
 
         sendMessage(client, client.getName() + "さんが退出しました。");
     }
@@ -85,13 +86,13 @@ class ChatServer {
         }
     }
 
-    private void makeRoom(Client client, String body) {
+    private void makeRoom(Client client, String roomName) {
         // 現在入っているルームを抜ける
         roomList.getRoomWith(client).remove(client);
         // 新しくルームを作り、ルームの管理者としてルームに入る
-        roomList.addRoom(new ChatRoom(body, client));
+        roomList.createNewRoom(roomName, client).add(client);
 
-        client.send("make a new room ! welcome " + body + " !");
+        client.send("make a new room ! welcome `" + roomName + "` !");
     }
 
     private void addRoom(Client client, String roomName) {
