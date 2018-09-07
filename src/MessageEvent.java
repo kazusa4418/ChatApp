@@ -1,16 +1,21 @@
-class MessageEvent {
-    private Client sender;
+import java.io.Serializable;
+
+class MessageEvent implements Serializable {
+    private Client creator;
     private Command command;
     private String body;
 
-    MessageEvent(Client sender, Command command, String body) {
-        this.sender = sender;
+    MessageEvent(Command command, String body) {
         this.command = command;
         this.body = body;
     }
 
-    Client getClient() {
-        return sender;
+    Client getCreator() {
+        return creator;
+    }
+
+    void setCreator(Client client) {
+        this.creator = client;
     }
 
     Command getCommand() {

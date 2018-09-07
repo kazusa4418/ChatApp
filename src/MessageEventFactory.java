@@ -1,98 +1,91 @@
 class MessageEventFactory {
-     static MessageEvent createMessageEvent(Client client, String msg) {
+     static MessageEvent createMessageEvent(String msg) {
         // TODO: ここなんかダサい気がする。
         String firstMsg = msg.split(" ")[0];
         switch(firstMsg) {
             case "/exit":
-                return createExitEvent(client, msg);
+                return createExitEvent(msg);
             case "/show":
-                return createShowEvent(client, msg);
+                return createShowEvent(msg);
             case "/add":
-                return createChangeEvent(client, msg);
+                return createAddEvent(msg);
             case "/make":
-                return createMakeEvent(client, msg);
+                return createMakeEvent(msg);
             case "/remove":
-                return createRemoveEvent(client, msg);
+                return createRemoveEvent(msg);
             case "/kick":
-                return createKickEvent(client, msg);
+                return createKickEvent(msg);
             case "/member":
-                return createMemberEvent(client, msg);
+                return createMemberEvent(msg);
             default:
-                return createSendMessageEvent(client, msg);
+                return createSendMessageEvent(msg);
         }
     }
     // TODO: 全体的にコードがすっきりしていない気がする
-    private static MessageEvent createExitEvent(Client client, String msg) {
+    private static MessageEvent createExitEvent(String msg) {
         String[] msgs = msg.split(" ");
         if (msgs.length > 1) {
-            client.send("unknown option `" + msgs[1] + "`");
             return null;
         }
 
-        return new MessageEvent(client, Command.EXIT, "");
+        return new MessageEvent(Command.EXIT, "");
     }
 
-    private static MessageEvent createShowEvent(Client client, String msg) {
+    private static MessageEvent createShowEvent(String msg) {
         String[] msgs = msg.split(" ");
         if (msgs.length > 1) {
-            client.send("unknown option `" + msgs[1] + "`");
             return null;
         }
 
-        return new MessageEvent(client, Command.SHOW_ROOM, "");
+        return new MessageEvent(Command.SHOW_ROOM, "");
     }
 
-    private static MessageEvent createChangeEvent(Client client, String msg) {
+    private static MessageEvent createAddEvent(String msg) {
         String[] msgs = msg.split(" ");
         if (msgs.length > 2) {
-            client.send("unknown option `" + msgs[2] + "`");
             return null;
         }
 
-        return new MessageEvent(client, Command.CHANGE_ROOM, msgs[1]);
+        return new MessageEvent(Command.ADD_ROOM, msgs[1]);
     }
 
-    private static MessageEvent createMakeEvent(Client client, String msg) {
+    private static MessageEvent createMakeEvent(String msg) {
          String[] msgs = msg.split(" ");
          if (msgs.length > 2) {
-             client.send("unknown option `" + msgs[2] + "`");
              return null;
          }
 
-         return new MessageEvent(client, Command.MAKE_ROOM, msgs[1]);
+         return new MessageEvent(Command.MAKE_ROOM, msgs[1]);
     }
 
-    private static MessageEvent createRemoveEvent(Client client, String msg) {
+    private static MessageEvent createRemoveEvent(String msg) {
         String[] msgs = msg.split(" ");
         if (msgs.length > 1) {
-            client.send("unknown option `" + msgs[1] + "`");
             return null;
         }
 
-        return new MessageEvent(client, Command.REMOVE_ROOM, "");
+        return new MessageEvent(Command.REMOVE_ROOM, "");
     }
 
-    private static MessageEvent createKickEvent(Client client, String msg) {
+    private static MessageEvent createKickEvent(String msg) {
         String[] msgs = msg.split(" ");
         if (msgs.length > 2) {
-            client.send("unknown option `" + msgs[2] + "`");
             return null;
         }
 
-        return new MessageEvent(client, Command.KICK_USER, msgs[1]);
+        return new MessageEvent(Command.KICK_USER, msgs[1]);
     }
 
-    private static MessageEvent createMemberEvent(Client client, String msg) {
+    private static MessageEvent createMemberEvent(String msg) {
         String[] msgs = msg.split(" ");
         if (msgs.length > 1) {
-            client.send("unknown option `" + msgs[1] + "`");
             return null;
         }
 
-        return new MessageEvent(client, Command.SHOW_MEMBER, "");
+        return new MessageEvent(Command.SHOW_MEMBER, "");
     }
 
-    private static MessageEvent createSendMessageEvent(Client client, String msg) {
-        return new MessageEvent(client, Command.SEND_MESSAGE, msg);
+    private static MessageEvent createSendMessageEvent(String msg) {
+        return new MessageEvent(Command.SEND_MESSAGE, msg);
     }
 }
