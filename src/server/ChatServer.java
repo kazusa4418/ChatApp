@@ -54,8 +54,8 @@ public class ChatServer {
             case MAKE_ROOM:
                 makeRoom(sender, body);
                 break;
-            case CHANGE_ROOM:
-                addRoom(sender, body);
+            case JOIN_ROOM:
+                joinRoom(sender, body);
                 break;
 
         }
@@ -115,7 +115,7 @@ public class ChatServer {
         client.send("made a new room ! welcome `" + roomName + "` !");
     }
 
-    private void addRoom(Client client, String roomName) {
+    private void joinRoom(Client client, String roomName) {
         // 指定したルーム名を持つルームが存在しなかった場合
         if (!roomList.existRoom(roomName)) {
             client.send("## The specified room does not exist. the invalid name `" + roomName + "`.");

@@ -9,8 +9,8 @@ public class MessageEventFactory {
                 return createExitEvent(msg);
             case "/show":
                 return createShowEvent(msg);
-            case "/add":
-                return createAddEvent(msg);
+            case "/join":
+                return createJoinEvent(msg);
             case "/make":
                 return createMakeEvent(msg);
             case "/remove":
@@ -42,13 +42,13 @@ public class MessageEventFactory {
         return new MessageEvent(Command.SHOW_ROOM, "");
     }
 
-    private static MessageEvent createAddEvent(String msg) {
+    private static MessageEvent createJoinEvent(String msg) {
         String[] msgs = msg.split(" ");
         if (msgs.length > 2) {
             return null;
         }
 
-        return new MessageEvent(Command.CHANGE_ROOM, msgs[1]);
+        return new MessageEvent(Command.JOIN_ROOM, msgs[1]);
     }
 
     private static MessageEvent createMakeEvent(String msg) {
