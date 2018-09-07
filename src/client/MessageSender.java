@@ -29,7 +29,6 @@ class MessageSender implements Runnable {
     public void run() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             while (true) {
-                System.out.print(">>> ");
                 String msg = reader.readLine();
                 send(msg);
             }
