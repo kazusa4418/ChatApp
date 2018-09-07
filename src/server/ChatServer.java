@@ -1,12 +1,17 @@
+package server;
+
+import event.Command;
+import event.MessageEvent;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-class ChatServer {
+public class ChatServer {
     private ServerSocket server;
     private ChatRoomList roomList;
 
-    ChatServer() {
+    public ChatServer() {
         try {
             // ポートを指定してServerSocketを立てる
             server = new ServerSocket(33333);
@@ -19,7 +24,7 @@ class ChatServer {
         roomList = new ChatRoomList();
     }
 
-    void run() {
+    public void run() {
         while (!server.isClosed()) {
             try {
                 // クライアントからのアクセスを待つ

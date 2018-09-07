@@ -1,3 +1,5 @@
+package event;
+
 public enum Command {
     EXIT,
     SEND_MESSAGE,
