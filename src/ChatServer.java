@@ -9,7 +9,7 @@ class ChatServer {
     ChatServer() {
         try {
             // ポートを指定してServerSocketを立てる
-            server = new ServerSocket(10000);
+            server = new ServerSocket(33333);
         }
         catch (IOException err) {
             err.printStackTrace();
@@ -49,6 +49,10 @@ class ChatServer {
             case MAKE_ROOM:
                 makeRoom(sender, body);
                 break;
+            case CHANGE_ROOM:
+                addRoom(sender, body);
+                break;
+
         }
     }
 
@@ -82,9 +86,23 @@ class ChatServer {
     }
 
     private void makeRoom(Client client, String body) {
-        ChatRoom newRoom = new ChatRoom(body, client);
-        newRoom.add(client);
+        // 現在入っているルームを抜ける
+        roomList.getRoomWith(client).remove(client);
+        // 新しくルームを作り、ルームの管理者としてルームに入る
+        roomList.addRoom(new ChatRoom(body, client));
 
-        client.send("make a new room ! welcome " + newRoom.getName() + " !");
+        client.send("make a new room ! welcome " + body + " !");
+    }
+
+    private void addRoom(Client client, String roomName) {
+        if (!roomList.existRoom(roomName)) {
+            client.send("ルーム : " + roomName + " は存在しません。");
+            return;
+        }
+
+        // 現在入っているルームを抜ける
+        roomList.getRoomWith(client).remove(client);
+        // 新しいルームに入る
+        roomList.getRoom(roomName).add(client);
     }
 }
