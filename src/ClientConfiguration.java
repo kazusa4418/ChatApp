@@ -11,7 +11,7 @@ public class ClientConfiguration {
     }
 
     private static void loadServerNetworkInformation() {
-        File propertyFile = new File("./server.properties");
+        File propertyFile = new File("../server.properties");
 
         try (PropertyReader reader = new PropertyReader(propertyFile)) {
             reader.load();
