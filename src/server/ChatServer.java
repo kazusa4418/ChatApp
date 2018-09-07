@@ -54,8 +54,8 @@ public class ChatServer {
             case MAKE_ROOM:
                 makeRoom(sender, body);
                 break;
-            case CHANGE_ROOM:
-                addRoom(sender, body);
+            case JOIN_ROOM:
+                joinRoom(sender, body);
                 break;
 
         }
@@ -83,11 +83,26 @@ public class ChatServer {
         Client[] members = room.getMemberList();
 
         for (Client c : members) {
-            System.out.println(c);
             if (c == client) {
                 continue;
             }
             c.send(client.getName() + " : " + body);
+        }
+    }
+
+    // TODO: メソッド名ながすぎませんか
+    private void sendMessageToMembersExceptMyself(Client myself, String message) {
+        sendMessageToMembersExceptMyself(myself, message, roomList.getRoomWith(myself));
+    }
+
+    private void sendMessageToMembersExceptMyself(Client myself, String message, ChatRoom room) {
+        Client[] clients = room.getMemberList();
+
+        for (Client client : clients) {
+            if (client == myself)
+                continue;
+
+            client.send(message);
         }
     }
 
@@ -97,18 +112,30 @@ public class ChatServer {
         // 新しくルームを作り、ルームの管理者としてルームに入る
         roomList.createNewRoom(roomName, client).add(client);
 
-        client.send("make a new room ! welcome `" + roomName + "` !");
+        client.send("made a new room ! welcome `" + roomName + "` !");
     }
 
-    private void addRoom(Client client, String roomName) {
+    private void joinRoom(Client client, String roomName) {
+        // 指定したルーム名を持つルームが存在しなかった場合
         if (!roomList.existRoom(roomName)) {
-            client.send("ルーム : " + roomName + " は存在しません。");
+            client.send("## The specified room does not exist. the invalid name `" + roomName + "`.");
             return;
         }
 
         // 現在入っているルームを抜ける
-        roomList.getRoomWith(client).remove(client);
+        ChatRoom removedRoom = roomList.getRoomWith(client);
+        removedRoom.remove(client);
+        // 抜けたことを自分に通知する
+        client.send("## you left the room `" + removedRoom.getName() + "`.");
+        // メンバーが抜けたことを抜けたルームのメンバーに通知する
+        sendMessageToMembersExceptMyself(client, "## user `" + client.getName() + "` left this room.", removedRoom);
+
         // 新しいルームに入る
-        roomList.getRoom(roomName).add(client);
+        ChatRoom joinedRoom = roomList.getRoom(roomName);
+        joinedRoom.add(client);
+        // 参加したことを自分に通知する
+        client.send("## you joined the room `" + joinedRoom.getName() + "`.");
+        // 新しいメンバーが参加したことを参加したルームのメンバーに通知する
+        sendMessageToMembersExceptMyself(client, "## user `" + client.getName() + "` joined this room.");
     }
 }

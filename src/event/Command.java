@@ -3,7 +3,7 @@ package event;
 public enum Command {
     EXIT,
     SEND_MESSAGE,
-    CHANGE_ROOM,
+    JOIN_ROOM,
     MAKE_ROOM,
     SHOW_ROOM,
     REMOVE_ROOM,
