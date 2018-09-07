@@ -1,3 +1,5 @@
+package client;
+
 import java.io.InputStreamReader;
 import java.io.File;
 import java.io.FileNotFoundException;

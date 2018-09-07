@@ -1,13 +1,15 @@
+package client;
+
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 
-class ChatClient {
+public class ChatClient {
     private Socket socket;
     private MessageSender sender;
     private MessageReceiver receiver;
 
-    void start() {
+    public void start() {
         connectServer(ClientConfiguration.getServerIpAddress(), ClientConfiguration.getServerPortNumber());
         openStream();
         sender.start();

@@ -1,3 +1,9 @@
+package server;
+
+import event.MessageEvent;
+import server.ChatRoom;
+import server.ChatServer;
+
 import java.io.*;
 import java.net.Socket;
 

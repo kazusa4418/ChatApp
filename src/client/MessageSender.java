@@ -1,3 +1,8 @@
+package client;
+
+import event.MessageEvent;
+import event.MessageEventFactory;
+
 import java.io.*;
 import java.net.Socket;
 
