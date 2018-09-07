@@ -62,17 +62,21 @@ public class ChatServer {
     }
 
     private void exit(Client client) {
+        // 自分の参加しているルームを取得する
         ChatRoom room = roomList.getRoomWith(client);
 
+        // 自分の参加しているルームがロビーだったら抜けられない
         if (roomList.getRoomWith(client) == ChatRoom.getDefaultRoom()) {
-            client.send("デフォルトルームは抜けられません。");
+            client.send("## you have not joined the room.");
             return;
         }
 
+        // ルームから自分を削除（抜ける）してルームのメンバーにそのことを通知する
         room.remove(client);
+        sendMessageToMembersExceptMyself(client, "## user `" + client.getName() + "` left this room.", room);
+        // ロビーに参加（戻る）して自分にそのことを通知する
         ChatRoom.getDefaultRoom().add(client);
-
-        sendMessage(client, client.getName() + "さんが退出しました。", room);
+        client.send("## you returned to the lobby.");
     }
 
     private void sendMessage(Client client, String body) {
