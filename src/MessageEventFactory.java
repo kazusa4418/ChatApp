@@ -46,7 +46,7 @@ class MessageEventFactory {
             return null;
         }
 
-        return new MessageEvent(Command.ADD_ROOM, msgs[1]);
+        return new MessageEvent(Command.CHANGE_ROOM, msgs[1]);
     }
 
     private static MessageEvent createMakeEvent(String msg) {
