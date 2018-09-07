@@ -8,7 +8,7 @@ class MessageEventFactory {
             case "/show":
                 return createShowEvent(client, msg);
             case "/add":
-                return createAddEvent(client, msg);
+                return createChangeEvent(client, msg);
             case "/make":
                 return createMakeEvent(client, msg);
             case "/remove":
@@ -42,14 +42,14 @@ class MessageEventFactory {
         return new MessageEvent(client, Command.SHOW_ROOM, "");
     }
 
-    private static MessageEvent createAddEvent(Client client, String msg) {
+    private static MessageEvent createChangeEvent(Client client, String msg) {
         String[] msgs = msg.split(" ");
         if (msgs.length > 2) {
             client.send("unknown option `" + msgs[2] + "`");
             return null;
         }
 
-        return new MessageEvent(client, Command.ADD_ROOM, msgs[1]);
+        return new MessageEvent(client, Command.CHANGE_ROOM, msgs[1]);
     }
 
     private static MessageEvent createMakeEvent(Client client, String msg) {

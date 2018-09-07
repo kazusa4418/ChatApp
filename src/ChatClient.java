@@ -8,7 +8,7 @@ class ChatClient {
     private MessageReceiver receiver;
 
     void start() {
-        connectServer("127.0.0.1", 10000);
+        connectServer(ClientConfiguration.getServerIpAddress(), ClientConfiguration.getServerPortNumber());
         openStream();
         sender.start();
         receiver.start();
