@@ -106,10 +106,16 @@ public class ChatServer {
         }
 
         // 現在入っているルームを抜ける
-        roomList.getRoomWith(client).remove(client);
+        ChatRoom leavedRoom = roomList.getRoomWith(client);
+        leavedRoom.remove(client);
+        // 抜けたことを自分に通知する
+        client.send("## you left the room `" + leavedRoom.getName() + "`.");
+        // メンバーが抜けたことを抜けたルームのメンバーに通知する
+        sendMessageToMembersExceptMyself(client, "## user `" + client.getName() + "` left this room.", leavedRoom);
+
         // 新しくルームを作り、ルームの管理者としてルームに入る
         roomList.createNewRoom(roomName, client).add(client);
-
+        // 作成したルームに参加したことを自分に通知する
         client.send("## made a new room ! welcome `" + roomName + "` !");
     }
 
@@ -121,12 +127,12 @@ public class ChatServer {
         }
 
         // 現在入っているルームを抜ける
-        ChatRoom removedRoom = roomList.getRoomWith(client);
-        removedRoom.remove(client);
+        ChatRoom leavedRoom = roomList.getRoomWith(client);
+        leavedRoom.remove(client);
         // 抜けたことを自分に通知する
-        client.send("## you left the room `" + removedRoom.getName() + "`.");
+        client.send("## you left the room `" + leavedRoom.getName() + "`.");
         // メンバーが抜けたことを抜けたルームのメンバーに通知する
-        sendMessageToMembersExceptMyself(client, "## user `" + client.getName() + "` left this room.", removedRoom);
+        sendMessageToMembersExceptMyself(client, "## user `" + client.getName() + "` left this room.", leavedRoom);
 
         // 新しいルームに入る
         ChatRoom joinedRoom = roomList.getRoom(roomName);
