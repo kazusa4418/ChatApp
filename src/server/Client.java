@@ -18,7 +18,7 @@ public class Client implements Runnable {
         this.socket = socket;
 
         // TODO: 要リファクタリング
-        ChatRoom.getDefaultRoom().add(this);
+        ChatRoom.getLobby().add(this);
 
         this.name = name;
     }

@@ -5,9 +5,9 @@ import java.util.List;
 
 class ChatRoom {
     /* =============== SINGLETON =============== */
-    private static final ChatRoom DEFAULT_ROOM = new DefaultChatRoom();
-    static ChatRoom getDefaultRoom() {
-        return DEFAULT_ROOM;
+    private static final ChatRoom lobby = new Lobby();
+    static ChatRoom getLobby() {
+        return lobby;
     }
     /* ========================================= */
 
