@@ -40,25 +40,26 @@ public class ChatServer {
     }
 
     void receiveEvent(MessageEvent event) {
-        Client sender = event.getCreator();
+        Client creator = event.getCreator();
         Command command = event.getCommand();
         String body = event.getBody();
 
         switch (command) {
             case EXIT:
-                exit(sender);
+                exit(creator);
                 break;
             case SEND_MESSAGE:
-                sendMessageToMembersExceptMyself(sender, body);
+                // TODO: ・・・。
+                sendMessageToMembersExceptMyself(creator, creator.getName() + " : " + body);
                 break;
             case MAKE_ROOM:
-                makeRoom(sender, body);
+                makeRoom(creator, body);
                 break;
             case JOIN_ROOM:
-                joinRoom(sender, body);
+                joinRoom(creator, body);
                 break;
             case LEAVE_ROOM:
-                leaveRoom(sender);
+                leaveRoom(creator);
                 break;
         }
     }
