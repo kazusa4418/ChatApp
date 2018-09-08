@@ -7,7 +7,7 @@ public enum Command {
     LEAVE_ROOM,
     MAKE_ROOM,
     SHOW_ROOM,
-    KICK_USER,
+    KICK_MEMBER,
     SHOW_MEMBER;
 
     static boolean isCommand(String msg) {
