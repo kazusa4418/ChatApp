@@ -42,11 +42,12 @@ public class MessageEventFactory {
 
     private static MessageEvent createJoinEvent(String msg) {
         String[] msgs = msg.split(" ");
-        if (msgs.length > 2) {
+        if (msgs.length == 2) {
+            return new MessageEvent(Command.JOIN_ROOM, msgs[1]);
+        }
+        else {
             return null;
         }
-
-        return new MessageEvent(Command.JOIN_ROOM, msgs[1]);
     }
 
     private static MessageEvent createLeaveEvent(String msg) {
@@ -60,11 +61,12 @@ public class MessageEventFactory {
 
     private static MessageEvent createMakeEvent(String msg) {
         String[] msgs = msg.split(" ");
-        if (msgs.length > 2) {
+        if (msgs.length == 2) {
+            return new MessageEvent(Command.MAKE_ROOM, msgs[1]);
+        }
+        else {
             return null;
         }
-
-        return new MessageEvent(Command.MAKE_ROOM, msgs[1]);
     }
 
     private static MessageEvent createKickEvent(String msg) {

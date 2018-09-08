@@ -98,7 +98,7 @@ public class ChatServer {
     private void makeRoom(Client client, String roomName) {
         // 既に指定された名前を持つルームが存在していた場合
         if (roomList.existRoom(roomName)) {
-            client.send("## the room with the specified name already exists.");
+            client.send("## fatal: the room named '" + roomName + "' already exists.");
             return;
         }
 
@@ -113,13 +113,13 @@ public class ChatServer {
         // 新しくルームを作り、ルームの管理者としてルームに入る
         roomList.createNewRoom(roomName, client).add(client);
         // 作成したルームに参加したことを自分に通知する
-        client.send("## made a new room ! welcome `" + roomName + "` !");
+        client.send("## made a new room ! welcome to `" + roomName + "` !");
     }
 
     private void joinRoom(Client client, String roomName) {
         // 指定したルーム名を持つルームが存在しなかった場合
         if (!roomList.existRoom(roomName)) {
-            client.send("## The specified room does not exist. the invalid name `" + roomName + "`.");
+            client.send("## fatal: The room named '" + roomName + "' does not exist.");
             return;
         }
 
@@ -146,7 +146,7 @@ public class ChatServer {
 
         // 自分の参加しているルームがロビーだったら抜けられない
         if (roomList.getRoomWith(client) == ChatRoom.getLobby()) {
-            client.send("## you have not joined the room.");
+            client.send("## fatal: you have not joined the room.");
             return;
         }
 
@@ -154,7 +154,7 @@ public class ChatServer {
         if (room.isAdmin(client)) {
             // ルームのメンバーに管理者が退出したため、ルームをクローズすることを伝える
             sendMessageToMembersExceptMyself(client,
-                    "## this room will be closed because the administrator left.");
+                    "## warning: this room will be closed because the administrator left.");
             // ルームのメンバー全員を退出させる
             for (Client member : room.getMemberList()) {
                 if (!room.isAdmin(member)) {
@@ -206,7 +206,7 @@ public class ChatServer {
         }
         // 名前にroomNameをもつルームが存在しなかった場合
         if (!roomList.existRoom(roomName)) {
-            client.send("## the room with the specified name does not exist.");
+            client.send("## fatal: the room with the specified name does not exist.");
             return;
         }
 
@@ -237,18 +237,18 @@ public class ChatServer {
 
         // 参加しているルームの管理者が自分でないのであればこのコマンドは実行できない
         if (!room.isAdmin(client)) {
-            client.send("## you are not an administrator of this room." +
-                             "\n## this command can not be executed unless it is an administrator.");
+            client.send("## fatal: you are not an administrator of this room." +
+                             "\n##        this command can not be executed unless it is an administrator.");
             return;
         }
         // 指定した名前のメンバーがいない場合削除できない
         if (!room.existClient(userName)) {
-            client.send("## the member with the specified name is not in the room.");
+            client.send("## fatal: the member with the specified name is not in the room.");
             return;
         }
         // 指定したメンバーが自分自身だった場合削除させない（管理者がルームから消えてしまう）
         if (client.getName().equals(userName)) {
-            client.send("## you can not remove yourself from the room.");
+            client.send("## fatal: you can not remove yourself from the room.");
             return;
         }
 
