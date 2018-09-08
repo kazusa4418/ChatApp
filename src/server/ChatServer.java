@@ -73,8 +73,10 @@ public class ChatServer {
     }
 
     private void sendMessageToMembersExceptMyself(Client myself, String message, ChatRoom room) {
+        // 引数で渡されたルームのメンバーを取得してくる
         Client[] clients = room.getMemberList();
 
+        // 引数で渡された自分（myself）以外のメンバーに引数のメッセージを送る
         for (Client client : clients) {
             if (client == myself)
                 continue;
