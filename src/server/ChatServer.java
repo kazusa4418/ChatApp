@@ -61,6 +61,9 @@ public class ChatServer {
             case LEAVE_ROOM:
                 leaveRoom(creator);
                 break;
+            case SHOW_ROOM:
+                showRoom(creator);
+                break;
         }
     }
 
@@ -147,5 +150,19 @@ public class ChatServer {
         // ロビーに参加（戻る）して自分にそのことを通知する
         ChatRoom.getLobby().add(client);
         client.send("## you returned to the lobby.");
+    }
+
+    private void showRoom(Client client) {
+        // 自分の参加しているルームを取得する
+        ChatRoom joinedRoom = roomList.getRoomWith(client);
+
+        client.send("## showing the existing rooms...\n");
+        for (ChatRoom room : roomList) {
+            // 自分の参加しているルームとロビーは表示しない
+            if (room == joinedRoom || room == ChatRoom.getLobby())
+                continue;
+
+            client.send("## " + room.getName());
+        }
     }
 }

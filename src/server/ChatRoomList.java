@@ -3,9 +3,10 @@ package server;
 import server.ChatRoom;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class ChatRoomList {
+public class ChatRoomList implements Iterable<ChatRoom> {
     private List<ChatRoom> roomList = new ArrayList<>();
 
     ChatRoomList() {
@@ -59,5 +60,9 @@ public class ChatRoomList {
             }
         }
         return null;
+    }
+
+    public Iterator<ChatRoom> iterator() {
+        return roomList.iterator();
     }
 }
