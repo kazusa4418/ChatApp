@@ -150,9 +150,30 @@ public class ChatServer {
             return;
         }
 
-        // ルームから自分を削除（抜ける）してルームのメンバーにそのことを通知する
-        room.remove(client);
-        sendMessageToMembersExceptMyself(client, "## user `" + client.getName() + "` left this room.", room);
+        // 自分がルームの管理者だったらルームを閉じる
+        if (room.isAdmin(client)) {
+            // ルームのメンバーに管理者が退出したため、ルームをクローズすることを伝える
+            sendMessageToMembersExceptMyself(client,
+                    "## this room will be closed because the administrator left.");
+            // ルームのメンバー全員を退出させる
+            for (Client member : room.getMemberList()) {
+                if (!room.isAdmin(member)) {
+                    room.remove(member);
+                    ChatRoom.getLobby().add(member);
+                    member.send("## you returned to the lobby.");
+                }
+            }
+            // ルームリストからこのルームを取り除く
+            roomList.removeRoom(room);
+            // 最後に管理者がルームから出ていく
+            room.remove(client);
+        }
+        else {
+            // ルームから自分を削除（抜ける）してルームのメンバーにそのことを通知する
+            room.remove(client);
+            sendMessageToMembersExceptMyself(client, "## user `" + client.getName() + "` left this room.", room);
+        }
+
         // ロビーに参加（戻る）して自分にそのことを通知する
         ChatRoom.getLobby().add(client);
         client.send("## you returned to the lobby.");
