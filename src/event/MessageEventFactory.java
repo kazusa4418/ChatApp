@@ -19,6 +19,8 @@ public class MessageEventFactory {
                 return createKickEvent(msg);
             case "/show-members":
                 return createMemberEvent(msg);
+            case "/help":
+                return createHelpEvent(msg);
             default:
                 return createSendMessageEvent(msg);
         }
@@ -30,16 +32,17 @@ public class MessageEventFactory {
             return null;
         }
 
-        return new MessageEvent(Command.EXIT, "");
+        return new MessageEvent(Command.LOGOUT, "");
     }
 
     private static MessageEvent createShowEvent(String msg) {
         String[] msgs = msg.split(" ");
-        if (msgs.length > 1) {
-            return null;
+        if (msgs.length == 1) {
+            return new MessageEvent(Command.SHOW_ROOM, "");
         }
-
-        return new MessageEvent(Command.SHOW_ROOM, "");
+        else {
+            return new MessageEvent(Command.SHOW_ROOM, null);
+        }
     }
 
     private static MessageEvent createJoinEvent(String msg) {
@@ -48,17 +51,17 @@ public class MessageEventFactory {
             return new MessageEvent(Command.JOIN_ROOM, msgs[1]);
         }
         else {
-            return null;
+            return new MessageEvent(Command.JOIN_ROOM, null);
         }
     }
 
     private static MessageEvent createLeaveEvent(String msg) {
          String[] msgs = msg.split(" ");
-         if (msgs.length > 1) {
-             return null;
+         if (msgs.length == 1) {
+             return new MessageEvent(Command.LEAVE_ROOM, "");
          }
 
-         return new MessageEvent(Command.LEAVE_ROOM, "");
+         return new MessageEvent(Command.LEAVE_ROOM, null);
     }
 
     private static MessageEvent createMakeEvent(String msg) {
@@ -67,13 +70,13 @@ public class MessageEventFactory {
             return new MessageEvent(Command.MAKE_ROOM, msgs[1]);
         }
         else {
-            return null;
+            return new MessageEvent(Command.MAKE_ROOM, null);
         }
     }
 
     private static MessageEvent createKickEvent(String msg) {
         String[] msgs = msg.split(" ");
-        if (msgs.length >= 2) {
+        if (msgs.length == 2) {
             return new MessageEvent(Command.KICK_MEMBER, msgs[1]);
         }
         else {
@@ -93,8 +96,22 @@ public class MessageEventFactory {
             return new MessageEvent(Command.SHOW_MEMBER, msgs[1]);
         }
         else {
-            return null;
+            return new MessageEvent(Command.SHOW_MEMBER, null);
         }
+    }
+
+    private static MessageEvent createHelpEvent(String msg) {
+         String[] msgs = msg.split(" ");
+
+         if (msgs.length == 1) {
+             return new MessageEvent(Command.COMMAND_HELP, "ALL");
+         }
+         else if (msgs.length == 2) {
+             return new MessageEvent(Command.COMMAND_HELP, msgs[1]);
+         }
+         else {
+             return new MessageEvent(Command.COMMAND_HELP, null);
+         }
     }
 
     private static MessageEvent createSendMessageEvent(String msg) {

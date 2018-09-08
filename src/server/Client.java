@@ -41,7 +41,7 @@ public class Client implements Runnable {
                 // TODO: ここに書くべきではない気がしている
                 else {
                     // bodyがnullなので正しくコマンドの引数が与えられていない
-                    // コマンドのヘルプをクライアントに送信する
+                    // コマンドのUsageをクライアントに送信する
                     send(Command.help(event.getCommand()));
                 }
             }
@@ -72,5 +72,9 @@ public class Client implements Runnable {
 
     String getName() {
         return name;
+    }
+
+    void logout() {
+
     }
 }

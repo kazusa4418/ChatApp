@@ -8,7 +8,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum Command {
-    EXIT,
+    LOGOUT,
+    COMMAND_HELP,
     SEND_MESSAGE,
     JOIN_ROOM,
     LEAVE_ROOM,
@@ -35,7 +36,8 @@ class HelpDictionary {
         try (PropertyReader reader = new PropertyReader(new File("./help.properties"))) {
             reader.load();
 
-            USAGE_DICTIONARY.put(Command.EXIT, reader.getProperty("exit.usage"));
+            USAGE_DICTIONARY.put(Command.LOGOUT, reader.getProperty("exit.usage"));
+            USAGE_DICTIONARY.put(Command.COMMAND_HELP, reader.getProperty("commandHelp.usage"));
             USAGE_DICTIONARY.put(Command.SEND_MESSAGE, reader.getProperty("sendMessage.usage"));
             USAGE_DICTIONARY.put(Command.JOIN_ROOM, reader.getProperty("joinRoom.usage"));
             USAGE_DICTIONARY.put(Command.LEAVE_ROOM, reader.getProperty("leaveRoom.usage"));
@@ -59,7 +61,8 @@ class HelpDictionary {
         try (PropertyReader reader = new PropertyReader(new File("./help.properties"))) {
             reader.load();
 
-            HELP_DICTIONARY.put(Command.EXIT, reader.getProperty("exit.help"));
+            HELP_DICTIONARY.put(Command.LOGOUT, reader.getProperty("exit.help"));
+            HELP_DICTIONARY.put(Command.COMMAND_HELP, reader.getProperty("commandHelp.help"));
             HELP_DICTIONARY.put(Command.SEND_MESSAGE, reader.getProperty("sendMessage.help"));
             HELP_DICTIONARY.put(Command.JOIN_ROOM, reader.getProperty("joinRoom.help"));
             HELP_DICTIONARY.put(Command.LEAVE_ROOM, reader.getProperty("leaveRoom.help"));

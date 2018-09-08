@@ -46,8 +46,8 @@ public class ChatServer {
         String body = event.getBody();
 
         switch (command) {
-            case EXIT:
-                exit(creator);
+            case LOGOUT:
+                logout(creator);
                 break;
             case SEND_MESSAGE:
                 // TODO: ・・・。
@@ -74,7 +74,7 @@ public class ChatServer {
         }
     }
 
-    private void exit(Client client) {
+    private void logout(Client client) {
 
     }
 
@@ -126,6 +126,7 @@ public class ChatServer {
         // 指定したルームに既に参加していた場合
         if (roomList.getRoomWith(client) == roomList.getRoom(roomName)) {
             client.send("## fatal: I have already joined the room '" + roomName + "'");
+            return;
         }
 
         // 現在入っているルームを抜ける
@@ -192,7 +193,7 @@ public class ChatServer {
         for (ChatRoom room : roomList) {
             // 送信するメッセージ 形式："## room name"
             String message = "## " + room.getName();
-            
+
             // 自分の参加しているルームにはyou are joined表記を付ける
             if (room == joinedRoom)
                 message += " <you are joined>";
