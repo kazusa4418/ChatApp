@@ -78,6 +78,10 @@ class HelpDictionary {
         }
     }
 
+    static String getUsageMessage(Command command) {
+        return USAGE_DICTIONARY.get(command);
+    }
+
     static String getHelpMessage(Command command) {
         return HELP_DICTIONARY.get(command);
     }

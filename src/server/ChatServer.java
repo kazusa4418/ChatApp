@@ -192,10 +192,7 @@ public class ChatServer {
         for (ChatRoom room : roomList) {
             // 送信するメッセージ 形式："## room name"
             String message = "## " + room.getName();
-
-            // ロビーは表示しない
-            if (room == ChatRoom.getLobby())
-                continue;
+            
             // 自分の参加しているルームにはyou are joined表記を付ける
             if (room == joinedRoom)
                 message += " <you are joined>";
