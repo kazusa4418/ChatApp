@@ -67,6 +67,9 @@ public class ChatServer {
             case SHOW_MEMBER:
                 showMember(creator, body);
                 break;
+            case KICK_MEMBER:
+                kickMember(creator, body);
+                break;
         }
     }
 
@@ -161,11 +164,17 @@ public class ChatServer {
 
         client.send("## showing the existing rooms...\n");
         for (ChatRoom room : roomList) {
-            // 自分の参加しているルームとロビーは表示しない
-            if (room == joinedRoom || room == ChatRoom.getLobby())
-                continue;
+            // 送信するメッセージ 形式："## room name"
+            String message = "## " + room.getName();
 
-            client.send("## " + room.getName());
+            // ロビーは表示しない
+            if (room == ChatRoom.getLobby())
+                continue;
+            // 自分の参加しているルームにはyou are joined表記を付ける
+            if (room == joinedRoom)
+                message += " <you are joined>";
+
+            client.send(message);
         }
     }
 
@@ -185,11 +194,48 @@ public class ChatServer {
 
         client.send("## showing the members in `" + roomName + "`\n");
         for (Client member : room.getMemberList()) {
-            // 自分だったら表示しない
-            if (member == client)
-                continue;
+            // 送信するメッセージ 形式："## client name"
+            String message = "## " + member.getName();
 
-            client.send("## " + member.getName());
+            // 管理者はadministrator表記を付ける
+            if (room.isAdmin(member)) {
+                message += " <Administrator>";
+            }
+            // 自分自身だったらyourself表記を付ける
+            if (member == client) {
+                message += " <Yourself>";
+            }
+
+            client.send(message);
         }
+    }
+
+    private void kickMember(Client client, String userName) {
+        // 自分の参加しているルームを取得する
+        ChatRoom room = roomList.getRoomWith(client);
+
+        // 参加しているルームの管理者が自分でないのであればこのコマンドは実行できない
+        if (!room.isAdmin(client)) {
+            client.send("## you are not an administrator of this room." +
+                             "\n## this command can not be executed unless it is an administrator.");
+            return;
+        }
+        // 指定した名前のメンバーがいない場合削除できない
+        if (!room.existClient(userName)) {
+            client.send("## the member with the specified name is not in the room.");
+            return;
+        }
+        // 指定したメンバーが自分自身だった場合削除させない（管理者がルームから消えてしまう）
+        if (client.getName().equals(userName)) {
+            client.send("## you can not remove yourself from the room.");
+            return;
+        }
+
+        // 指定したユーザー名でクライアントをルームから取得する
+        Client kickedClient = room.get(userName);
+        // 蹴られたことをkickedClientに通知する
+        kickedClient.send("## you have been exiled from the room `" + room.getName() + "`.");
+        // クライアントを退会させる
+        leaveRoom(kickedClient);
     }
 }

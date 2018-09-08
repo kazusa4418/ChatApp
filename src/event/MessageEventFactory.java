@@ -73,7 +73,7 @@ public class MessageEventFactory {
             return null;
         }
 
-        return new MessageEvent(Command.KICK_USER, msgs[1]);
+        return new MessageEvent(Command.KICK_MEMBER, msgs[1]);
     }
 
     private static MessageEvent createMemberEvent(String msg) {
