@@ -5,7 +5,7 @@ public class MessageEventFactory {
         // TODO: ここなんかダサい気がする。
         String firstMsg = msg.split(" ")[0];
         switch(firstMsg) {
-            case "/show":
+            case "/show-rooms":
                 return createShowEvent(msg);
             case "/join":
                 return createJoinEvent(msg);
@@ -15,7 +15,7 @@ public class MessageEventFactory {
                 return createMakeEvent(msg);
             case "/kick":
                 return createKickEvent(msg);
-            case "/member":
+            case "/show-members":
                 return createMemberEvent(msg);
             default:
                 return createSendMessageEvent(msg);
@@ -78,11 +78,18 @@ public class MessageEventFactory {
 
     private static MessageEvent createMemberEvent(String msg) {
         String[] msgs = msg.split(" ");
-        if (msgs.length > 1) {
+
+        // "/show-members"をリクエストした場合
+        if (msgs.length == 1) {
+            return new MessageEvent(Command.SHOW_MEMBER, "");
+        }
+        // "/show-members [room name]"をリクエストした場合
+        else if (msgs.length == 2) {
+            return new MessageEvent(Command.SHOW_MEMBER, msgs[1]);
+        }
+        else {
             return null;
         }
-
-        return new MessageEvent(Command.SHOW_MEMBER, "");
     }
 
     private static MessageEvent createSendMessageEvent(String msg) {

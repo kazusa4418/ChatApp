@@ -64,6 +64,9 @@ public class ChatServer {
             case SHOW_ROOM:
                 showRoom(creator);
                 break;
+            case SHOW_MEMBER:
+                showMember(creator, body);
+                break;
         }
     }
 
@@ -163,6 +166,30 @@ public class ChatServer {
                 continue;
 
             client.send("## " + room.getName());
+        }
+    }
+
+    private void showMember(Client client, String roomName) {
+        // "/show-members"コマンドで呼ばれた場合、roomNameは空文字なので自分の参加しているルーム扱いにする
+        if (roomName.isEmpty()) {
+            roomName = roomList.getRoomWith(client).getName();
+        }
+        // 名前にroomNameをもつルームが存在しなかった場合
+        if (!roomList.existRoom(roomName)) {
+            client.send("## the room with the specified name does not exist.");
+            return;
+        }
+
+        // 引数で指定された名前を持つルームを取得する
+        ChatRoom room = roomList.getRoom(roomName);
+
+        client.send("## showing the members in `" + roomName + "`");
+        for (Client member : room.getMemberList()) {
+            // 自分だったら表示しない
+            if (member == client)
+                continue;
+
+            client.send("## " + member.getName());
         }
     }
 }
