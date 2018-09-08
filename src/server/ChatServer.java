@@ -49,7 +49,7 @@ public class ChatServer {
                 exit(sender);
                 break;
             case SEND_MESSAGE:
-                sendMessage(sender, body);
+                sendMessageToMembersExceptMyself(sender, body);
                 break;
             case MAKE_ROOM:
                 makeRoom(sender, body);
@@ -65,21 +65,6 @@ public class ChatServer {
 
     private void exit(Client client) {
 
-    }
-
-    private void sendMessage(Client client, String body) {
-        sendMessage(client, body, roomList.getRoomWith(client));
-    }
-
-    private void sendMessage(Client client, String body, ChatRoom room) {
-        Client[] members = room.getMemberList();
-
-        for (Client c : members) {
-            if (c == client) {
-                continue;
-            }
-            c.send(client.getName() + " : " + body);
-        }
     }
 
     // TODO: メソッド名ながすぎませんか
