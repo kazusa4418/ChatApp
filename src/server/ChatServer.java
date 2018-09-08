@@ -99,6 +99,12 @@ public class ChatServer {
     }
 
     private void makeRoom(Client client, String roomName) {
+        // 既に指定された名前を持つルームが存在していた場合
+        if (roomList.existRoom(roomName)) {
+            client.send("## the room with the specified name already exists.");
+            return;
+        }
+
         // 現在入っているルームを抜ける
         ChatRoom leavedRoom = roomList.getRoomWith(client);
         leavedRoom.remove(client);
@@ -109,7 +115,7 @@ public class ChatServer {
 
         // 新しくルームを作り、ルームの管理者としてルームに入る
         roomList.createNewRoom(roomName, client).add(client);
-        // 新しくルームを作成し、参加したことを自分に通知する
+        // 作成したルームに参加したことを自分に通知する
         client.send("## made a new room ! welcome `" + roomName + "` !");
     }
 
