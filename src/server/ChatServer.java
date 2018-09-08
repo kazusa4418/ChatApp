@@ -183,7 +183,7 @@ public class ChatServer {
         // 引数で指定された名前を持つルームを取得する
         ChatRoom room = roomList.getRoom(roomName);
 
-        client.send("## showing the members in `" + roomName + "`");
+        client.send("## showing the members in `" + roomName + "`\n");
         for (Client member : room.getMemberList()) {
             // 自分だったら表示しない
             if (member == client)
