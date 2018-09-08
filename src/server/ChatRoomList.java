@@ -9,7 +9,7 @@ public class ChatRoomList {
     private List<ChatRoom> roomList = new ArrayList<>();
 
     ChatRoomList() {
-        roomList.add(ChatRoom.getDefaultRoom());
+        roomList.add(ChatRoom.getLobby());
     }
 
     ChatRoom getRoomWith(Client client) {

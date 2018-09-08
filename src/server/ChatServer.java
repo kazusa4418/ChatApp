@@ -135,7 +135,7 @@ public class ChatServer {
         ChatRoom room = roomList.getRoomWith(client);
 
         // 自分の参加しているルームがロビーだったら抜けられない
-        if (roomList.getRoomWith(client) == ChatRoom.getDefaultRoom()) {
+        if (roomList.getRoomWith(client) == ChatRoom.getLobby()) {
             client.send("## you have not joined the room.");
             return;
         }
@@ -144,7 +144,7 @@ public class ChatServer {
         room.remove(client);
         sendMessageToMembersExceptMyself(client, "## user `" + client.getName() + "` left this room.", room);
         // ロビーに参加（戻る）して自分にそのことを通知する
-        ChatRoom.getDefaultRoom().add(client);
+        ChatRoom.getLobby().add(client);
         client.send("## you returned to the lobby.");
     }
 }
