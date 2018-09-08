@@ -40,6 +40,7 @@ public class ChatServer {
     }
 
     void receiveEvent(MessageEvent event) {
+        // eventがnullだった場合、正しい形式のコマンドが入力されていないのでそのコマンドのヘルプを送信する
         Client creator = event.getCreator();
         Command command = event.getCommand();
         String body = event.getBody();
@@ -106,14 +107,14 @@ public class ChatServer {
         ChatRoom leavedRoom = roomList.getRoomWith(client);
         leavedRoom.remove(client);
         // 抜けたことを自分に通知する
-        client.send("## you left the room `" + leavedRoom.getName() + "`.");
+        client.send("## you left the room '" + leavedRoom.getName() + "'.");
         // メンバーが抜けたことを抜けたルームのメンバーに通知する
-        sendMessageToMembersExceptMyself(client, "## user `" + client.getName() + "` left this room.", leavedRoom);
+        sendMessageToMembersExceptMyself(client, "## user '" + client.getName() + "' left this room.", leavedRoom);
 
         // 新しくルームを作り、ルームの管理者としてルームに入る
         roomList.createNewRoom(roomName, client).add(client);
         // 作成したルームに参加したことを自分に通知する
-        client.send("## made a new room ! welcome to `" + roomName + "` !");
+        client.send("## made a new room ! welcome to '" + roomName + "' !");
     }
 
     private void joinRoom(Client client, String roomName) {
@@ -122,22 +123,26 @@ public class ChatServer {
             client.send("## fatal: The room named '" + roomName + "' does not exist.");
             return;
         }
+        // 指定したルームに既に参加していた場合
+        if (roomList.getRoomWith(client) == roomList.getRoom(roomName)) {
+            client.send("## fatal: I have already joined the room '" + roomName + "'");
+        }
 
         // 現在入っているルームを抜ける
         ChatRoom leavedRoom = roomList.getRoomWith(client);
         leavedRoom.remove(client);
         // 抜けたことを自分に通知する
-        client.send("## you left the room `" + leavedRoom.getName() + "`.");
+        client.send("## you left the room '" + leavedRoom.getName() + "'.");
         // メンバーが抜けたことを抜けたルームのメンバーに通知する
-        sendMessageToMembersExceptMyself(client, "## user `" + client.getName() + "` left this room.", leavedRoom);
+        sendMessageToMembersExceptMyself(client, "## user '" + client.getName() + "' left this room.", leavedRoom);
 
         // 新しいルームに入る
         ChatRoom joinedRoom = roomList.getRoom(roomName);
         joinedRoom.add(client);
         // 参加したことを自分に通知する
-        client.send("## you joined the room `" + joinedRoom.getName() + "`.");
+        client.send("## you joined the room '" + joinedRoom.getName() + "'.");
         // 新しいメンバーが参加したことを参加したルームのメンバーに通知する
-        sendMessageToMembersExceptMyself(client, "## user `" + client.getName() + "` joined this room.");
+        sendMessageToMembersExceptMyself(client, "## user '" + client.getName() + "' joined this room.");
     }
 
     private void leaveRoom(Client client) {
@@ -171,7 +176,7 @@ public class ChatServer {
         else {
             // ルームから自分を削除（抜ける）してルームのメンバーにそのことを通知する
             room.remove(client);
-            sendMessageToMembersExceptMyself(client, "## user `" + client.getName() + "` left this room.", room);
+            sendMessageToMembersExceptMyself(client, "## user '" + client.getName() + "' left this room.", room);
         }
 
         // ロビーに参加（戻る）して自分にそのことを通知する
@@ -213,7 +218,7 @@ public class ChatServer {
         // 引数で指定された名前を持つルームを取得する
         ChatRoom room = roomList.getRoom(roomName);
 
-        client.send("## showing the members in `" + roomName + "`\n");
+        client.send("## showing the members in '" + roomName + "'\n");
         for (Client member : room.getMemberList()) {
             // 送信するメッセージ 形式："## client name"
             String message = "## " + member.getName();
@@ -255,7 +260,7 @@ public class ChatServer {
         // 指定したユーザー名でクライアントをルームから取得する
         Client kickedClient = room.get(userName);
         // 蹴られたことをkickedClientに通知する
-        kickedClient.send("## you have been exiled from the room `" + room.getName() + "`.");
+        kickedClient.send("## you have been exiled from the room '" + room.getName() + "'.");
         // クライアントを退会させる
         leaveRoom(kickedClient);
     }

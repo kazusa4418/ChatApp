@@ -1,4 +1,4 @@
-package client;
+package util;
 
 import java.io.InputStreamReader;
 import java.io.File;

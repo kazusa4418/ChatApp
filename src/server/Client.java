@@ -1,5 +1,6 @@
 package server;
 
+import event.Command;
 import event.MessageEvent;
 import server.ChatRoom;
 import server.ChatServer;
@@ -17,7 +18,6 @@ public class Client implements Runnable {
         this.server = server;
         this.socket = socket;
 
-        // TODO: 要リファクタリング
         ChatRoom.getLobby().add(this);
 
         this.name = name;
@@ -32,10 +32,17 @@ public class Client implements Runnable {
             while (!socket.isClosed()) {
                 MessageEvent event = (MessageEvent) reader.readObject();
 
-                if (event != null) {
+                // TODO: まじでここの処理気に入らないいつかなおすわ（なおらない
+                if (event.getBody() != null) {
                     // TODO: ここで自分が送信したことを記録するのはダサくない？
                     event.setCreator(this);
                     server.receiveEvent(event);
+                }
+                // TODO: ここに書くべきではない気がしている
+                else {
+                    // bodyがnullなので正しくコマンドの引数が与えられていない
+                    // コマンドのヘルプをクライアントに送信する
+                    send(Command.help(event.getCommand()));
                 }
             }
         }

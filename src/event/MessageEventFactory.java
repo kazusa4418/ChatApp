@@ -4,6 +4,8 @@ public class MessageEventFactory {
      public static MessageEvent createMessageEvent(String msg) {
         // TODO: ここなんかダサい気がする。
         String firstMsg = msg.split(" ")[0];
+
+        // コマンドの引数が異常な場合はbodyにnullが入る
         switch(firstMsg) {
             case "/show-rooms":
                 return createShowEvent(msg);
@@ -71,11 +73,12 @@ public class MessageEventFactory {
 
     private static MessageEvent createKickEvent(String msg) {
         String[] msgs = msg.split(" ");
-        if (msgs.length > 2) {
-            return null;
+        if (msgs.length >= 2) {
+            return new MessageEvent(Command.KICK_MEMBER, msgs[1]);
         }
-
-        return new MessageEvent(Command.KICK_MEMBER, msgs[1]);
+        else {
+            return new MessageEvent(Command.KICK_MEMBER, null);
+        }
     }
 
     private static MessageEvent createMemberEvent(String msg) {
