@@ -28,6 +28,10 @@ public class ChatRoomList implements Iterable<ChatRoom> {
         return newRoom;
     }
 
+    void removeRoom(ChatRoom room) {
+        roomList.remove(room);
+    }
+
     void addRoom(ChatRoom room) {
         roomList.add(room);
     }
