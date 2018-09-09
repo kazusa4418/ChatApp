@@ -326,5 +326,4 @@ public class ChatServer {
             client.send("## fatal: Help message could not be read.");
         }
     }
-
 }
