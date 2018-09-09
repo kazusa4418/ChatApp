@@ -1,9 +1,12 @@
 package client;
 
+import util.JLogger;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.logging.Level;
 
 public class MessageReceiver implements Runnable {
     private Socket socket;
@@ -17,7 +20,8 @@ public class MessageReceiver implements Runnable {
             reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         }
         catch (IOException err) {
-            err.printStackTrace();
+            JLogger.log(Level.SEVERE, "受信ストリームの構築に失敗しました", err);
+            System.err.println("サーバーとの通信に失敗しました");
             throw new AssertionError(err);
         }
 
@@ -39,7 +43,6 @@ public class MessageReceiver implements Runnable {
                     msg = "ログアウトしました";
                 }
                 System.out.println(msg);
-
             }
         }
         catch (IOException err) {

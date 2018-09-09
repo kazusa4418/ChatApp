@@ -1,10 +1,12 @@
 package client;
 
+import util.JLogger;
 import util.PropertyReader;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.logging.Level;
 
 class ClientConfiguration {
     private static String SERVER_IP_ADDRESS;
@@ -24,11 +26,13 @@ class ClientConfiguration {
             SERVER_PORT_NUMBER = reader.getIntProperty("port_number");
         }
         catch (FileNotFoundException err) {
-            err.printStackTrace();
+            JLogger.log(Level.SEVERE, "the server.properties could not be found. path is './server.properties", err);
+            System.err.println("サーバーへのアクセス情報が見つかりませんでした。");
             System.exit(1);
         }
         catch (IOException err) {
-            err.printStackTrace();
+            JLogger.log(Level.SEVERE, "the server.properties could not be loaded.", err);
+            System.err.println("サーバーへのアクセス情報の読み込みに失敗しました。");
             System.exit(2);
         }
     }

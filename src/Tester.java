@@ -8,10 +8,6 @@ public class Tester {
     private static BufferedWriter writer;
 
     public static void main(String[] args) throws IOException {
-        String s = " ";
 
-        String[] ss = s.split(" ");
-
-        System.out.println(ss.length);
     }
 }

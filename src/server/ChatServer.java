@@ -82,22 +82,12 @@ public class ChatServer {
         }
     }
 
-    private boolean isInvalidArgument(String argument, int... nums) {
-        String[] arguments = argument.split(" ");
-        for (int i : nums) {
-            if (arguments.length == i) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     private void sendUsage(Client target, Command command) {
         target.send(Command.usage(command));
     }
 
     private void logout(Client client, String args) {
-        if (isInvalidArgument(args, 0)) {
+        if (!args.matches(Command.LOGOUT.getArgumentRegex())) {
             sendUsage(client, Command.LOGOUT);
             return;
         }
@@ -127,7 +117,7 @@ public class ChatServer {
     }
 
     private void makeRoom(Client client, String roomName) {
-        if (isInvalidArgument(roomName, 1)) {
+        if (!roomName.matches(Command.MAKE_ROOM.getArgumentRegex())) {
             sendUsage(client, Command.MAKE_ROOM);
             return;
         }
@@ -152,7 +142,7 @@ public class ChatServer {
     }
 
     private void joinRoom(Client client, String roomName) {
-        if (isInvalidArgument(roomName, 1)) {
+        if (!roomName.matches(Command.JOIN_ROOM.getArgumentRegex())) {
             sendUsage(client, Command.JOIN_ROOM);
             return;
         }
@@ -185,7 +175,7 @@ public class ChatServer {
     }
 
     private void leaveRoom(Client client, String args) {
-        if (isInvalidArgument(args, 0)) {
+        if (!args.matches(Command.LEAVE_ROOM.getArgumentRegex())) {
             sendUsage(client, Command.LEAVE_ROOM);
             return;
         }
@@ -228,7 +218,7 @@ public class ChatServer {
     }
 
     private void showRoom(Client client, String args) {
-        if (isInvalidArgument(args, 0)) {
+        if (!args.matches(Command.SHOW_ROOM.getArgumentRegex())) {
             sendUsage(client, Command.SHOW_ROOM);
             return;
         }
@@ -249,7 +239,7 @@ public class ChatServer {
     }
 
     private void showMember(Client client, String roomName) {
-        if (isInvalidArgument(roomName, 0, 1)) {
+        if (!roomName.matches(Command.SHOW_MEMBER.getArgumentRegex())) {
             sendUsage(client, Command.SHOW_MEMBER);
             return;
         }
@@ -285,7 +275,7 @@ public class ChatServer {
     }
 
     private void kickMember(Client client, String userName) {
-        if (isInvalidArgument(userName, 1)) {
+        if (!userName.matches(Command.KICK_MEMBER.getArgumentRegex())) {
             sendUsage(client, Command.KICK_MEMBER);
             return;
         }
