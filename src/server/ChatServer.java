@@ -92,6 +92,7 @@ public class ChatServer {
             return;
         }
         sendMessageToMembersExceptMyself(client, "## the user '" + client.getName() + "' log outs.");
+
         // 参加しているルームを抜ける
         roomList.getRoomWith(client).remove(client);
         // クライアントを安全に終了させる

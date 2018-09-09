@@ -1,6 +1,5 @@
 package client;
 
-import util.ErrorMessage;
 import util.JLogger;
 
 import java.io.IOException;
@@ -21,9 +20,10 @@ public class ChatClient {
             receiver.start();
         }
         catch (IOException err) {
-            String errMsg = ErrorMessage.failedAccessServer(ClientConfiguration.getServerIpAddress(),
-                                                                ClientConfiguration.getServerPortNumber());
-            JLogger.log(Level.SEVERE, "errMsg", err);
+            String errMsg = "fatal: can not access the server. ip-address.\n" +
+                                    "       ip-address: " + ClientConfiguration.getServerIpAddress() +
+                                    "       port: " + ClientConfiguration.getServerPortNumber();
+            JLogger.log(Level.SEVERE, errMsg, err);
             System.err.println(errMsg);
         }
     }
