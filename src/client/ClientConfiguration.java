@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class ClientConfiguration {
+class ClientConfiguration {
     private static String SERVER_IP_ADDRESS;
     private static int SERVER_PORT_NUMBER;
 
