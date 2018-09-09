@@ -1,7 +1,7 @@
 package event;
 
 public class MessageEventFactory {
-     public static MessageEvent createMessageEvent(String msg) {
+    public static MessageEvent createMessageEvent(String msg) {
         // TODO: ここなんかダサい気がする。
         String firstMsg = msg.split(" ")[0];
 
@@ -28,15 +28,6 @@ public class MessageEventFactory {
         }
     }
     // TODO: 全体的にコードがすっきりしていない気がする
-    private static MessageEvent createExitEvent(String msg) {
-        String[] msgs = msg.split(" ");
-        if (msgs.length > 1) {
-            return null;
-        }
-
-        return new MessageEvent(Command.LOGOUT, "");
-    }
-
     private static MessageEvent createShowEvent(String msg) {
         String[] msgs = msg.split(" ");
         if (msgs.length == 1) {

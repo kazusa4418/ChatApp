@@ -5,7 +5,6 @@ import event.MessageEvent;
 import util.PropertyReader;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -16,7 +15,6 @@ public class ChatServer {
 
     public ChatServer() {
         try {
-            // ポートを指定してServerSocketを立てる
             server = new ServerSocket(33333);
         }
         catch (IOException err) {
