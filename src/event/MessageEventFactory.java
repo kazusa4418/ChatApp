@@ -21,6 +21,8 @@ public class MessageEventFactory {
                 return createMemberEvent(msg);
             case "/help":
                 return createHelpEvent(msg);
+            case "/logout":
+                return createLogoutEvent(msg);
             default:
                 return createSendMessageEvent(msg);
         }
@@ -111,6 +113,17 @@ public class MessageEventFactory {
          }
          else {
              return new MessageEvent(Command.COMMAND_HELP, null);
+         }
+    }
+
+    private static MessageEvent createLogoutEvent(String msg) {
+         String[] msgs = msg.split(" ");
+
+         if (msgs.length == 1) {
+             return new MessageEvent(Command.LOGOUT, "");
+         }
+         else {
+             return new MessageEvent(Command.LOGOUT, null);
          }
     }
 

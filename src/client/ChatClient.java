@@ -5,20 +5,19 @@ import java.net.InetAddress;
 import java.net.Socket;
 
 public class ChatClient {
-    private Socket socket;
     private MessageSender sender;
     private MessageReceiver receiver;
 
     public void start() {
-        connectServer(ClientConfiguration.getServerIpAddress(), ClientConfiguration.getServerPortNumber());
-        openStream();
+        Socket socket = connectServer(ClientConfiguration.getServerIpAddress(), ClientConfiguration.getServerPortNumber());
+        openStream(socket);
         sender.start();
         receiver.start();
     }
 
-    private void connectServer(String host, int port) {
+    private Socket connectServer(String host, int port) {
         try {
-            socket = new Socket(InetAddress.getByName(host), port);
+            return new Socket(InetAddress.getByName(host), port);
         }
         catch (IOException err) {
             err.printStackTrace();
@@ -26,7 +25,7 @@ public class ChatClient {
         }
     }
 
-    private void openStream() {
+    private void openStream(Socket socket) {
         sender = new MessageSender(socket);
         receiver = new MessageReceiver(socket);
     }

@@ -14,6 +14,8 @@ public class Client implements Runnable {
 
     private String name;
 
+    private Thread thread;
+
     Client(ChatServer server, Socket socket, String name) {
         this.server = server;
         this.socket = socket;
@@ -21,10 +23,11 @@ public class Client implements Runnable {
         ChatRoom.getLobby().add(this);
 
         this.name = name;
+        this.thread = new Thread(this);
     }
 
     void start() {
-        new Thread(this).start();
+        thread.start();
     }
 
     public void run() {
@@ -42,7 +45,7 @@ public class Client implements Runnable {
                 else {
                     // bodyがnullなので正しくコマンドの引数が与えられていない
                     // コマンドのUsageをクライアントに送信する
-                    send(Command.help(event.getCommand()));
+                    send(Command.usage(event.getCommand()));
                 }
             }
         }
@@ -59,7 +62,6 @@ public class Client implements Runnable {
     void send(String msg) {
         try {
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-
             writer.write(msg);
             writer.newLine();
             writer.flush();
@@ -75,6 +77,13 @@ public class Client implements Runnable {
     }
 
     void logout() {
-
+        // Socketをクローズする
+        try {
+            // もう疲れた・・・。
+            // ココらへんは適当です。
+            send("/logout");
+            socket.close();
+        }
+        catch (IOException ignore) {}
     }
 }

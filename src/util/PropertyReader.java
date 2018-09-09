@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
 public class PropertyReader implements AutoCloseable {
@@ -13,7 +14,7 @@ public class PropertyReader implements AutoCloseable {
 
     public PropertyReader(File file) throws FileNotFoundException {
         this.properties = new Properties();
-        this.input = new InputStreamReader(new FileInputStream(file));
+        this.input = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8);
     }
 
     public void load() throws IOException {

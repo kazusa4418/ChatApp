@@ -18,6 +18,10 @@ public enum Command {
     KICK_MEMBER,
     SHOW_MEMBER;
 
+    public static String usage(Command command) {
+        return HelpDictionary.getUsageMessage(command);
+    }
+
     public static String help(Command command) {
         return HelpDictionary.getHelpMessage(command);
     }
@@ -36,15 +40,15 @@ class HelpDictionary {
         try (PropertyReader reader = new PropertyReader(new File("./help.properties"))) {
             reader.load();
 
-            USAGE_DICTIONARY.put(Command.LOGOUT, reader.getProperty("exit.usage"));
-            USAGE_DICTIONARY.put(Command.COMMAND_HELP, reader.getProperty("commandHelp.usage"));
-            USAGE_DICTIONARY.put(Command.SEND_MESSAGE, reader.getProperty("sendMessage.usage"));
-            USAGE_DICTIONARY.put(Command.JOIN_ROOM, reader.getProperty("joinRoom.usage"));
-            USAGE_DICTIONARY.put(Command.LEAVE_ROOM, reader.getProperty("leaveRoom.usage"));
-            USAGE_DICTIONARY.put(Command.MAKE_ROOM, reader.getProperty("makeRoom.usage"));
-            USAGE_DICTIONARY.put(Command.SHOW_ROOM, reader.getProperty("showRoom.usage"));
-            USAGE_DICTIONARY.put(Command.KICK_MEMBER, reader.getProperty("kickMember.usage"));
-            USAGE_DICTIONARY.put(Command.SHOW_MEMBER, reader.getProperty("showMember.usage"));
+            USAGE_DICTIONARY.put(Command.LOGOUT, reader.getProperty("logout.usage"));
+            USAGE_DICTIONARY.put(Command.COMMAND_HELP, reader.getProperty("help.usage"));
+            USAGE_DICTIONARY.put(Command.SEND_MESSAGE, reader.getProperty("send.usage"));
+            USAGE_DICTIONARY.put(Command.JOIN_ROOM, reader.getProperty("join.usage"));
+            USAGE_DICTIONARY.put(Command.LEAVE_ROOM, reader.getProperty("leave.usage"));
+            USAGE_DICTIONARY.put(Command.MAKE_ROOM, reader.getProperty("make.usage"));
+            USAGE_DICTIONARY.put(Command.SHOW_ROOM, reader.getProperty("show-rooms.usage"));
+            USAGE_DICTIONARY.put(Command.KICK_MEMBER, reader.getProperty("kick.usage"));
+            USAGE_DICTIONARY.put(Command.SHOW_MEMBER, reader.getProperty("show-members.usage"));
 
         }
         catch (IOException err) {
@@ -61,15 +65,15 @@ class HelpDictionary {
         try (PropertyReader reader = new PropertyReader(new File("./help.properties"))) {
             reader.load();
 
-            HELP_DICTIONARY.put(Command.LOGOUT, reader.getProperty("exit.help"));
-            HELP_DICTIONARY.put(Command.COMMAND_HELP, reader.getProperty("commandHelp.help"));
-            HELP_DICTIONARY.put(Command.SEND_MESSAGE, reader.getProperty("sendMessage.help"));
-            HELP_DICTIONARY.put(Command.JOIN_ROOM, reader.getProperty("joinRoom.help"));
-            HELP_DICTIONARY.put(Command.LEAVE_ROOM, reader.getProperty("leaveRoom.help"));
-            HELP_DICTIONARY.put(Command.MAKE_ROOM, reader.getProperty("makeRoom.help"));
-            HELP_DICTIONARY.put(Command.SHOW_ROOM, reader.getProperty("showRoom.help"));
-            HELP_DICTIONARY.put(Command.KICK_MEMBER, reader.getProperty("kickMember.help"));
-            HELP_DICTIONARY.put(Command.SHOW_MEMBER, reader.getProperty("showMember.help"));
+            HELP_DICTIONARY.put(Command.LOGOUT, reader.getProperty("logout.help"));
+            HELP_DICTIONARY.put(Command.COMMAND_HELP, reader.getProperty("help.help"));
+            HELP_DICTIONARY.put(Command.SEND_MESSAGE, reader.getProperty("send.help"));
+            HELP_DICTIONARY.put(Command.JOIN_ROOM, reader.getProperty("join.help"));
+            HELP_DICTIONARY.put(Command.LEAVE_ROOM, reader.getProperty("leave.help"));
+            HELP_DICTIONARY.put(Command.MAKE_ROOM, reader.getProperty("make.help"));
+            HELP_DICTIONARY.put(Command.SHOW_ROOM, reader.getProperty("show-rooms.help"));
+            HELP_DICTIONARY.put(Command.KICK_MEMBER, reader.getProperty("kick.help"));
+            HELP_DICTIONARY.put(Command.SHOW_MEMBER, reader.getProperty("show-members.help"));
         }
         catch (IOException err) {
             // TODO: エラーログに出力するようにする

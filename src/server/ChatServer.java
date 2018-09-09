@@ -2,7 +2,10 @@ package server;
 
 import event.Command;
 import event.MessageEvent;
+import util.PropertyReader;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -71,11 +74,18 @@ public class ChatServer {
             case KICK_MEMBER:
                 kickMember(creator, body);
                 break;
+            case COMMAND_HELP:
+                commandHelp(creator, body);
+                break;
         }
     }
 
     private void logout(Client client) {
-
+        sendMessageToMembersExceptMyself(client, "## the user '" + client.getName() + "' log outs.");
+        // 参加しているルームを抜ける
+        roomList.getRoomWith(client).remove(client);
+        // クライアントを安全に終了させる
+        client.logout();
     }
 
     // TODO: メソッド名ながすぎませんか
@@ -177,7 +187,7 @@ public class ChatServer {
         else {
             // ルームから自分を削除（抜ける）してルームのメンバーにそのことを通知する
             room.remove(client);
-            sendMessageToMembersExceptMyself(client, "## user '" + client.getName() + "' left this room.", room);
+            sendMessageToMembersExceptMyself(client, "## the user '" + client.getName() + "' left this room.", room);
         }
 
         // ロビーに参加（戻る）して自分にそのことを通知する
@@ -261,5 +271,27 @@ public class ChatServer {
         kickedClient.send("## you have been exiled from the room '" + room.getName() + "'.");
         // クライアントを退会させる
         leaveRoom(kickedClient);
+    }
+
+    private void commandHelp(Client client, String command) {
+        try (PropertyReader reader = new PropertyReader(new File("./help.properties"))) {
+            reader.load();
+
+            String helpMsg = reader.getProperty(command + ".help");
+
+            // 指定されたコマンドが存在しない場合は/helpコマンドのusageを送る
+            if (helpMsg == null) {
+                client.send(Command.usage(Command.COMMAND_HELP));
+                return;
+            }
+
+            client.send(helpMsg);
+        }
+        catch (FileNotFoundException err) {
+            throw new AssertionError();
+        }
+        catch (IOException err) {
+            err.printStackTrace();
+        }
     }
 }

@@ -7,13 +7,15 @@ import java.io.*;
 import java.net.Socket;
 
 class MessageSender implements Runnable {
+    private Socket socket;
     private ObjectOutputStream writer;
 
     private Thread thread;
 
     MessageSender(Socket socket) {
         try {
-            writer = new ObjectOutputStream(socket.getOutputStream());
+            this.socket = socket;
+            this.writer = new ObjectOutputStream(socket.getOutputStream());
         }
         catch (IOException err) {
             throw new AssertionError(err);
@@ -28,9 +30,15 @@ class MessageSender implements Runnable {
 
     public void run() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            while (true) {
+            while (!socket.isClosed()) {
                 String msg = reader.readLine();
-                send(msg);
+
+                if (!socket.isClosed()) {
+                    send(msg);
+                }
+                else {
+                    return;
+                }
             }
         }
         catch (IOException err) {
