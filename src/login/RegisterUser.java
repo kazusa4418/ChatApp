@@ -1,11 +1,12 @@
+package login;
+
 import java.util.Scanner;
 import static java.lang.System.exit;
-import static java.lang.System.in;
+import exception.*;
 
-class RegisterUser {
+public class RegisterUser {
 
-
-    static boolean registerInfo(){
+    public static boolean registerInfo(){
         boolean result = false;
         String name;
         String ps;

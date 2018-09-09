@@ -1,6 +1,10 @@
+package login;
+
+import exception.FailedDatabaseAcceseException;
+
 import java.sql.*;
 
-class DbUtils {
+public class DbUtils {
     private static Connection con = null;
     //新規会員登録
     static boolean register(String name, String ps)throws FailedDatabaseAcceseException {
@@ -27,7 +31,7 @@ class DbUtils {
     }
 
     //ログインのためのDBからのでーた取得
-    static boolean migrateData(String id,String ps) throws FailedDatabaseAcceseException {
+    public static boolean migrateData(String id, String ps) throws FailedDatabaseAcceseException {
         ResultSet rs = null;
 
         try {

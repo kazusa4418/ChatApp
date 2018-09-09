@@ -1,8 +1,12 @@
-import client.ChatClient;
+
 
 public class ChatAppMain {
+    public static void main(String []args) {
+        LoginServer loginInterface = new LoginServer();
+        loginInterface.run();
+    }
 
-    public static void main(String []args){
+    /*public static void main(String []args){
         int checkNumberOrString = 0;
         String loginOrRegister;
         int check = 0;
@@ -14,11 +18,10 @@ public class ChatAppMain {
             checkNumberOrString = Integer.parseInt(loginOrRegister);
             check = isEarnedNum(checkNumberOrString);
             if(check == 1){
-                ChatClient client = new ChatClient();
-                client.start();
+                ChatApplication.login();
             }
             else if(check == 2){
-                RegisterUser.registerInfo();
+                login.RegisterUser.registerInfo();
             }
             else if(check == 3){
                 System.out.println("チャットプログラムを終了します\nありがとうございました");
@@ -28,10 +31,11 @@ public class ChatAppMain {
             System.out.println("正しく入力してください。\n打てる文字は数字のみです。");
         }
     }while(check > 3||check < 1);
-}
+
+}*/
 
     //
-    private static int isEarnedNum(int checkNumberOrString){
+    /*private static int isEarnedNum(int checkNumberOrString){
         if (checkNumberOrString == 1) {
             System.out.println("ログイン画面に遷移します");
             return 1;
@@ -45,4 +49,5 @@ public class ChatAppMain {
             return 4;
         }
     }
+    */
 }
