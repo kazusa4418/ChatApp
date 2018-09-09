@@ -21,6 +21,7 @@ public class RegisterUser {
             catch (FailedDatabaseAcceseException e) {
                 int errorId = e.getErrorId();
                 String errorMsg = e.getErrorMsg(errorId);
+                System.out.println(errorId);
                 System.out.println(errorMsg);
                 e.printStackTrace();
                 if(errorId == 1) {
