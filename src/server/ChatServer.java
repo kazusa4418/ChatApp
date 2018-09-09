@@ -54,7 +54,11 @@ public class ChatServer {
                 break;
             case SEND_MESSAGE:
                 // TODO: ・・・。
-                sendMessageToMembersExceptMyself(creator, creator.getName() + " : " + body);
+                if (!(body.trim().contains("/"))){
+                    sendMessageToMembersExceptMyself(creator, creator.getName() + " : " + body);
+                    break;
+                }
+                creator.send("this not command.....");
                 break;
             case MAKE_ROOM:
                 makeRoom(creator, body);
@@ -281,17 +285,15 @@ public class ChatServer {
 
             // 指定されたコマンドが存在しない場合は/helpコマンドのusageを送る
             if (helpMsg == null) {
-                client.send(Command.usage(Command.COMMAND_HELP));
+               client.send(Command.help(Command.COMMAND_HELP));
                 return;
             }
 
             client.send(helpMsg);
         }
-        catch (FileNotFoundException err) {
-            throw new AssertionError();
-        }
-        catch (IOException err) {
-            err.printStackTrace();
+        catch(NullPointerException | IOException npException){
+            client.send(command + " is not command...");
         }
     }
+
 }
