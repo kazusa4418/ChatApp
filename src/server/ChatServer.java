@@ -2,13 +2,14 @@ package server;
 
 import event.Command;
 import event.MessageEvent;
+import util.JLogger;
 import util.PropertyReader;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.logging.Level;
 
 public class ChatServer {
     private ServerSocket server;
@@ -16,7 +17,6 @@ public class ChatServer {
 
     public ChatServer() {
         try {
-            // ポートを指定してServerSocketを立てる
             server = new ServerSocket(33333);
         }
         catch (IOException err) {
@@ -43,48 +43,64 @@ public class ChatServer {
     }
 
     void receiveEvent(MessageEvent event) {
-        // eventがnullだった場合、正しい形式のコマンドが入力されていないのでそのコマンドのヘルプを送信する
         Client creator = event.getCreator();
-        Command command = event.getCommand();
+        String command = event.getCommand();
         String body = event.getBody();
 
         switch (command) {
-            case LOGOUT:
-                logout(creator);
+            case "/logout":
+                logout(creator, body);
                 break;
-            case SEND_MESSAGE:
+            case "/send":
                 // TODO: ・・・。
-                if (!(body.trim().contains("/"))){
-                    sendMessageToMembersExceptMyself(creator, creator.getName() + " : " + body);
-                    break;
-                }
-                creator.send("this not command.....");
+                sendMessageToMembersExceptMyself(creator, creator.getName() + " : " + body);
                 break;
-            case MAKE_ROOM:
+            case "/make":
                 makeRoom(creator, body);
                 break;
-            case JOIN_ROOM:
+            case "/join":
                 joinRoom(creator, body);
                 break;
-            case LEAVE_ROOM:
-                leaveRoom(creator);
+            case "/leave":
+                leaveRoom(creator, body);
                 break;
-            case SHOW_ROOM:
-                showRoom(creator);
+            case "/show-rooms":
+                showRoom(creator, body);
                 break;
-            case SHOW_MEMBER:
+            case "/show-members":
                 showMember(creator, body);
                 break;
-            case KICK_MEMBER:
+            case "/kick":
                 kickMember(creator, body);
                 break;
-            case COMMAND_HELP:
+            case "/help":
                 commandHelp(creator, body);
+                break;
+            default:
+                creator.send(command + " is a not system command.");
                 break;
         }
     }
 
-    private void logout(Client client) {
+    private boolean isInvalidArgument(String argument, int... nums) {
+        String[] arguments = argument.split(" ");
+        for (int i : nums) {
+            if (arguments.length == i) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void sendUsage(Client target, Command command) {
+        target.send(Command.usage(command));
+    }
+
+    private void logout(Client client, String args) {
+        if (isInvalidArgument(args, 0)) {
+            sendUsage(client, Command.LOGOUT);
+            return;
+        }
         sendMessageToMembersExceptMyself(client, "## the user '" + client.getName() + "' log outs.");
         // 参加しているルームを抜ける
         roomList.getRoomWith(client).remove(client);
@@ -111,6 +127,10 @@ public class ChatServer {
     }
 
     private void makeRoom(Client client, String roomName) {
+        if (isInvalidArgument(roomName, 1)) {
+            sendUsage(client, Command.MAKE_ROOM);
+            return;
+        }
         // 既に指定された名前を持つルームが存在していた場合
         if (roomList.existRoom(roomName)) {
             client.send("## fatal: the room named '" + roomName + "' already exists.");
@@ -132,6 +152,10 @@ public class ChatServer {
     }
 
     private void joinRoom(Client client, String roomName) {
+        if (isInvalidArgument(roomName, 1)) {
+            sendUsage(client, Command.JOIN_ROOM);
+            return;
+        }
         // 指定したルーム名を持つルームが存在しなかった場合
         if (!roomList.existRoom(roomName)) {
             client.send("## fatal: The room named '" + roomName + "' does not exist.");
@@ -160,8 +184,12 @@ public class ChatServer {
         sendMessageToMembersExceptMyself(client, "## user '" + client.getName() + "' joined this room.");
     }
 
-    private void leaveRoom(Client client) {
-         // 自分の参加しているルームを取得する
+    private void leaveRoom(Client client, String args) {
+        if (isInvalidArgument(args, 0)) {
+            sendUsage(client, Command.LEAVE_ROOM);
+            return;
+        }
+        // 自分の参加しているルームを取得する
         ChatRoom room = roomList.getRoomWith(client);
 
         // 自分の参加しているルームがロビーだったら抜けられない
@@ -199,7 +227,11 @@ public class ChatServer {
         client.send("## you returned to the lobby.");
     }
 
-    private void showRoom(Client client) {
+    private void showRoom(Client client, String args) {
+        if (isInvalidArgument(args, 0)) {
+            sendUsage(client, Command.SHOW_ROOM);
+            return;
+        }
         // 自分の参加しているルームを取得する
         ChatRoom joinedRoom = roomList.getRoomWith(client);
 
@@ -217,6 +249,10 @@ public class ChatServer {
     }
 
     private void showMember(Client client, String roomName) {
+        if (isInvalidArgument(roomName, 0, 1)) {
+            sendUsage(client, Command.SHOW_MEMBER);
+            return;
+        }
         // "/show-members"コマンドで呼ばれた場合、roomNameは空文字なので自分の参加しているルーム扱いにする
         if (roomName.isEmpty()) {
             roomName = roomList.getRoomWith(client).getName();
@@ -249,6 +285,10 @@ public class ChatServer {
     }
 
     private void kickMember(Client client, String userName) {
+        if (isInvalidArgument(userName, 1)) {
+            sendUsage(client, Command.KICK_MEMBER);
+            return;
+        }
         // 自分の参加しているルームを取得する
         ChatRoom room = roomList.getRoomWith(client);
 
@@ -274,7 +314,7 @@ public class ChatServer {
         // 蹴られたことをkickedClientに通知する
         kickedClient.send("## you have been exiled from the room '" + room.getName() + "'.");
         // クライアントを退会させる
-        leaveRoom(kickedClient);
+        leaveRoom(kickedClient, " ");
     }
 
     private void commandHelp(Client client, String command) {
@@ -285,14 +325,15 @@ public class ChatServer {
 
             // 指定されたコマンドが存在しない場合は/helpコマンドのusageを送る
             if (helpMsg == null) {
-               client.send(Command.help(Command.COMMAND_HELP));
+                client.send(Command.help(Command.COMMAND_HELP));
                 return;
             }
 
             client.send(helpMsg);
         }
-        catch(NullPointerException | IOException npException){
-            client.send(command + " is not command...");
+        catch(IOException err){
+            JLogger.log(Level.SEVERE, "./help.properties does not read.", err);
+            client.send("## fatal: Help message could not be read.");
         }
     }
 

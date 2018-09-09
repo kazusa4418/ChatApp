@@ -35,18 +35,9 @@ public class Client implements Runnable {
             while (!socket.isClosed()) {
                 MessageEvent event = (MessageEvent) reader.readObject();
 
-                // TODO: まじでここの処理気に入らないいつかなおすわ（なおらない
-                if (event.getBody() != null) {
-                    // TODO: ここで自分が送信したことを記録するのはダサくない？
-                    event.setCreator(this);
-                    server.receiveEvent(event);
-                }
-                // TODO: ここに書くべきではない気がしている
-                else {
-                    // bodyがnullなので正しくコマンドの引数が与えられていない
-                    // コマンドのUsageをクライアントに送信する
-                    send(Command.usage(event.getCommand()));
-                }
+                // TODO: ここで自分が送信したことを記録するのはダサくない？
+                event.setCreator(this);
+                server.receiveEvent(event);
             }
         }
         catch (IOException err) {

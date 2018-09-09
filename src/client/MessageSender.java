@@ -33,12 +33,7 @@ class MessageSender implements Runnable {
             while (!socket.isClosed()) {
                 String msg = reader.readLine();
 
-                if (!socket.isClosed()) {
-                    send(msg);
-                }
-                else {
-                    return;
-                }
+                sendToServer(msg);
             }
         }
         catch (IOException err) {
@@ -47,11 +42,14 @@ class MessageSender implements Runnable {
         }
     }
 
-    private void send(String msg) {
+    private void sendToServer(String msg) {
         try {
             MessageEvent event = MessageEventFactory.createMessageEvent(msg);
-            writer.writeObject(event);
-            writer.flush();
+
+            if (!socket.isClosed()) {
+                writer.writeObject(event);
+                writer.flush();
+            }
         }
         catch (IOException err) {
             err.printStackTrace();
