@@ -25,6 +25,31 @@ public enum Command {
     public static String help(Command command) {
         return HelpDictionary.getHelpMessage(command);
     }
+
+    public String getArgumentRegex() {
+        switch (this) {
+            case LOGOUT:
+                return "";
+            case COMMAND_HELP:
+                return "[a-zA-Z0-9]+";
+            case SEND_MESSAGE:
+                return ".*";
+            case JOIN_ROOM:
+                return "[a-zA-Z0-9]+";
+            case LEAVE_ROOM:
+                return "";
+            case MAKE_ROOM:
+                return "[a-zA-Z0-9]+";
+            case SHOW_ROOM:
+                return "";
+            case KICK_MEMBER:
+                return "[a-zA-Z0-9-_]+";
+            case SHOW_MEMBER:
+                return "*{0}|[a-zA-Z0-9]+";
+            default:
+                return "";
+        }
+    }
 }
 
 class HelpDictionary {
