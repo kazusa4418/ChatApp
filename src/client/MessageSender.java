@@ -9,7 +9,7 @@ import java.net.Socket;
 class MessageSender implements Runnable {
     private Socket socket;
     private ObjectOutputStream writer;
-
+    private ChatClient chatclient;
     private Thread thread;
 
     MessageSender(Socket socket) {
@@ -24,12 +24,14 @@ class MessageSender implements Runnable {
         thread = new Thread(this);
     }
 
-    void start() {
+    void start(ChatClient chatClient) {
+        this.chatclient = chatClient;
         thread.start();
     }
 
     public void run() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+            chatclient = new ChatClient();
             while (!socket.isClosed()) {
                 String msg = reader.readLine();
 

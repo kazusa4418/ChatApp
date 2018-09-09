@@ -16,7 +16,7 @@ public class Client implements Runnable {
 
     private Thread thread;
 
-    Client(ChatServer server, Socket socket, String name) {
+    Client(ChatServer server, Socket socket) {
         this.server = server;
         this.socket = socket;
 

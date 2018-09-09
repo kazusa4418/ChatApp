@@ -8,6 +8,7 @@ import java.net.Socket;
 public class MessageReceiver implements Runnable {
     private Socket socket;
     private BufferedReader reader;
+    private ChatClient chatClient;
 
     private Thread thread;
 
@@ -24,7 +25,8 @@ public class MessageReceiver implements Runnable {
         thread = new Thread(this);
     }
 
-    void start() {
+    void start(ChatClient chatClient) {
+        this.chatClient = chatClient;
         thread.start();
     }
 

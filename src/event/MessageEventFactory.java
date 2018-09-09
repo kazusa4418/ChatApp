@@ -23,10 +23,17 @@ public class MessageEventFactory {
                 return createHelpEvent(msg);
             case "/logout":
                 return createLogoutEvent(msg);
-            default:
-                return createSendMessageEvent(msg);
         }
+        //システムメッセージに該当するものがないのに最初の一文字が"/"から始まるもの
+        if(firstMsg.equals("/")){
+            throw new UnmatchedCommandExceotion(msg);
+        }catch(UnmatchedCommandExceotion err){
+
+         }
+        //通常のメッセージ送信イベントを発生させる
+        createSendMessageEvent(msg);
     }
+
     // TODO: 全体的にコードがすっきりしていない気がする
     private static MessageEvent createExitEvent(String msg) {
         String[] msgs = msg.split(" ");
@@ -126,6 +133,8 @@ public class MessageEventFactory {
              return new MessageEvent(Command.LOGOUT, null);
          }
     }
+
+
 
     private static MessageEvent createSendMessageEvent(String msg) {
         return new MessageEvent(Command.SEND_MESSAGE, msg);

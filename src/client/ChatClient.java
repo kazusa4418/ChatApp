@@ -11,8 +11,8 @@ public class ChatClient {
     public void start() {
         Socket socket = connectServer(ClientConfiguration.getServerIpAddress(), ClientConfiguration.getServerPortNumber());
         openStream(socket);
-        sender.start();
-        receiver.start();
+        sender.start(this);
+        receiver.start(this);
     }
 
     private Socket connectServer(String host, int port) {

@@ -54,7 +54,7 @@ public class ChatServer {
                 break;
             case SEND_MESSAGE:
                 // TODO: ・・・。
-                if (!(body.trim().contains("/"))){
+                if (!(body.trim().startsWith("/"))){
                     sendMessageToMembersExceptMyself(creator, creator.getName() + " : " + body);
                     break;
                 }
