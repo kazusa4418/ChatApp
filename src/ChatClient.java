@@ -1,4 +1,4 @@
-import java.io.IOException;
+import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 
@@ -8,6 +8,7 @@ class ChatClient {
     private MessageReceiver receiver;
 
     void start() {
+        login();
         connectServer(ClientConfiguration.getServerIpAddress(), ClientConfiguration.getServerPortNumber());
         openStream();
         sender.start();
@@ -28,4 +29,26 @@ class ChatClient {
         sender = new MessageSender(socket);
         receiver = new MessageReceiver(socket);
     }
+
+    private void login(){
+        connectServer(ClientConfiguration.getServerIpAddress(),ClientConfiguration.getServerPortNumber());
+
+        try {
+            String display = "";
+            String buf = "";
+            BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+
+            display = br.readLine();
+            System.out.println(display);
+
+            bw.write(buf);
+            bw.newLine();
+            bw.flush();
+
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
+

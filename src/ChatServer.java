@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
 
 class ChatServer {
     private ServerSocket server;
@@ -105,4 +106,7 @@ class ChatServer {
         // 新しいルームに入る
         roomList.getRoom(roomName).add(client);
     }
-}
+
+ }
+
+

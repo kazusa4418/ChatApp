@@ -6,7 +6,8 @@ public enum Command {
     SHOW_ROOM,
     REMOVE_ROOM,
     KICK_USER,
-    SHOW_MEMBER;
+    SHOW_MEMBER,
+    LOGIN;
 
     static boolean isCommand(String msg) {
         String[] commands = { "/exit", "/show", "/add", "/remove" };
