@@ -18,7 +18,7 @@ public class DbUtils {
             throw new FailedDatabaseAcceseException(0);
         }
         //noinspection SqlDialectInspection,SqlNoDataSourceInspection
-        String sql = "INSERT INTO user VALUES("+ name +","+ ps +");";
+        String sql = "INSERT INTO user VALUES("+ "'" + name + "'" +","+ "'" + ps + "'" +");";
         try {
             Statement stm = con.createStatement();
             result = stm.executeUpdate(sql);
@@ -45,7 +45,7 @@ public class DbUtils {
         try {
             Statement stm = con.createStatement();
             //noinspection SqlDialectInspection,SqlNoDataSourceInspection
-            String sql = "SELECT * FROM user WHERE user_id = " + id + "AND user_ps =" + ps + ";";
+            String sql = "SELECT * FROM user WHERE user_id = " + id + "AND password =" + "'" + ps + "'" + ";";
             rs = stm.executeQuery(sql);
             return rs.next();
         }
@@ -68,7 +68,7 @@ public class DbUtils {
         try {
             Statement stm = con.createStatement();
             //noinspection SqlDialectInspection,SqlNoDataSourceInspection
-            String sql = "SELECT * FROM user WHERE user_name = " + name + ";";
+            String sql = "SELECT * FROM user WHERE user_id = " + "'"+ name +"'" + ";";
             rs = stm.executeQuery(sql);
             return rs.next();
         }

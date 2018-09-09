@@ -22,6 +22,7 @@ public class RegisterUser {
                 int errorId = e.getErrorId();
                 String errorMsg = e.getErrorMsg(errorId);
                 System.out.println(errorMsg);
+                e.printStackTrace();
                 if(errorId == 1) {
                     exit(1);
                 }
@@ -32,7 +33,7 @@ public class RegisterUser {
         } while(result);
 
         do {
-            ps = inputNameOrPassword("ps");
+            ps = inputNameOrPassword("password");
             try {
                 result = DbUtils.register(name, ps);
             } catch (FailedDatabaseAcceseException e) {

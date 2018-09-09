@@ -38,7 +38,7 @@ public class ChatApplication {
 
 
     static void login(){
-        Socket socket = connectServer(ClientConfiguration.getServerIpAddress(),ClientConfiguration.getServerPortNumber());
+        Socket socket = connectServer(ClientConfiguration.getServerIpAddress(),33332);
 
         try {
             String display = "";

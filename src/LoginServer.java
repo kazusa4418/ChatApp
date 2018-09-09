@@ -26,33 +26,37 @@ class LoginServer {
             try {
                 // クライアントからのアクセスを待つ
                 Socket socket = server.accept();
+                boolean logincheck = false;
+                    BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 
-                BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+                do {
+                    bw.write("名前を入力してください");
+                    bw.newLine();
+                    bw.flush();
 
-                bw.write("名前を入力してください");
-                bw.newLine();
-                bw.flush();
+                    String name = br.readLine();
 
-                String name = br.readLine();
+                    bw.write("パスワードを入力してください");
+                    bw.newLine();
+                    bw.flush();
 
-                bw.write("パスワードを入力してください");
-                bw.newLine();
-                bw.flush();
+                    String password = br.readLine();
 
-                String password = br.readLine();
-
-                try {
-                    DbUtils.migrateData(name,password);
-                } catch (FailedDatabaseAcceseException e) {
-                    int errorId = e.getErrorId();
-                    String errorMsg = e.getErrorMsg(errorId);
-                    System.out.println(errorMsg);
-                    if(errorId == 1) {
-                        exit(1);
+                    try {
+                        logincheck = DbUtils.migrateData(name, password);
+                    } catch (FailedDatabaseAcceseException e) {
+                        int errorId = e.getErrorId();
+                        String errorMsg = e.getErrorMsg(errorId);
+                        System.out.println(errorMsg);
+                        if (errorId == 1) {
+                            exit(1);
+                        }
                     }
-
-                }
+                    if(!logincheck){
+                        System.out.println("もう一度入力してください");
+                    }
+                }while(logincheck);
             }
             catch (IOException err) {
                 err.printStackTrace();
