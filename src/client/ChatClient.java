@@ -1,5 +1,6 @@
 package client;
 
+import util.ErrorMessage;
 import util.JLogger;
 
 import java.io.IOException;
@@ -8,33 +9,30 @@ import java.net.Socket;
 import java.util.logging.Level;
 
 public class ChatClient {
+    private Socket socket;
     private MessageSender sender;
     private MessageReceiver receiver;
 
     public void start() {
-        Socket socket = connectServer(ClientConfiguration.getServerIpAddress(), ClientConfiguration.getServerPortNumber());
-        openStream(socket);
-        sender.start();
-        receiver.start();
-    }
-
-    private Socket connectServer(String host, int port) {
         try {
-            return new Socket(InetAddress.getByName(host), port);
+            socket = connectServer(ClientConfiguration.getServerIpAddress(), ClientConfiguration.getServerPortNumber());
+            openStream();
+            sender.start();
+            receiver.start();
         }
         catch (IOException err) {
-            String errMsg = "fatal: can not access the server. ip-address.\n" +
-                    "ip-address: " + ClientConfiguration.getServerIpAddress() + "\n" +
-                    "port: " + ClientConfiguration.getServerPortNumber();
-
+            String errMsg = ErrorMessage.failedAccessServer(ClientConfiguration.getServerIpAddress(),
+                                                                ClientConfiguration.getServerPortNumber());
+            JLogger.log(Level.SEVERE, "errMsg", err);
             System.err.println(errMsg);
-            JLogger.log(Level.SEVERE, "", err);
-            System.exit(2);
-            return null;
         }
     }
 
-    private void openStream(Socket socket) {
+    private Socket connectServer(String host, int port) throws IOException {
+        return new Socket(InetAddress.getByName(host), port);
+    }
+
+    private void openStream() {
         sender = new MessageSender(socket);
         receiver = new MessageReceiver(socket);
     }
