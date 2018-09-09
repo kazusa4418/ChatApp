@@ -52,7 +52,7 @@ public class RegisterUser {
     }
 
     private static boolean countWord(String countWord){
-        return countWord.length() <= 32;
+        return countWord.length() >=1 &&countWord.length() <= 32;
     }
 
     private static String inputNameOrPassword(String variableName){
@@ -61,11 +61,11 @@ public class RegisterUser {
         boolean checkWordNum;
 
         do {
-            System.out.println("32文字以下で" + variableName + "入力してください");
+            System.out.println("1文字以上32文字以下で" + variableName + "入力してください");
             inputNameOrPassword = sr.nextLine();
             checkWordNum = countWord(inputNameOrPassword);
             if(!checkWordNum){
-                System.out.println("もう一度入力してください");
+                System.out.println("1文字以上32文字以下で入力してください");
             }
         }while(!checkWordNum);
         return inputNameOrPassword;
