@@ -1,8 +1,11 @@
 package client;
 
+import util.JLogger;
+
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.logging.Level;
 
 public class ChatClient {
     private MessageSender sender;
@@ -20,8 +23,14 @@ public class ChatClient {
             return new Socket(InetAddress.getByName(host), port);
         }
         catch (IOException err) {
-            err.printStackTrace();
-            throw new AssertionError(err);
+            String errMsg = "fatal: can not access the server. ip-address.\n" +
+                    "ip-address: " + ClientConfiguration.getServerIpAddress() + "\n" +
+                    "port: " + ClientConfiguration.getServerPortNumber();
+
+            System.err.println(errMsg);
+            JLogger.log(Level.SEVERE, "", err);
+            System.exit(2);
+            return null;
         }
     }
 
