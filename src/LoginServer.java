@@ -1,11 +1,12 @@
 import exception.FailedDatabaseAcceseException;
 import login.DbUtils;
+import server.LoginStatus;
+import util.ClientDelivary;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import static java.lang.System.exit;
 
 class LoginServer {
     private ServerSocket server;
@@ -14,53 +15,60 @@ class LoginServer {
         try {
             // ポートを指定してServerSocketを立てる
             server = new ServerSocket(33332);
-        }
-        catch (IOException err) {
+        } catch (IOException err) {
             err.printStackTrace();
             throw new AssertionError(err);
         }
     }
 
     void run() {
+        LoginStatus status = LoginStatus.OK;
         while (!server.isClosed()) {
             try {
                 // クライアントからのアクセスを待つ
                 Socket socket = server.accept();
-                boolean logincheck = false;
-                    BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 
-                do {
-                    bw.write("名前を入力してください");
-                    bw.newLine();
-                    bw.flush();
+                boolean logincheck;
+                String name = "";
+                String password = "";
+                ClientDelivary clientDelivary = new ClientDelivary();
 
-                    String name = br.readLine();
-
-                    bw.write("パスワードを入力してください");
-                    bw.newLine();
-                    bw.flush();
-
-                    String password = br.readLine();
-
-                    try {
-                        logincheck = DbUtils.migrateData(name, password);
-                    } catch (FailedDatabaseAcceseException e) {
-                        int errorId = e.getErrorId();
-                        String errorMsg = e.getErrorMsg(errorId);
-                        System.out.println(errorMsg);
-                        if (errorId == 1) {
-                            exit(1);
-                        }
+                try {
+                    ObjectInputStream reciver = new ObjectInputStream(socket.getInputStream());
+                    clientDelivary = (ClientDelivary) reciver.readObject();
+                    name = clientDelivary.getName();
+                    password = clientDelivary.getPassWord();
+                    logincheck = DbUtils.migrateData(name, password);
+                    if(logincheck){
+                        status = LoginStatus.OK;
                     }
-                    if(!logincheck){
-                        System.out.println("もう一度入力してください");
+                    else if(!logincheck){
+                        status = LoginStatus.UNMATCHED;
                     }
-                }while(logincheck);
+
+
+                    ObjectOutputStream sender = new ObjectOutputStream(socket.getOutputStream());
+                    sender.writeObject(status);
+                    sender.flush();
+
+                }
+                catch (ClassNotFoundException e) {
+                    e.getStackTrace();
+                    status = LoginStatus.EXCEPTION;
+                }
+                catch (FailedDatabaseAcceseException e) {
+                    int errorId = e.getErrorId();
+                    String errorMsg = e.getErrorMsg(errorId);
+                    System.out.println(errorMsg);
+                    status = LoginStatus.EXCEPTION;
+                    if (errorId == 1) {
+                        //ここでログを発生、exit(1);
+                    }
+                }
             }
             catch (IOException err) {
                 err.printStackTrace();
-                throw new AssertionError(err);
+                status = LoginStatus.EXCEPTION;
             }
         }
     }

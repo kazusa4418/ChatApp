@@ -47,7 +47,7 @@ public class RegisterUser {
             } else {
                 System.out.println("失敗しました。もう一度やり直してください");
             }
-        }while(result);
+        }while(!result);
         return true;
     }
 

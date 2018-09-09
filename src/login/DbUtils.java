@@ -45,7 +45,7 @@ public class DbUtils {
         try {
             Statement stm = con.createStatement();
             //noinspection SqlDialectInspection,SqlNoDataSourceInspection
-            String sql = "SELECT * FROM user WHERE user_id = " + id + "AND password =" + "'" + ps + "'" + ";";
+            String sql = "SELECT * FROM user WHERE user_id = " + "'" + id +"'" + "AND password =" + "'" + ps + "';";
             rs = stm.executeQuery(sql);
             return rs.next();
         }
@@ -68,7 +68,7 @@ public class DbUtils {
         try {
             Statement stm = con.createStatement();
             //noinspection SqlDialectInspection,SqlNoDataSourceInspection
-            String sql = "SELECT * FROM user WHERE user_id = " + "'"+ name +"'" + ";";
+            String sql = "SELECT * FROM user WHERE user_id = " + "'" + name + "'" + ";";
             rs = stm.executeQuery(sql);
             return rs.next();
         }

@@ -1,10 +1,14 @@
 package client;
 
 import login.RegisterUser;
-
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.Scanner;
+import util.ClientDelivary;
+import server.LoginStatus;
+
+import static java.lang.System.exit;
 
 
 public class ChatApplication {
@@ -21,9 +25,12 @@ public class ChatApplication {
                 check = isEarnedNum(checkNumberOrString);
                 if(check == 1){
                     ChatApplication.login();
+                    ChatClient client = new ChatClient();
+                    client.start();
                 }
                 else if(check == 2){
                     RegisterUser.registerInfo();
+                    check = 5;
                 }
                 else if(check == 3){
                     System.out.println("...by...");
@@ -37,25 +44,48 @@ public class ChatApplication {
 
 
 
-    static void login(){
-        Socket socket = connectServer(ClientConfiguration.getServerIpAddress(),33332);
+    static void login() {
+        Socket socket = connectServer(ClientConfiguration.getServerIpAddress(), 33332);
+        Scanner sr = new Scanner(System.in);
+        ClientDelivary clientDelivary = new ClientDelivary();
+        boolean flag = false;
 
-        try {
-            String display = "";
-            String buf = "";
-            BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+        do {
+            System.out.println("名前を入力してください");
+            String name = sr.nextLine();
+            System.out.println("パスワードを入力してください");
+            String password = sr.nextLine();
+            clientDelivary.set(name, password);
+            ClientDelivary clientDelivary1 = new ClientDelivary();
 
-            display = br.readLine();
-            System.out.println(display);
+            try {
+                ObjectOutputStream transferData = new ObjectOutputStream(socket.getOutputStream());
+                transferData.writeObject(clientDelivary);
+                transferData.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-            bw.write(buf);
-            bw.newLine();
-            bw.flush();
+            try {
+                ObjectInputStream resiver = new ObjectInputStream(socket.getInputStream());
+                LoginStatus lo = (LoginStatus) resiver.readObject();
+                if (lo == LoginStatus.OK) {
+                    System.out.println("成功しました");
+                    flag = true;
+                } else if (lo == LoginStatus.UNMATCHED) {
+                    System.out.println("名前、パスワードの片方、または両方が違います。\nもう一度入力くしてください");
+                    flag = false;
+                } else if (lo == LoginStatus.EXCEPTION) {
+                    System.out.println("エラーが発生しました\nプログラムを終了します");
+                    exit(1);
+                }
 
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }while(!flag);
     }
 
     private static int isEarnedNum(int checkNumberOrString){
