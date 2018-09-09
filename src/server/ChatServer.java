@@ -54,10 +54,6 @@ public class ChatServer {
                 break;
             case SEND_MESSAGE:
                 // TODO: ・・・。
-                if (!(body.trim().startsWith("/"))){
-                    sendMessageToMembersExceptMyself(creator, creator.getName() + " : " + body);
-                    break;
-                }
                 creator.send("this not command.....");
                 break;
             case MAKE_ROOM:
@@ -82,6 +78,7 @@ public class ChatServer {
                 commandHelp(creator, body);
                 break;
         }
+
     }
 
     private void logout(Client client) {
@@ -275,6 +272,30 @@ public class ChatServer {
         kickedClient.send("## you have been exiled from the room '" + room.getName() + "'.");
         // クライアントを退会させる
         leaveRoom(kickedClient);
+    }
+
+    private void decidNewAdmin(Client client, String userName){
+
+        ChatRoom room = roomList.getRoomWith(client);
+
+        if (!room.isAdmin(client)) {
+            client.send("## fatal: you are not an administrator of this room." +
+                    "\n##        this command can not be executed unless it is an administrator.");
+            return;
+        }
+        // 指定した名前のメンバーがいない場合削除できない
+        if (!room.existClient(userName)) {
+            client.send("## fatal: the member with the specified name is not in the room.");
+            return;
+        }
+        // 指定したメンバーが自分自身だった場合削除させない（管理者がルームから消えてしまう）
+        if (client.getName().equals(userName)) {
+            client.send("## fatal: you can not remove yourself from the room.");
+            return;
+        }
+
+        client.getName()
+
     }
 
     private void commandHelp(Client client, String command) {

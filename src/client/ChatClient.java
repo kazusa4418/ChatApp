@@ -1,5 +1,7 @@
 package client;
 
+import server.Client;
+
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -10,9 +12,10 @@ public class ChatClient {
 
     public void start() {
         Socket socket = connectServer(ClientConfiguration.getServerIpAddress(), ClientConfiguration.getServerPortNumber());
+
         openStream(socket);
-        sender.start(this);
-        receiver.start(this);
+        sender.start();
+        receiver.start();
     }
 
     private Socket connectServer(String host, int port) {

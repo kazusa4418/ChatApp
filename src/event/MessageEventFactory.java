@@ -5,7 +5,7 @@ public class MessageEventFactory {
         // TODO: ここなんかダサい気がする。
         String firstMsg = msg.split(" ")[0];
 
-        // コマンドの引数が異常な場合はbodyにnullが入る
+      /*  // コマンドの引数が異常な場合はbodyにnullが入る
         switch(firstMsg) {
             case "/show-rooms":
                 return createShowEvent(msg);
@@ -17,6 +17,8 @@ public class MessageEventFactory {
                 return createMakeEvent(msg);
             case "/kick":
                 return createKickEvent(msg);
+            case "/decide-new-admin":
+                return createDecideToNewAdmin(msg);
             case "/show-members":
                 return createMemberEvent(msg);
             case "/help":
@@ -26,13 +28,14 @@ public class MessageEventFactory {
         }
         //システムメッセージに該当するものがないのに最初の一文字が"/"から始まるもの
         if(firstMsg.equals("/")){
-            throw new UnmatchedCommandExceotion(msg);
-        }catch(UnmatchedCommandExceotion err){
-
-         }
+            unMatchedCommand(msg);
+        }
         //通常のメッセージ送信イベントを発生させる
         createSendMessageEvent(msg);
-    }
+         return null;
+     }
+
+     */
 
     // TODO: 全体的にコードがすっきりしていない気がする
     private static MessageEvent createExitEvent(String msg) {
@@ -93,6 +96,15 @@ public class MessageEventFactory {
         }
     }
 
+    private static MessageEvent createDecideToNewAdmin(String msg){
+         String[] msgs = msg.split(" ");
+         if (msgs.length == 2){
+             return new MessageEvent(Command.DECIDE_NEW_ADMIN, msgs[1]);
+         }else{
+             return new MessageEvent(Command.DECIDE_NEW_ADMIN,null);
+         }
+    }
+
     private static MessageEvent createMemberEvent(String msg) {
         String[] msgs = msg.split(" ");
 
@@ -135,8 +147,12 @@ public class MessageEventFactory {
     }
 
 
-
     private static MessageEvent createSendMessageEvent(String msg) {
         return new MessageEvent(Command.SEND_MESSAGE, msg);
+    }
+
+
+    private static void unMatchedCommand(String msg){
+         return;
     }
 }

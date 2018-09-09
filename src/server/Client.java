@@ -1,5 +1,6 @@
 package server;
 
+import client.ChatClient;
 import event.Command;
 import event.MessageEvent;
 import server.ChatRoom;
@@ -11,15 +12,14 @@ import java.net.Socket;
 public class Client implements Runnable {
     private ChatServer server;
     private Socket socket;
-
     private String name;
+    private ChatClient chatClient;
 
     private Thread thread;
 
-    Client(ChatServer server, Socket socket) {
+    Client(ChatServer server, Socket socket, String name) {
         this.server = server;
         this.socket = socket;
-
         ChatRoom.getLobby().add(this);
 
         this.name = name;

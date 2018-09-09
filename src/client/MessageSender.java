@@ -9,7 +9,6 @@ import java.net.Socket;
 class MessageSender implements Runnable {
     private Socket socket;
     private ObjectOutputStream writer;
-    private ChatClient chatclient;
     private Thread thread;
 
     MessageSender(Socket socket) {
@@ -21,17 +20,15 @@ class MessageSender implements Runnable {
             throw new AssertionError(err);
         }
 
-        thread = new Thread(this);
+        thread = new Thread();
     }
 
-    void start(ChatClient chatClient) {
-        this.chatclient = chatClient;
+    void start() {
         thread.start();
     }
 
     public void run() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            chatclient = new ChatClient();
             while (!socket.isClosed()) {
                 String msg = reader.readLine();
 
@@ -52,6 +49,9 @@ class MessageSender implements Runnable {
     private void send(String msg) {
         try {
             MessageEvent event = MessageEventFactory.createMessageEvent(msg);
+            if (event == null){
+
+            }
             writer.writeObject(event);
             writer.flush();
         }
