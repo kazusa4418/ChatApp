@@ -2,9 +2,11 @@ package client;
 
 import event.MessageEvent;
 import event.MessageEventFactory;
+import util.JLogger;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.logging.Level;
 
 class MessageSender implements Runnable {
     private Socket socket;
@@ -18,7 +20,9 @@ class MessageSender implements Runnable {
             this.writer = new ObjectOutputStream(socket.getOutputStream());
         }
         catch (IOException err) {
-            throw new AssertionError(err);
+            JLogger.log(Level.SEVERE, "failed to build output stream", err);
+            System.err.println("fatal: failed to connect to the server.");
+            System.exit(5);
         }
 
         thread = new Thread(this);
@@ -37,8 +41,19 @@ class MessageSender implements Runnable {
             }
         }
         catch (IOException err) {
-            err.printStackTrace();
-            throw new AssertionError(err);
+            JLogger.log(Level.SEVERE, "入力ストリームがメッセージの受信に失敗しました" +
+                    "入出力のエラーが発生しました", err);
+            // そもそもIOExceptionがスローされた時点でsocketもおかしくなってそう・・・。
+            // もしかしたら的外れなのかもしれない
+            try {
+                reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                JLogger.info("入力ストリームを再取得しました");
+            }
+            catch (IOException ioError) {
+                JLogger.log(Level.SEVERE, "入力ストリームの再取得に失敗しました", ioError);
+                System.err.println("fatal: サーバーとのコネクションが切れました");
+                System.exit(4);
+            }
         }
     }
 

@@ -20,9 +20,9 @@ public class MessageReceiver implements Runnable {
             reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         }
         catch (IOException err) {
-            JLogger.log(Level.SEVERE, "受信ストリームの構築に失敗しました", err);
-            System.err.println("サーバーとの通信に失敗しました");
-            throw new AssertionError(err);
+            JLogger.log(Level.SEVERE, "failed to construct input stream.", err);
+            System.err.println("fatal: failed to connect to the server.");
+            System.exit(3);
         }
 
         thread = new Thread(this);
@@ -46,8 +46,9 @@ public class MessageReceiver implements Runnable {
             }
         }
         catch (IOException err) {
-            err.printStackTrace();
-            throw new AssertionError(err);
+            JLogger.log(Level.SEVERE, "fatal: the input stream failed to receive the message.\n" +
+                                                                "I/O error occurred", err);
+            System.err.println("fatal: failed to connect to the server.");
         }
     }
 }
