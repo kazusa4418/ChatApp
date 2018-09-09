@@ -1,11 +1,12 @@
+package login;
+
 import java.util.Scanner;
 import static java.lang.System.exit;
-import static java.lang.System.in;
+import exception.*;
 
-class RegisterUser {
+public class RegisterUser {
 
-
-    static boolean registerInfo(){
+    public static boolean registerInfo(){
         boolean result = false;
         String name;
         String ps;
@@ -20,6 +21,7 @@ class RegisterUser {
             catch (FailedDatabaseAcceseException e) {
                 int errorId = e.getErrorId();
                 String errorMsg = e.getErrorMsg(errorId);
+                System.out.println(errorId);
                 System.out.println(errorMsg);
                 if(errorId == 1) {
                     exit(1);

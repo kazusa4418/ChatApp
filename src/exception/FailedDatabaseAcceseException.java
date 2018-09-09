@@ -1,17 +1,19 @@
-class FailedDatabaseAcceseException extends Throwable {
+package exception;
+
+public class FailedDatabaseAcceseException extends Throwable {
     private int errorId;
     private String errorMsg;
 
-    FailedDatabaseAcceseException(int errorId){
+    public FailedDatabaseAcceseException(int errorId){
         this.errorId = errorId;
 
     }
 
-    int getErrorId(){
+    public int getErrorId(){
         return errorId;
     }
 
-    String getErrorMsg(int errorId){
+    public String getErrorMsg(int errorId){
         if(errorId == 0){
             errorMsg = "接続に失敗しました";
         }
