@@ -45,7 +45,8 @@ public class ChatServer {
     void receiveEvent(MessageEvent event) {
         Client creator = event.getCreator();
         String command = event.getCommand();
-        String body = event.getBody();
+        String body = event.getBody().trim();
+        System.out.println(creator.getName() + command + body);
 
         switch (command) {
             case "/logout":
@@ -72,6 +73,9 @@ public class ChatServer {
                 break;
             case "/kick":
                 kickMember(creator, body);
+                break;
+            case "/change-new-admin":
+                changeNewAdmin(creator, command, body);
                 break;
             case "/help":
                 commandHelp(creator, body);
@@ -240,6 +244,7 @@ public class ChatServer {
     }
 
     private void showMember(Client client, String roomName) {
+        System.out.println(client);
         if (!roomName.matches(Command.SHOW_MEMBER.getArgumentRegex())) {
             sendUsage(client, Command.SHOW_MEMBER);
             return;
@@ -254,9 +259,11 @@ public class ChatServer {
             return;
         }
 
+
         // 引数で指定された名前を持つルームを取得する
         ChatRoom room = roomList.getRoom(roomName);
 
+        System.out.println(room);
         client.send("## showing the members in '" + roomName + "'\n");
         for (Client member : room.getMemberList()) {
             // 送信するメッセージ 形式："## client name"
@@ -308,6 +315,42 @@ public class ChatServer {
         leaveRoom(kickedClient, " ");
     }
 
+    private void changeNewAdmin(Client client, String command, String userName){
+        if (!command.matches(Command.CHANGE_NEW_ADMIN.getArgumentRegex())) {
+            sendUsage(, Command.CHANGE_NEW_ADMIN);
+            return;
+        }
+
+        // 自分の参加しているルームを取得する
+        ChatRoom room = roomList.getRoomWith(client);
+        String adminUser = client.getName();
+
+        // 参加しているルームの管理者が自分でないのであればこのコマンドは実行できない
+        if (!room.isAdmin(client)) {
+            adminUser = client.getName();
+            client.send("## fatal: you are not an administrator of this room." +
+                    "\n##        this command can not be executed unless it is an administrator.");
+            return;
+        }
+        // 指定した名前のメンバーがいない場合、管理者権限を譲渡できない
+        if (!room.existClient(userName)) {
+            client.send("## fatal: the member with the specified name is not in the room.");
+            return;
+        }
+        // 指定したメンバーが自分自身だった場合、もうすでにこのコマンドを実行できているので自分は管理者
+        if (client.getName().equals(userName)) {
+            client.send("## fatal: you can not decide yourself.\n## you are already admin.");
+            return;
+        }
+
+        Client decidedClient = room.get(userName);
+        // 管理者権限をdecidedClientが与えられたことを通知する
+        decidedClient.send("## you were gave this room's administrator from the " + adminUser + ".");
+
+        room.setAdmin(decidedClient);
+
+        sendMessageToMembersExceptMyself(decidedClient, "## the user '" + decidedClient.getName() + "' had drawn this room's administrator.");
+    }
     private void commandHelp(Client client, String command) {
         try (PropertyReader reader = new PropertyReader(new File("./help.properties"))) {
             reader.load();

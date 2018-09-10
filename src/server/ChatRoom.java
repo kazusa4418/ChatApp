@@ -20,6 +20,8 @@ class ChatRoom {
         this.admin = admin;
     }
 
+
+
     boolean isAdmin(Client client) {
         return admin == client;
     }
@@ -30,6 +32,14 @@ class ChatRoom {
                 return true;
         }
         return false;
+    }
+
+    Client getAdmin(){
+        return admin;
+    }
+
+    void setAdmin(Client admin){
+        this.admin = admin;
     }
 
     String getName() {

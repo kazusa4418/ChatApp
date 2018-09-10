@@ -16,7 +16,8 @@ public enum Command {
     MAKE_ROOM,
     SHOW_ROOM,
     KICK_MEMBER,
-    SHOW_MEMBER;
+    SHOW_MEMBER,
+    CHANGE_NEW_ADMIN;
 
     public static String usage(Command command) {
         return HelpDictionary.getUsageMessage(command);
@@ -43,6 +44,8 @@ public enum Command {
             case SHOW_ROOM:
                 return "";
             case KICK_MEMBER:
+                return "[a-zA-Z0-9-_]+";
+            case CHANGE_NEW_ADMIN:
                 return "[a-zA-Z0-9-_]+";
             case SHOW_MEMBER:
                 return "*{0}|[a-zA-Z0-9]+";
@@ -73,6 +76,7 @@ class HelpDictionary {
             USAGE_DICTIONARY.put(Command.MAKE_ROOM, reader.getProperty("make.usage"));
             USAGE_DICTIONARY.put(Command.SHOW_ROOM, reader.getProperty("show-rooms.usage"));
             USAGE_DICTIONARY.put(Command.KICK_MEMBER, reader.getProperty("kick.usage"));
+            USAGE_DICTIONARY.put(Command.CHANGE_NEW_ADMIN, reader.getProperty("change-new-admin.usage"));
             USAGE_DICTIONARY.put(Command.SHOW_MEMBER, reader.getProperty("show-members.usage"));
 
         }
@@ -98,6 +102,7 @@ class HelpDictionary {
             HELP_DICTIONARY.put(Command.MAKE_ROOM, reader.getProperty("make.help"));
             HELP_DICTIONARY.put(Command.SHOW_ROOM, reader.getProperty("show-rooms.help"));
             HELP_DICTIONARY.put(Command.KICK_MEMBER, reader.getProperty("kick.help"));
+            HELP_DICTIONARY.put(Command.CHANGE_NEW_ADMIN, reader.getProperty("change-new-admin.help"));
             HELP_DICTIONARY.put(Command.SHOW_MEMBER, reader.getProperty("show-members.help"));
         }
         catch (IOException err) {

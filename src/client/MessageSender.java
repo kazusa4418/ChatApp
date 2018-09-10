@@ -41,7 +41,8 @@ class MessageSender implements Runnable {
             }
         }
         catch (IOException err) {
-            JLogger.log(Level.SEVERE, "入力ストリームがメッセージの受信に失敗しました" +
+            System.out.println(err);
+            /*JLogger.log(Level.SEVERE, "入力ストリームがメッセージの受信に失敗しました" +
                     "入出力のエラーが発生しました", err);
             // そもそもIOExceptionがスローされた時点でsocketもおかしくなってそう・・・。
             // もしかしたら的外れなのかもしれない
@@ -54,7 +55,8 @@ class MessageSender implements Runnable {
                 System.err.println("fatal: サーバーとのコネクションが切れました");
                 System.exit(4);
             }
-        }
+
+        */}
     }
 
     private void sendToServer(String msg) {
