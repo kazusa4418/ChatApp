@@ -6,10 +6,10 @@ import java.io.Serializable;
 
 public class MessageEvent implements Serializable {
     private Client creator;
-    private Command command;
+    private String command;
     private String body;
 
-    MessageEvent(Command command, String body) {
+    MessageEvent(String command, String body) {
         this.command = command;
         this.body = body;
     }
@@ -22,7 +22,7 @@ public class MessageEvent implements Serializable {
         this.creator = client;
     }
 
-    public Command getCommand() {
+    public String getCommand() {
         return command;
     }
 
