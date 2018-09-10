@@ -317,7 +317,7 @@ public class ChatServer {
 
     private void changeNewAdmin(Client client, String command, String userName){
         if (!command.matches(Command.CHANGE_NEW_ADMIN.getArgumentRegex())) {
-            sendUsage(, Command.CHANGE_NEW_ADMIN);
+            sendUsage(client, Command.CHANGE_NEW_ADMIN);
             return;
         }
 

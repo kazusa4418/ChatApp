@@ -48,7 +48,7 @@ public enum Command {
             case CHANGE_NEW_ADMIN:
                 return "[a-zA-Z0-9-_]+";
             case SHOW_MEMBER:
-                return "*{0}|[a-zA-Z0-9]+";
+                return ".{0}|[a-zA-Z0-9]+";
             default:
                 return "";
         }

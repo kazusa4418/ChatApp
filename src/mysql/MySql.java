@@ -12,7 +12,10 @@ public class MySql implements AutoCloseable {
     private String password = MySqlConfiguration.getPassWord();
     private String databaseName = MySqlConfiguration.getDatabaseName();
 
-    private String jdbcUrl = "jdbc:mysql://" + hostName + "/" + databaseName;
+    private boolean useSSL = MySqlConfiguration.getUseSSL();
+    private boolean
+
+    private String jdbcUrl = "jdbc:mysql://" + hostName + "/" + databaseName + "";
 
     private Connection connection;
 
