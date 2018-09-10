@@ -14,7 +14,7 @@ public class RegisterUser {
 
         System.out.println("会員登録を行います\n下記に必要事項を入力してください");
         do {
-            name = inputNameOrPassword("name");
+            name = inputNameOrPassword("氏名");
             try {
                 result = DbUtils.sameNameCheck(name);
             }
@@ -29,12 +29,12 @@ public class RegisterUser {
                 }
             }
             if (result) {
-                System.out.println("すでに同一の名前が存在します。もう一度やり直してください");
+                System.out.println("すでに同一の氏名が存在します。もう一度やり直してください");
             }
         } while(result);
 
         do {
-            ps = inputNameOrPassword("password");
+            ps = inputNameOrPassword("パスワード");
             try {
                 result = DbUtils.register(name, ps);
             } catch (FailedDatabaseAcceseException e) {
@@ -52,7 +52,7 @@ public class RegisterUser {
     }
 
     private static boolean countWord(String countWord){
-        return countWord.length() >=1 &&countWord.length() <= 32;
+        return countWord.matches("[a-zA-Z0-9-_]{1,33}");
     }
 
     private static String inputNameOrPassword(String variableName){
@@ -61,12 +61,9 @@ public class RegisterUser {
         boolean checkWordNum;
 
         do {
-            System.out.println("1文字以上32文字以下で" + variableName + "入力してください");
+            System.out.print("1文字以上32文字以下,使える文字は「a-z,A-Z,0-1,-,_」で" + variableName + "入力してください\n>");
             inputNameOrPassword = sr.nextLine();
             checkWordNum = countWord(inputNameOrPassword);
-            if(!checkWordNum){
-                System.out.println("1文字以上32文字以下で入力してください");
-            }
         }while(!checkWordNum);
         return inputNameOrPassword;
     }

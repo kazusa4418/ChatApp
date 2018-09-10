@@ -6,22 +6,38 @@ import util.ClientDelivary;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
+import java.util.logging.Level;
+
+import util.JLogger;
 
 
-class LoginServer {
+class LoginServer implements Runnable {
     private ServerSocket server;
+    private Thread thread;
 
     LoginServer() {
         try {
             // ポートを指定してServerSocketを立てる
             server = new ServerSocket(33332);
-        } catch (IOException err) {
+        }
+        catch (IOException err) {
             err.printStackTrace();
-            throw new AssertionError(err);
+            JLogger.log(Level.SEVERE,"エラー",err);
+        }
+        catch (IllegalArgumentException err){
+            err.printStackTrace();
+            JLogger.log(Level.INFO,"エラー",err);
         }
     }
 
-    void run() {
+    public void start(){
+        thread = new Thread(this);
+        thread.start();
+
+    }
+
+    public void run() {
         LoginStatus status = LoginStatus.OK;
         while (!server.isClosed()) {
             try {
@@ -29,9 +45,9 @@ class LoginServer {
                 Socket socket = server.accept();
 
                 boolean logincheck;
-                String name = "";
-                String password = "";
-                ClientDelivary clientDelivary = new ClientDelivary();
+                String name;
+                String password;
+                ClientDelivary clientDelivary;
 
                 try {
                     ObjectInputStream reciver = new ObjectInputStream(socket.getInputStream());
@@ -42,14 +58,13 @@ class LoginServer {
                     if(logincheck){
                         status = LoginStatus.OK;
                     }
-                    else if(!logincheck){
+                    else{
                         status = LoginStatus.UNMATCHED;
                     }
 
-
-                    ObjectOutputStream sender = new ObjectOutputStream(socket.getOutputStream());
-                    sender.writeObject(status);
-                    sender.flush();
+                    //ObjectOutputStream sender = new ObjectOutputStream(socket.getOutputStream());
+                    //sender.writeObject(status);
+                    //sender.flush();
 
                 }
                 catch (ClassNotFoundException e) {
@@ -58,6 +73,7 @@ class LoginServer {
                 }
                 catch (FailedDatabaseAcceseException e) {
                     int errorId = e.getErrorId();
+                    e.printStackTrace();
                     String errorMsg = e.getErrorMsg(errorId);
                     System.out.println(errorMsg);
                     status = LoginStatus.EXCEPTION;
@@ -65,10 +81,15 @@ class LoginServer {
                         //ここでログを発生、exit(1);
                     }
                 }
+                catch (SocketException err){
+                    JLogger.log(Level.WARNING,"突如接続が切れたクライアントがいます",err);
+                }
+                ObjectOutputStream sender = new ObjectOutputStream(socket.getOutputStream());
+                sender.writeObject(status);
+                sender.flush();
             }
             catch (IOException err) {
                 err.printStackTrace();
-                status = LoginStatus.EXCEPTION;
             }
         }
     }

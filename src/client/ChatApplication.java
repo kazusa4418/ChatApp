@@ -18,7 +18,7 @@ public class ChatApplication {
         int check = 0;
 
         do {
-            System.out.println("ログインなら1\n新規登録なら2\n終了なら3を入力してください");
+            System.out.print("ログインなら1\n新規登録なら2\n終了なら3を入力してください\n>");
             loginOrRegister = new java.util.Scanner(System.in).nextLine();
             try {
                 checkNumberOrString = Integer.parseInt(loginOrRegister);
@@ -45,24 +45,24 @@ public class ChatApplication {
 
 
     static void login() {
-        Socket socket = connectServer(ClientConfiguration.getServerIpAddress(), 33332);
         Scanner sr = new Scanner(System.in);
         ClientDelivary clientDelivary = new ClientDelivary();
         boolean flag = false;
 
         do {
-            System.out.println("名前を入力してください");
+            Socket socket = connectServer(ClientConfiguration.getServerIpAddress(), 33332);
+            System.out.print("氏名を入力してください\n>");
             String name = sr.nextLine();
-            System.out.println("パスワードを入力してください");
+            System.out.print("パスワードを入力してください\n>");
             String password = sr.nextLine();
             clientDelivary.set(name, password);
-            ClientDelivary clientDelivary1 = new ClientDelivary();
 
             try {
                 ObjectOutputStream transferData = new ObjectOutputStream(socket.getOutputStream());
                 transferData.writeObject(clientDelivary);
                 transferData.flush();
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
                 e.printStackTrace();
             }
 

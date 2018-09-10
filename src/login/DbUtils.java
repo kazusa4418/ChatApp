@@ -39,13 +39,14 @@ public class DbUtils {
         }
         catch (SQLException e) {
             System.err.println(e.toString());
+            e.printStackTrace();
             throw new FailedDatabaseAcceseException(0);
         }
 
         try {
             Statement stm = con.createStatement();
             //noinspection SqlDialectInspection,SqlNoDataSourceInspection
-            String sql = "SELECT * FROM user WHERE user_id = " + "'" + id +"'" + "AND password =" + "'" + ps + "';";
+            String sql = "SELECT * FROM user WHERE user_id = '" + id +"' AND password = '" + ps + "';";
             rs = stm.executeQuery(sql);
             return rs.next();
         }

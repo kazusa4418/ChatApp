@@ -3,7 +3,7 @@
 public class ChatAppMain {
     public static void main(String []args) {
         LoginServer loginInterface = new LoginServer();
-        loginInterface.run();
+        loginInterface.start();
     }
 
     /*public static void main(String []args){

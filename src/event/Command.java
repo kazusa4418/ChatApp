@@ -1,11 +1,10 @@
 package event;
 
-import util.PropertyReader;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import util.PropertyReader;
 
 public enum Command {
     LOGOUT,

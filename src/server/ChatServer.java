@@ -3,7 +3,6 @@ package server;
 import event.Command;
 import event.MessageEvent;
 import util.PropertyReader;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;

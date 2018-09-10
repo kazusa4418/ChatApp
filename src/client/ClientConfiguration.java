@@ -1,10 +1,9 @@
 package client;
 
-import util.PropertyReader;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import util.PropertyReader;
 
 class ClientConfiguration {
     private static String SERVER_IP_ADDRESS;
