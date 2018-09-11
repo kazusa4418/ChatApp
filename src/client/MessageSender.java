@@ -59,7 +59,7 @@ class MessageSender implements Runnable {
         */}
     }
 
-    private void sendToServer(String msg) {
+    void sendToServer(String msg) {
         try {
             MessageEvent event = MessageEventFactory.createMessageEvent(msg);
 

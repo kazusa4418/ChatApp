@@ -34,6 +34,8 @@ public class ChatServer {
                 Socket socket = server.accept();
                 Client client = new Client(this, socket, "empty");
                 client.start();
+                //TODO: ログインされたことをロビーに通知しているけど記述しているところが気に食わない
+                sendMessageToMembersExceptMyself(client, "## user '" + client.getName() + "' logged in.");
             }
             catch (IOException err) {
                 err.printStackTrace();
@@ -74,11 +76,14 @@ public class ChatServer {
             case "/kick":
                 kickMember(creator, body);
                 break;
-            case "/change-new-admin":
-                changeNewAdmin(creator, command, body);
+            case "/change-admin":
+                changeAdmin(creator, body);
                 break;
             case "/help":
                 commandHelp(creator, body);
+                break;
+            case "/name":
+                changeName(creator, body);
                 break;
             default:
                 creator.send(command + " is a not system command.");
@@ -132,13 +137,20 @@ public class ChatServer {
             return;
         }
 
+        ChatRoom joinedRoom = roomList.getRoomWith(client);
+
+        // 現在入っているルームの管理者だったらそのルームを抜けちゃだめ
+        if (joinedRoom.isAdmin(client)) {
+            client.send("## fatal: you are the administrator of the " + joinedRoom.getName() + "`.\n" +
+                             "##        should explicitly leave the room by running \"/leave\" command.");
+            return;
+        }
         // 現在入っているルームを抜ける
-        ChatRoom leavedRoom = roomList.getRoomWith(client);
-        leavedRoom.remove(client);
+        joinedRoom.remove(client);
         // 抜けたことを自分に通知する
-        client.send("## you left the room '" + leavedRoom.getName() + "'.");
+        client.send("## you left the room '" + joinedRoom.getName() + "'.");
         // メンバーが抜けたことを抜けたルームのメンバーに通知する
-        sendMessageToMembersExceptMyself(client, "## user '" + client.getName() + "' left this room.", leavedRoom);
+        sendMessageToMembersExceptMyself(client, "## user '" + client.getName() + "' left this room.", joinedRoom);
 
         // 新しくルームを作り、ルームの管理者としてルームに入る
         roomList.createNewRoom(roomName, client).add(client);
@@ -312,12 +324,13 @@ public class ChatServer {
         // 蹴られたことをkickedClientに通知する
         kickedClient.send("## you have been exiled from the room '" + room.getName() + "'.");
         // クライアントを退会させる
-        leaveRoom(kickedClient, " ");
+        leaveRoom(kickedClient, "");
+        client.send("## success: you kicked client '" + kickedClient.getName() + "'");
     }
 
-    private void changeNewAdmin(Client client, String command, String userName){
-        if (!command.matches(Command.CHANGE_NEW_ADMIN.getArgumentRegex())) {
-            sendUsage(client, Command.CHANGE_NEW_ADMIN);
+    private void changeAdmin(Client client, String userName){
+        if (!userName.matches(Command.CHANGE_ADMIN.getArgumentRegex())) {
+            sendUsage(client, Command.CHANGE_ADMIN);
             return;
         }
 
@@ -327,9 +340,8 @@ public class ChatServer {
 
         // 参加しているルームの管理者が自分でないのであればこのコマンドは実行できない
         if (!room.isAdmin(client)) {
-            adminUser = client.getName();
-            client.send("## fatal: you are not an administrator of this room." +
-                    "\n##        this command can not be executed unless it is an administrator.");
+            client.send("## fatal: you are not an administrator of this room.\n" +
+                             "##        this command can not be executed unless it is an administrator.");
             return;
         }
         // 指定した名前のメンバーがいない場合、管理者権限を譲渡できない
@@ -337,8 +349,8 @@ public class ChatServer {
             client.send("## fatal: the member with the specified name is not in the room.");
             return;
         }
-        // 指定したメンバーが自分自身だった場合、もうすでにこのコマンドを実行できているので自分は管理者
-        if (client.getName().equals(userName)) {
+        // 指定したメンバーが自分自身だった場合、既に管理者になっている
+        if (room.isAdmin(room.get(userName))) {
             client.send("## fatal: you can not decide yourself.\n## you are already admin.");
             return;
         }
@@ -351,6 +363,19 @@ public class ChatServer {
 
         sendMessageToMembersExceptMyself(decidedClient, "## the user '" + decidedClient.getName() + "' had drawn this room's administrator.");
     }
+
+    private void changeName(Client client, String newName) {
+        if (!newName.matches(Command.CHANGE_ADMIN.getArgumentRegex())) {
+            sendUsage(client, Command.CHANGE_ADMIN);
+            return;
+        }
+
+        String oldName = client.getName();
+        client.setName(newName);
+        client.send("## change name : '" + oldName + "' -> '" + client.getName() + "'");
+        sendMessageToMembersExceptMyself(client,"## change name : '" + oldName + "' -> '" + client.getName() + "'");
+    }
+
     private void commandHelp(Client client, String command) {
         try (PropertyReader reader = new PropertyReader(new File("./help.properties"))) {
             reader.load();

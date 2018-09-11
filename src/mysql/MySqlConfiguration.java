@@ -30,11 +30,11 @@ class MySqlConfiguration {
         }
         catch (FileNotFoundException err) {
             err.printStackTrace();
-            System.err.println(file.getName() + "が見つかりません");
+            System.err.println(file.getName() + " does not found.");
         }
         catch (IOException err) {
             err.printStackTrace();
-            System.err.println("ファイルの読み込みに失敗しました");
+            System.err.println();
         }
     }
 

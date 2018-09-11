@@ -1,9 +1,6 @@
 package server;
 
-import event.Command;
 import event.MessageEvent;
-import server.ChatRoom;
-import server.ChatServer;
 
 import java.io.*;
 import java.net.Socket;
@@ -65,6 +62,10 @@ public class Client implements Runnable {
 
     String getName() {
         return name;
+    }
+
+    void setName(String name) {
+        this.name = name;
     }
 
     void logout() {

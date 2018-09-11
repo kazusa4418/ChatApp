@@ -20,11 +20,13 @@ public class LoginServer {
         }
     }
 
+    public void start() {
+    }
+
     public void run() {
         while (!server.isClosed()) {
             try {
                 Socket socket = server.accept();
-
             }
             catch (IOException err) {
                 JLogger.log(Level.WARNING, "failed to accept the request.", err);
