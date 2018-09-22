@@ -48,7 +48,6 @@ public class ChatServer {
         Client creator = event.getCreator();
         String command = event.getCommand();
         String body = event.getBody().trim();
-        System.out.println(creator.getName() + command + body);
 
         switch (command) {
             case "/logout":
@@ -168,14 +167,21 @@ public class ChatServer {
             client.send("## fatal: The room named '" + roomName + "' does not exist.");
             return;
         }
+
+        ChatRoom leavedRoom = roomList.getRoomWith(client);
         // 指定したルームに既に参加していた場合
-        if (roomList.getRoomWith(client) == roomList.getRoom(roomName)) {
-            client.send("## fatal: I have already joined the room '" + roomName + "'");
+        if (leavedRoom == roomList.getRoom(roomName)) {
+            client.send("## fatal: you have already joined the room '" + roomName + "'");
+            return;
+        }
+        // 自分がルームの管理者だった場合
+        if (leavedRoom.isAdmin(client)) {
+            client.send("## fatal: you are the administrator of the " + leavedRoom.getName() + "`.\n" +
+                             "##        should explicitly leave the room by running \"/leave\" command.");
             return;
         }
 
         // 現在入っているルームを抜ける
-        ChatRoom leavedRoom = roomList.getRoomWith(client);
         leavedRoom.remove(client);
         // 抜けたことを自分に通知する
         client.send("## you left the room '" + leavedRoom.getName() + "'.");
@@ -243,6 +249,7 @@ public class ChatServer {
         ChatRoom joinedRoom = roomList.getRoomWith(client);
 
         client.send("## showing the existing rooms...\n");
+        // TODO: クライアントに送信するのはループに含めるべきではない
         for (ChatRoom room : roomList) {
             // 送信するメッセージ 形式："## room name"
             String message = "## " + room.getName();
@@ -256,7 +263,6 @@ public class ChatServer {
     }
 
     private void showMember(Client client, String roomName) {
-        System.out.println(client);
         if (!roomName.matches(Command.SHOW_MEMBER.getArgumentRegex())) {
             sendUsage(client, Command.SHOW_MEMBER);
             return;
@@ -275,8 +281,8 @@ public class ChatServer {
         // 引数で指定された名前を持つルームを取得する
         ChatRoom room = roomList.getRoom(roomName);
 
-        System.out.println(room);
         client.send("## showing the members in '" + roomName + "'\n");
+        // TODO: クライアントに送信するのはループに含めるべきではない
         for (Client member : room.getMemberList()) {
             // 送信するメッセージ 形式："## client name"
             String message = "## " + member.getName();
