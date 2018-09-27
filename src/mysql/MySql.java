@@ -13,9 +13,9 @@ public class MySql implements AutoCloseable {
     private String databaseName = MySqlConfiguration.getDatabaseName();
 
     private String useSSL = MySqlConfiguration.getUseSSL();
-    private String autoConnect = MySqlConfiguration.getAutoConnect();
+    private String autoReconnect = MySqlConfiguration.getAutoConnect();
 
-    private String jdbcUrl = "jdbc:mysql://" + hostName + "/" + databaseName + "?autoReconnect=" + autoConnect + "&useSSL=" + useSSL;
+    private String jdbcUrl = "jdbc:mysql://" + hostName + "/" + databaseName + "?autoReconnect=" + autoReconnect + "&useSSL=" + useSSL;
 
     private Connection connection;
 

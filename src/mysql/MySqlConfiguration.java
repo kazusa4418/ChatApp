@@ -26,7 +26,7 @@ class MySqlConfiguration {
             password = reader.getProperty("password");
             databaseName = reader.getProperty("databaseName");
             useSSL = reader.getProperty("useSSL");
-            autoConnect = reader.getProperty("autoConnect");
+            autoConnect = reader.getProperty("autoReconnect");
         }
         catch (FileNotFoundException err) {
             err.printStackTrace();

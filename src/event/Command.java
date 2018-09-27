@@ -8,17 +8,50 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum Command {
+    LOGIN,
     LOGOUT,
     COMMAND_HELP,
     SEND_MESSAGE,
     JOIN_ROOM,
     LEAVE_ROOM,
     MAKE_ROOM,
-    SHOW_ROOM,
+    SHOW_ROOMS,
     KICK_MEMBER,
-    SHOW_MEMBER,
+    SHOW_MEMBERS,
     CHANGE_ADMIN,
-    CHANGE_NAME;
+    CHANGE_NAME,
+    NOT_FOUND;
+
+    public static Command get(String msg) {
+        switch(msg) {
+            case "/login":
+                return LOGIN;
+            case "/logout":
+                return LOGOUT;
+            case "/help":
+                return COMMAND_HELP;
+            case "/send":
+                return SEND_MESSAGE;
+            case "/join":
+                return JOIN_ROOM;
+            case "/leave":
+                return LEAVE_ROOM;
+            case "/make":
+                return MAKE_ROOM;
+            case "/show-rooms":
+                return SHOW_ROOMS;
+            case "/kick":
+                return KICK_MEMBER;
+            case "/show-members":
+                return SHOW_MEMBERS;
+            case "/change-admin":
+                return CHANGE_ADMIN;
+            case "/name":
+                return CHANGE_NAME;
+            default:
+                return NOT_FOUND;
+        }
+    }
 
     public static String usage(Command command) {
         return HelpDictionary.getUsageMessage(command);
@@ -42,13 +75,13 @@ public enum Command {
                 return "";
             case MAKE_ROOM:
                 return "[a-zA-Z0-9]+";
-            case SHOW_ROOM:
+            case SHOW_ROOMS:
                 return "";
             case KICK_MEMBER:
                 return "[a-zA-Z0-9-_]+";
             case CHANGE_ADMIN:
                 return "[a-zA-Z0-9-_]+";
-            case SHOW_MEMBER:
+            case SHOW_MEMBERS:
                 return ".{0}|[a-zA-Z0-9]+";
             case CHANGE_NAME:
                 return "[a-zA-Z0-9-_]+";
@@ -77,10 +110,10 @@ class HelpDictionary {
             USAGE_DICTIONARY.put(Command.JOIN_ROOM, reader.getProperty("join.usage"));
             USAGE_DICTIONARY.put(Command.LEAVE_ROOM, reader.getProperty("leave.usage"));
             USAGE_DICTIONARY.put(Command.MAKE_ROOM, reader.getProperty("make.usage"));
-            USAGE_DICTIONARY.put(Command.SHOW_ROOM, reader.getProperty("show-rooms.usage"));
+            USAGE_DICTIONARY.put(Command.SHOW_ROOMS, reader.getProperty("show-rooms.usage"));
             USAGE_DICTIONARY.put(Command.KICK_MEMBER, reader.getProperty("kick.usage"));
-            USAGE_DICTIONARY.put(Command.CHANGE_ADMIN, reader.getProperty("change-new-admin.usage"));
-            USAGE_DICTIONARY.put(Command.SHOW_MEMBER, reader.getProperty("show-members.usage"));
+            USAGE_DICTIONARY.put(Command.CHANGE_ADMIN, reader.getProperty("change-admin.usage"));
+            USAGE_DICTIONARY.put(Command.SHOW_MEMBERS, reader.getProperty("show-members.usage"));
 
         }
         catch (IOException err) {
@@ -103,10 +136,10 @@ class HelpDictionary {
             HELP_DICTIONARY.put(Command.JOIN_ROOM, reader.getProperty("join.help"));
             HELP_DICTIONARY.put(Command.LEAVE_ROOM, reader.getProperty("leave.help"));
             HELP_DICTIONARY.put(Command.MAKE_ROOM, reader.getProperty("make.help"));
-            HELP_DICTIONARY.put(Command.SHOW_ROOM, reader.getProperty("show-rooms.help"));
+            HELP_DICTIONARY.put(Command.SHOW_ROOMS, reader.getProperty("show-rooms.help"));
             HELP_DICTIONARY.put(Command.KICK_MEMBER, reader.getProperty("kick.help"));
-            HELP_DICTIONARY.put(Command.CHANGE_ADMIN, reader.getProperty("change-new-admin.help"));
-            HELP_DICTIONARY.put(Command.SHOW_MEMBER, reader.getProperty("show-members.help"));
+            HELP_DICTIONARY.put(Command.CHANGE_ADMIN, reader.getProperty("change-admin.help"));
+            HELP_DICTIONARY.put(Command.SHOW_MEMBERS, reader.getProperty("show-members.help"));
         }
         catch (IOException err) {
             // TODO: エラーログに出力するようにする

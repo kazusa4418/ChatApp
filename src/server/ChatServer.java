@@ -46,46 +46,47 @@ public class ChatServer {
 
     void receiveEvent(MessageEvent event) {
         Client creator = event.getCreator();
-        String command = event.getCommand();
+        Command command = event.getCommand();
         String body = event.getBody().trim();
 
         switch (command) {
-            case "/logout":
+            case LOGIN:
+
+            case LOGOUT:
                 logout(creator, body);
                 break;
-            case "/send":
-                // TODO: ・・・。
+            case SEND_MESSAGE:
                 sendMessageToMembersExceptMyself(creator, creator.getName() + " : " + body);
                 break;
-            case "/make":
+            case MAKE_ROOM:
                 makeRoom(creator, body);
                 break;
-            case "/join":
+            case JOIN_ROOM:
                 joinRoom(creator, body);
                 break;
-            case "/leave":
+            case LEAVE_ROOM:
                 leaveRoom(creator, body);
                 break;
-            case "/show-rooms":
+            case SHOW_ROOMS:
                 showRoom(creator, body);
                 break;
-            case "/show-members":
+            case SHOW_MEMBERS:
                 showMember(creator, body);
                 break;
-            case "/kick":
+            case KICK_MEMBER:
                 kickMember(creator, body);
                 break;
-            case "/change-admin":
+            case CHANGE_ADMIN:
                 changeAdmin(creator, body);
                 break;
-            case "/help":
+            case COMMAND_HELP:
                 commandHelp(creator, body);
                 break;
-            case "/name":
+            case CHANGE_NAME:
                 changeName(creator, body);
                 break;
-            default:
-                creator.send(command + " is a not system command.");
+            case NOT_FOUND:
+                creator.send("## this is a not system command.");
                 break;
         }
     }
@@ -132,7 +133,7 @@ public class ChatServer {
         }
         // 既に指定された名前を持つルームが存在していた場合
         if (roomList.existRoom(roomName)) {
-            client.send("## fatal: the room named '" + roomName + "' already exists.");
+            client.send("## fatal: the room '" + roomName + "' already exists.");
             return;
         }
 
@@ -164,7 +165,7 @@ public class ChatServer {
         }
         // 指定したルーム名を持つルームが存在しなかった場合
         if (!roomList.existRoom(roomName)) {
-            client.send("## fatal: The room named '" + roomName + "' does not exist.");
+            client.send("## fatal: The room '" + roomName + "' does not exist.");
             return;
         }
 
@@ -197,6 +198,7 @@ public class ChatServer {
         sendMessageToMembersExceptMyself(client, "## user '" + client.getName() + "' joined this room.");
     }
 
+    // TODO: 頭死んでるときに作ったんだろうなこれ。アルゴリズム見直しましょうね。
     private void leaveRoom(Client client, String args) {
         if (!args.matches(Command.LEAVE_ROOM.getArgumentRegex())) {
             sendUsage(client, Command.LEAVE_ROOM);
@@ -241,8 +243,8 @@ public class ChatServer {
     }
 
     private void showRoom(Client client, String args) {
-        if (!args.matches(Command.SHOW_ROOM.getArgumentRegex())) {
-            sendUsage(client, Command.SHOW_ROOM);
+        if (!args.matches(Command.SHOW_ROOMS.getArgumentRegex())) {
+            sendUsage(client, Command.SHOW_ROOMS);
             return;
         }
         // 自分の参加しているルームを取得する
@@ -263,8 +265,8 @@ public class ChatServer {
     }
 
     private void showMember(Client client, String roomName) {
-        if (!roomName.matches(Command.SHOW_MEMBER.getArgumentRegex())) {
-            sendUsage(client, Command.SHOW_MEMBER);
+        if (!roomName.matches(Command.SHOW_MEMBERS.getArgumentRegex())) {
+            sendUsage(client, Command.SHOW_MEMBERS);
             return;
         }
         // "/show-members"コマンドで呼ばれた場合、roomNameは空文字なので自分の参加しているルーム扱いにする
@@ -382,23 +384,14 @@ public class ChatServer {
         sendMessageToMembersExceptMyself(client,"## change name : '" + oldName + "' -> '" + client.getName() + "'");
     }
 
-    private void commandHelp(Client client, String command) {
-        try (PropertyReader reader = new PropertyReader(new File("./help.properties"))) {
-            reader.load();
+    private void commandHelp(Client client, String commandStr) {
+        Command command = Command.get("/" + commandStr);
 
-            String helpMsg = reader.getProperty(command + ".help");
-
-            // 指定されたコマンドが存在しない場合は/helpコマンドのusageを送る
-            if (helpMsg == null) {
-                client.send(Command.help(Command.COMMAND_HELP));
-                return;
-            }
-
-            client.send(helpMsg);
+        // 指定されたコマンドが存在しなかった時
+        if (command == Command.NOT_FOUND) {
+            command = Command.COMMAND_HELP;
         }
-        catch(IOException err){
-            JLogger.log(Level.SEVERE, "./help.properties does not read.", err);
-            client.send("## fatal: Help message could not be read.");
-        }
+
+        client.send(Command.help(command));
     }
 }
