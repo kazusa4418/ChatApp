@@ -1,7 +1,5 @@
 package server;
 
-import server.ChatRoom;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -28,12 +26,8 @@ public class ChatRoomList implements Iterable<ChatRoom> {
         return newRoom;
     }
 
-    void removeRoom(ChatRoom room) {
+    void deleteRoom(ChatRoom room) {
         roomList.remove(room);
-    }
-
-    void addRoom(ChatRoom room) {
-        roomList.add(room);
     }
 
     boolean existRoom(String roomName) {
@@ -48,7 +42,7 @@ public class ChatRoomList implements Iterable<ChatRoom> {
     /**
      * 引数で指定された名前を持つチャットルームをこのリストから取得します。
      *
-     * 引数はルームに与えられた名前(String type)です。
+     * 引数はルームに与えられた名前(String)です。
      * 複数の同じ名前を持つルームがある場合、より要素が先頭に近いものが返却されます。
      *
      * ルームの名前はそれぞれのオブジェクトに一意に割り当てることを推奨します。

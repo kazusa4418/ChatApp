@@ -1,9 +1,13 @@
 package mysql;
 
+import util.JLogger;
+
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.DriverManager;
+import java.util.logging.Level;
 
 @SuppressWarnings("unused")
 public class MySql implements AutoCloseable {
@@ -13,9 +17,9 @@ public class MySql implements AutoCloseable {
     private String databaseName = MySqlConfiguration.getDatabaseName();
 
     private String useSSL = MySqlConfiguration.getUseSSL();
-    private String autoConnect = MySqlConfiguration.getAutoConnect();
+    private String autoReconnect = MySqlConfiguration.getAutoConnect();
 
-    private String jdbcUrl = "jdbc:mysql://" + hostName + "/" + databaseName + "?autoReconnect=" + autoConnect + "&useSSL=" + useSSL;
+    private String jdbcUrl = "jdbc:mysql://" + hostName + "/" + databaseName + "?autoReconnect=" + autoReconnect + "&useSSL=" + useSSL;
 
     private Connection connection;
 
@@ -29,6 +33,14 @@ public class MySql implements AutoCloseable {
 
     public int executeUpdate(String sql) throws SQLException {
         return connection.createStatement().executeUpdate(sql);
+    }
+
+    public PreparedStatement prepareStatement(String sql, String... values) throws SQLException {
+        PreparedStatement statement = connection.prepareStatement(sql);
+        for (int i = 1; i <= values.length; i++ ) {
+            statement.setString(i, values[i - 1]);
+        }
+        return statement;
     }
 
     public String getHostName() {
@@ -51,6 +63,8 @@ public class MySql implements AutoCloseable {
         try {
             connection.close();
         }
-        catch (SQLException ignore) {}
+        catch (SQLException err) {
+            JLogger.log(Level.WARNING, "already closed.", err);
+        }
     }
 }

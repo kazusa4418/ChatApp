@@ -14,16 +14,9 @@ public class MessageReceiver implements Runnable {
 
     private Thread thread;
 
-    MessageReceiver(Socket socket) {
-        try {
-            this.socket = socket;
-            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        }
-        catch (IOException err) {
-            JLogger.log(Level.SEVERE, "failed to construct input stream.", err);
-            System.err.println("fatal: failed to connect to the server.");
-            System.exit(3);
-        }
+    MessageReceiver(Socket socket) throws IOException {
+        this.socket = socket;
+        this.reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
         thread = new Thread(this);
     }
@@ -37,18 +30,16 @@ public class MessageReceiver implements Runnable {
             while (!socket.isClosed()) {
                 String msg = reader.readLine();
 
-                // もう疲れたのでここの実装は適当です
-                if (msg.equals("/logout")) {
-                    socket.close();
-                    msg = "ログアウトしました";
-                }
                 System.out.println(msg);
             }
         }
         catch (IOException err) {
-            JLogger.log(Level.SEVERE, "fatal: the input stream failed to receive the message.\n" +
-                                                                "I/O error occurred", err);
-            System.err.println("fatal: failed to connect to the server.");
+            JLogger.log(Level.SEVERE, "the input stream failed to receive the message.\n" +
+                                                                "at MessageReceiver#run I/O error occurred.", err);
+            System.err.println("サーバーとの接続が切れました。");
+
+            // これどうにかならないかな
+            System.exit(1);
         }
     }
 }

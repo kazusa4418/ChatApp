@@ -20,8 +20,6 @@ class ChatRoom {
         this.admin = admin;
     }
 
-
-
     boolean isAdmin(Client client) {
         return admin == client;
     }

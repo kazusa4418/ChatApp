@@ -60,7 +60,7 @@ public class JLogger {
             handler.setFormatter(formatter);
             logger.addHandler(handler);
 
-            handler = new FileHandler("./chat_application.error.log");
+            handler = new FileHandler("./chat_application.err.log");
             formatter = new SimpleFormatter();
             handler.setFormatter(formatter);
             error.addHandler(handler);
