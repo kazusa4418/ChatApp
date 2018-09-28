@@ -35,10 +35,12 @@ public class Client implements Runnable {
 
                 // TODO: ここで自分が送信したことを記録するのはダサくない？
                 event.setCreator(this);
+                System.out.println(event.getCommand());
                 server.receiveEvent(event);
             }
         }
         catch (IOException err) {
+            err.printStackTrace();
             // ソケットに異常があるのでログアウトさせる
             MessageEvent event = MessageEventFactory.createMessageEvent("/logout");
             event.setCreator(this);
@@ -69,5 +71,12 @@ public class Client implements Runnable {
 
     void setName(String name) {
         this.name = name;
+    }
+
+    void disconnect() {
+        try {
+            socket.close();
+        }
+        catch (IOException ignore) { }
     }
 }

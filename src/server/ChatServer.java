@@ -41,6 +41,8 @@ public class ChatServer {
     }
 
     void receiveEvent(MessageEvent event) {
+        System.out.println("logout !!!");
+
         Client creator = event.getCreator();
         Command command = event.getCommand();
         String body = event.getBody().trim();
@@ -100,11 +102,11 @@ public class ChatServer {
 
         // 参加しているルームを抜ける
         roomList.getRoomWith(client).remove(client);
+        client.disconnect();
     }
 
     // TODO: メソッド名ながすぎませんか
     private void sendMessageToMembersExceptMyself(Client myself, String message) {
-        System.out.println(myself.getName());
         sendMessageToMembersExceptMyself(myself, message, roomList.getRoomWith(myself));
     }
 
