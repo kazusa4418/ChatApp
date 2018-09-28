@@ -41,8 +41,6 @@ public class ChatServer {
     }
 
     void receiveEvent(MessageEvent event) {
-        System.out.println("logout !!!");
-
         Client creator = event.getCreator();
         Command command = event.getCommand();
         String body = event.getBody().trim();

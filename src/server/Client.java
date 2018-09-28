@@ -35,7 +35,6 @@ public class Client implements Runnable {
 
                 // TODO: ここで自分が送信したことを記録するのはダサくない？
                 event.setCreator(this);
-                System.out.println(event.getCommand());
                 server.receiveEvent(event);
             }
         }
