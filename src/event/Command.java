@@ -144,6 +144,7 @@ class HelpDictionary {
             HELP_DICTIONARY.put(Command.JOIN_ROOM, reader.getProperty("join.help"));
             HELP_DICTIONARY.put(Command.LEAVE_ROOM, reader.getProperty("leave.help"));
             HELP_DICTIONARY.put(Command.MAKE_ROOM, reader.getProperty("make.help"));
+            HELP_DICTIONARY.put(Command.CLOSE_ROOM, reader.getProperty("close.help"));
             HELP_DICTIONARY.put(Command.SHOW_ROOMS, reader.getProperty("show-rooms.help"));
             HELP_DICTIONARY.put(Command.KICK_MEMBER, reader.getProperty("kick.help"));
             HELP_DICTIONARY.put(Command.CHANGE_ADMIN, reader.getProperty("change-admin.help"));
