@@ -2,14 +2,10 @@ package server;
 
 import event.Command;
 import event.MessageEvent;
-import util.JLogger;
-import util.PropertyReader;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.logging.Level;
 
 public class ChatServer {
     private ServerSocket server;
@@ -104,12 +100,11 @@ public class ChatServer {
 
         // 参加しているルームを抜ける
         roomList.getRoomWith(client).remove(client);
-        // クライアントを安全に終了させる
-        client.logout();
     }
 
     // TODO: メソッド名ながすぎませんか
     private void sendMessageToMembersExceptMyself(Client myself, String message) {
+        System.out.println(myself.getName());
         sendMessageToMembersExceptMyself(myself, message, roomList.getRoomWith(myself));
     }
 

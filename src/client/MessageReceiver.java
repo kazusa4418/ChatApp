@@ -37,11 +37,6 @@ public class MessageReceiver implements Runnable {
             while (!socket.isClosed()) {
                 String msg = reader.readLine();
 
-                // もう疲れたのでここの実装は適当です
-                if (msg.equals("/logout")) {
-                    socket.close();
-                    msg = "ログアウトしました";
-                }
                 System.out.println(msg);
             }
         }

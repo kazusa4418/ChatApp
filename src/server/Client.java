@@ -1,6 +1,7 @@
 package server;
 
 import event.MessageEvent;
+import event.MessageEventFactory;
 
 import java.io.*;
 import java.net.Socket;
@@ -38,8 +39,10 @@ public class Client implements Runnable {
             }
         }
         catch (IOException err) {
-            err.printStackTrace();
-            throw new AssertionError(err);
+            // ソケットに異常があるのでログアウトさせる
+            MessageEvent event = MessageEventFactory.createMessageEvent("/logout");
+            event.setCreator(this);
+            server.receiveEvent(event);
         }
         catch (ClassNotFoundException err) {
             err.printStackTrace();
@@ -66,16 +69,5 @@ public class Client implements Runnable {
 
     void setName(String name) {
         this.name = name;
-    }
-
-    void logout() {
-        // Socketをクローズする
-        try {
-            // もう疲れた・・・。
-            // ココらへんは適当です。
-            send("/logout");
-            socket.close();
-        }
-        catch (IOException ignore) {}
     }
 }

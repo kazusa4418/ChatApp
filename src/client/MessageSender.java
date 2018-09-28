@@ -38,6 +38,12 @@ class MessageSender implements Runnable {
                 String msg = reader.readLine();
 
                 sendToServer(msg);
+
+                // 死ぬほど気に入らない
+                if (msg.equals("/logout")) {
+                    System.out.println("ログアウトしました。");
+                    System.exit(0);
+                }
             }
         }
         catch (IOException err) {
