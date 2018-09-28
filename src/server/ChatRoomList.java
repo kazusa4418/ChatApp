@@ -20,18 +20,14 @@ public class ChatRoomList implements Iterable<ChatRoom> {
         return null;
     }
 
-    void createNewRoom(String roomName, Client admin) {
+    ChatRoom createNewRoom(String roomName, Client admin) {
         ChatRoom newRoom = new ChatRoom(roomName, admin);
         roomList.add(newRoom);
         return newRoom;
     }
 
-    void removeRoom(ChatRoom room) {
+    void deleteRoom(ChatRoom room) {
         roomList.remove(room);
-    }
-
-    void addRoom(ChatRoom room) {
-        roomList.add(room);
     }
 
     boolean existRoom(String roomName) {

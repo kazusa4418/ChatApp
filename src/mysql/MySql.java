@@ -1,9 +1,12 @@
 package mysql;
 
+import util.JLogger;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.DriverManager;
+import java.util.logging.Level;
 
 @SuppressWarnings("unused")
 public class MySql implements AutoCloseable {
@@ -51,6 +54,8 @@ public class MySql implements AutoCloseable {
         try {
             connection.close();
         }
-        catch (SQLException ignore) {}
+        catch (SQLException err) {
+            JLogger.log(Level.WARNING, "already closed.", err);
+        }
     }
 }

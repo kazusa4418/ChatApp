@@ -1,11 +1,13 @@
 package event;
 
+import util.JLogger;
 import util.PropertyReader;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
 
 public enum Command {
     LOGIN,
@@ -15,6 +17,7 @@ public enum Command {
     JOIN_ROOM,
     LEAVE_ROOM,
     MAKE_ROOM,
+    CLOSE_ROOM,
     SHOW_ROOMS,
     KICK_MEMBER,
     SHOW_MEMBERS,
@@ -38,6 +41,8 @@ public enum Command {
                 return LEAVE_ROOM;
             case "/make":
                 return MAKE_ROOM;
+            case "/close":
+                return CLOSE_ROOM;
             case "/show-rooms":
                 return SHOW_ROOMS;
             case "/kick":
@@ -75,6 +80,8 @@ public enum Command {
                 return "";
             case MAKE_ROOM:
                 return "[a-zA-Z0-9]+";
+            case CLOSE_ROOM:
+                return "";
             case SHOW_ROOMS:
                 return "";
             case KICK_MEMBER:
@@ -110,6 +117,7 @@ class HelpDictionary {
             USAGE_DICTIONARY.put(Command.JOIN_ROOM, reader.getProperty("join.usage"));
             USAGE_DICTIONARY.put(Command.LEAVE_ROOM, reader.getProperty("leave.usage"));
             USAGE_DICTIONARY.put(Command.MAKE_ROOM, reader.getProperty("make.usage"));
+            USAGE_DICTIONARY.put(Command.CLOSE_ROOM, reader.getProperty("close.usage"));
             USAGE_DICTIONARY.put(Command.SHOW_ROOMS, reader.getProperty("show-rooms.usage"));
             USAGE_DICTIONARY.put(Command.KICK_MEMBER, reader.getProperty("kick.usage"));
             USAGE_DICTIONARY.put(Command.CHANGE_ADMIN, reader.getProperty("change-admin.usage"));
@@ -117,11 +125,11 @@ class HelpDictionary {
 
         }
         catch (IOException err) {
-            // TODO: エラーログに出力するようにする
+            JLogger.log(Level.SEVERE, "can not read help.properties", err);
 
             // プロパティファイルが読み取れなかったらへリプメッセージには読み取れなかったことを書いておく
             for (Command command : Command.values()) {
-                USAGE_DICTIONARY.put(command, "## fatal: can not read help.properties");
+                USAGE_DICTIONARY.put(command, "## fatal: can not read help message.");
             }
         }
     }
@@ -142,11 +150,11 @@ class HelpDictionary {
             HELP_DICTIONARY.put(Command.SHOW_MEMBERS, reader.getProperty("show-members.help"));
         }
         catch (IOException err) {
-            // TODO: エラーログに出力するようにする
+            JLogger.log(Level.SEVERE, "can not read help.properties", err);
 
             // プロパティファイルが読み取れなかったらヘルプメッセージには読み取れなかったことを書いておく
             for (Command command : Command.values()) {
-                HELP_DICTIONARY.put(command, "can not read help.properties");
+                HELP_DICTIONARY.put(command, "## fatal: can not read help message.");
             }
         }
     }

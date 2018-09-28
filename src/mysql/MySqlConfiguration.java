@@ -1,8 +1,11 @@
 package mysql;
 
+import util.JLogger;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.logging.Level;
 
 class MySqlConfiguration {
     private static String hostName;
@@ -25,16 +28,16 @@ class MySqlConfiguration {
             userName = reader.getProperty("userName");
             password = reader.getProperty("password");
             databaseName = reader.getProperty("databaseName");
-            useSSL = reader.getProperty("useSSL");
-            autoConnect = reader.getProperty("autoReconnect");
+            useSSL = reader.getProperty("useSSL", "false");
+            autoConnect = reader.getProperty("autoReconnect", "false");
         }
         catch (FileNotFoundException err) {
-            err.printStackTrace();
-            System.err.println(file.getName() + " does not found.");
+            JLogger.log(Level.SEVERE, "mysql.properties is not found.", err);
+            System.exit(3);
         }
         catch (IOException err) {
-            err.printStackTrace();
-            System.err.println();
+            JLogger.log(Level.SEVERE, "can not read mysql.properties.", err);
+            System.exit(3);
         }
     }
 

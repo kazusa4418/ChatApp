@@ -2,9 +2,11 @@ package server;
 
 import event.MessageEvent;
 import event.MessageEventFactory;
+import util.JLogger;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.logging.Level;
 
 public class Client implements Runnable {
     private ChatServer server;
@@ -39,15 +41,17 @@ public class Client implements Runnable {
             }
         }
         catch (IOException err) {
-            err.printStackTrace();
+            JLogger.log(Level.WARNING, "connection with the client has expired.", err);
             // ソケットに異常があるのでログアウトさせる
+            // 主にクライアントが/logoutコマンドを使用せず強制終了したときに実行される
             MessageEvent event = MessageEventFactory.createMessageEvent("/logout");
             event.setCreator(this);
             server.receiveEvent(event);
         }
         catch (ClassNotFoundException err) {
-            err.printStackTrace();
-            throw new AssertionError();
+            JLogger.log(Level.SEVERE, "class not found.", err);
+            // 適当
+            System.exit(100);
         }
     }
 
@@ -59,8 +63,7 @@ public class Client implements Runnable {
             writer.flush();
         }
         catch (IOException err) {
-            err.printStackTrace();
-            throw new AssertionError(err);
+            JLogger.log(Level.SEVERE, "failed to send message.", err);
         }
     }
 
@@ -76,6 +79,8 @@ public class Client implements Runnable {
         try {
             socket.close();
         }
-        catch (IOException ignore) { }
+        catch (IOException err) {
+            JLogger.log(Level.WARNING, "already closed.", err);
+        }
     }
 }

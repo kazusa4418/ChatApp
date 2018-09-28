@@ -26,9 +26,9 @@ class ClientConfiguration {
             SERVER_PORT_NUMBER = reader.getIntProperty("port_number");
         }
         catch (FileNotFoundException err) {
-            JLogger.log(Level.SEVERE, "the server.properties could not be found. path is './server.properties", err);
+            JLogger.log(Level.SEVERE, "the server.properties could not be found. path is './server.properties'", err);
             System.err.println("サーバーへのアクセス情報が見つかりませんでした。");
-            System.exit(1);
+            System.exit(2);
         }
         catch (IOException err) {
             JLogger.log(Level.SEVERE, "the server.properties could not be loaded.", err);
