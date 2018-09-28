@@ -148,7 +148,7 @@ public class ChatServer {
         sendMessageToMembersExceptMyself(client, "## user '" + client.getName() + "' left this room.", joinedRoom);
 
         // 新しくルームを作り、ルームの管理者としてルームに入る
-        roomList.createNewRoom(roomName, client).add(client);
+        roomList.createNewRoom(roomName, client);
         // 作成したルームに参加したことを自分に通知する
         client.send("## made a new room ! welcome to '" + roomName + "' !");
     }
@@ -193,7 +193,6 @@ public class ChatServer {
         sendMessageToMembersExceptMyself(client, "## user '" + client.getName() + "' joined this room.");
     }
 
-    // TODO: 頭死んでるときに作ったんだろうなこれ。アルゴリズム見直しましょうね。
     private void leaveRoom(Client client, String args) {
         if (!args.matches(Command.LEAVE_ROOM.getArgumentRegex())) {
             sendUsage(client, Command.LEAVE_ROOM);
@@ -208,29 +207,14 @@ public class ChatServer {
             return;
         }
 
-        // 自分がルームの管理者だったらルームを閉じる
+        // 自分がルームの管理者だったら抜けられない
         if (room.isAdmin(client)) {
-            // ルームのメンバーに管理者が退出したため、ルームをクローズすることを伝える
-            sendMessageToMembersExceptMyself(client,
-                    "## warning: this room will be closed because the administrator left.");
-            // ルームのメンバー全員を退出させる
-            for (Client member : room.getMemberList()) {
-                if (!room.isAdmin(member)) {
-                    room.remove(member);
-                    ChatRoom.getLobby().add(member);
-                    member.send("## you returned to the lobby.");
-                }
-            }
-            // ルームリストからこのルームを取り除く
-            roomList.removeRoom(room);
-            // 最後に管理者がルームから出ていく
-            room.remove(client);
+            client.send("## fatal: you are an administrator.\n" +
+                             "##        the administrator can not escape from '" + room + "'.");
         }
-        else {
-            // ルームから自分を削除（抜ける）してルームのメンバーにそのことを通知する
-            room.remove(client);
-            sendMessageToMembersExceptMyself(client, "## the user '" + client.getName() + "' left this room.", room);
-        }
+
+        room.remove(client);
+        sendMessageToMembersExceptMyself(client, "## the user '" + client.getName() + "' left this room.", room);
 
         // ロビーに参加（戻る）して自分にそのことを通知する
         ChatRoom.getLobby().add(client);
@@ -245,18 +229,18 @@ public class ChatServer {
         // 自分の参加しているルームを取得する
         ChatRoom joinedRoom = roomList.getRoomWith(client);
 
-        client.send("## showing the existing rooms...\n");
-        // TODO: クライアントに送信するのはループに含めるべきではない
+        StringBuilder message = new StringBuilder("## showing the existing rooms...\n\n");
         for (ChatRoom room : roomList) {
             // 送信するメッセージ 形式："## room name"
-            String message = "## " + room.getName();
+            message.append("## ").append(room.getName());
 
             // 自分の参加しているルームにはyou are joined表記を付ける
             if (room == joinedRoom)
-                message += " <you are joined>";
+                message.append(" <you are joined>");
 
-            client.send(message);
+            message.append("\n");
         }
+        client.send(message.toString());
     }
 
     private void showMember(Client client, String roomName) {
@@ -270,31 +254,29 @@ public class ChatServer {
         }
         // 名前にroomNameをもつルームが存在しなかった場合
         if (!roomList.existRoom(roomName)) {
-            client.send("## fatal: the room with the specified name does not exist.");
+            client.send("## fatal: the room '" + roomName + "' does not exist.");
             return;
         }
-
 
         // 引数で指定された名前を持つルームを取得する
         ChatRoom room = roomList.getRoom(roomName);
 
-        client.send("## showing the members in '" + roomName + "'\n");
-        // TODO: クライアントに送信するのはループに含めるべきではない
+        StringBuilder message = new StringBuilder("## showing the members in '" + roomName + "'\n\n");
         for (Client member : room.getMemberList()) {
             // 送信するメッセージ 形式："## client name"
-            String message = "## " + member.getName();
+            message.append("## ").append(member.getName());
 
             // 管理者はadministrator表記を付ける
             if (room.isAdmin(member)) {
-                message += " <Administrator>";
+                message.append(" <Administrator>");
             }
             // 自分自身だったらyourself表記を付ける
             if (member == client) {
-                message += " <Yourself>";
+                message.append(" <Yourself>");
             }
-
-            client.send(message);
+            message.append("\n");
         }
+        client.send(message.toString());
     }
 
     private void kickMember(Client client, String userName) {
@@ -313,7 +295,7 @@ public class ChatServer {
         }
         // 指定した名前のメンバーがいない場合削除できない
         if (!room.existClient(userName)) {
-            client.send("## fatal: the member with the specified name is not in the room.");
+            client.send("## fatal: the member '" + userName + "' is not in the room.");
             return;
         }
         // 指定したメンバーが自分自身だった場合削除させない（管理者がルームから消えてしまう）
@@ -375,7 +357,7 @@ public class ChatServer {
 
         String oldName = client.getName();
         client.setName(newName);
-        client.send("## change name : '" + oldName + "' -> '" + client.getName() + "'");
+        client.send("## change name : '" + oldName + "' -> '" + newName + "'");
         sendMessageToMembersExceptMyself(client,"## change name : '" + oldName + "' -> '" + client.getName() + "'");
     }
 

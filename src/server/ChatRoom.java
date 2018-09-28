@@ -18,6 +18,7 @@ class ChatRoom {
     ChatRoom(String name, Client admin) {
         this.name = name;
         this.admin = admin;
+        clients.add(admin);
     }
 
 
