@@ -1,25 +1,24 @@
 package client;
 
-import event.MessageEvent;
-import event.MessageEventFactory;
 import util.JLogger;
 
-import java.io.ObjectOutputStream;
+import java.io.BufferedWriter;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.logging.Level;
 
 class MessageSender implements Runnable {
     private Socket socket;
-    private ObjectOutputStream writer;
+    private BufferedWriter writer;
 
     private Thread thread;
 
     MessageSender(Socket socket) throws IOException {
         this.socket = socket;
-        this.writer = new ObjectOutputStream(socket.getOutputStream());
+        this.writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 
         thread = new Thread(this);
     }
@@ -52,11 +51,8 @@ class MessageSender implements Runnable {
     }
 
     void sendToServer(String msg) throws IOException {
-        MessageEvent event = MessageEventFactory.createMessageEvent(msg);
-
-        if (!socket.isClosed()) {
-            writer.writeObject(event);
-            writer.flush();
-        }
+        writer.write(msg);
+        writer.newLine();
+        writer.flush();
     }
 }

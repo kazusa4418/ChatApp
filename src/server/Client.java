@@ -31,12 +31,13 @@ public class Client implements Runnable {
     }
 
     public void run() {
-        try (ObjectInputStream reader = new ObjectInputStream(socket.getInputStream())) {
-            while (!socket.isClosed()) {
-                MessageEvent event = (MessageEvent) reader.readObject();
+        authenticate();
 
-                // TODO: ここで自分が送信したことを記録するのはダサくない？
-                event.setCreator(this);
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
+            while (!socket.isClosed()) {
+                String msg = reader.readLine();
+
+                MessageEvent event = MessageEventFactory.createMessageEvent(this, msg);
                 server.receiveEvent(event);
             }
         }
@@ -44,14 +45,25 @@ public class Client implements Runnable {
             JLogger.log(Level.WARNING, "connection with the client has expired.", err);
             // ソケットに異常があるのでログアウトさせる
             // 主にクライアントが/logoutコマンドを使用せず強制終了したときに実行される
-            MessageEvent event = MessageEventFactory.createMessageEvent("/logout");
-            event.setCreator(this);
+            MessageEvent event = MessageEventFactory.createMessageEvent(this, "/logout");
             server.receiveEvent(event);
         }
-        catch (ClassNotFoundException err) {
-            JLogger.log(Level.SEVERE, "class not found.", err);
-            // 適当
-            System.exit(100);
+    }
+
+    private void authenticate() {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
+            send("user id > ");
+            String id = reader.readLine();
+            System.out.println("user_id: " + id);
+            send("user pw > ");
+            String pw = reader.readLine();
+
+            Response response = Authenticator.authenticate(id, pw);
+
+            System.out.println(response.getStatus());
+        }
+        catch (IOException err) {
+            JLogger.log(Level.SEVERE, "I/O error.", err);
         }
     }
 
