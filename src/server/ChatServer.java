@@ -155,6 +155,7 @@ public class ChatServer implements Runnable {
     }
 
     private void sendSecretMessage(Client client, String body) {
+        System.out.println("asdfasdfasdfasdfasfdasfsadfas");
         if (!body.matches(Command.SECRET_MESSAGE.getArgumentRegex())) {
             sendUsage(client, Command.SECRET_MESSAGE);
             return;
@@ -171,7 +172,7 @@ public class ChatServer implements Runnable {
         }
 
         Client dest = joinedRoom.get(userName);
-        dest.send(client.getName() + " > " + message);
+        dest.send(client.getName() + " >>> " + message);
     }
 
     private void makeRoom(Client client, String roomName) {

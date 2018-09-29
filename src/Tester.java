@@ -11,9 +11,9 @@ public class Tester {
     private Socket socket;
     private static BufferedWriter writer;
 
-    public static void main(String[] args) throws Exception {
-        String regex = ".* .*";
-        String message = "asdfa sd fadf";
+    public static void main(String[] args) {
+        final String regex = "/>[a-zA-Z0-9-_]+";
+        String message = "/>";
 
         if (message.matches(regex)) {
             System.out.println("ok");

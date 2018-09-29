@@ -4,9 +4,9 @@ import server.Client;
 
 public class MessageEventFactory {
     public static MessageEvent createMessageEvent(Client creator, String msg) {
-        // TODO: 内緒話を特殊ケースから一般ケースにする
-        if (msg.startsWith("/>")) {
-            return new MessageEvent(creator, Command.SECRET_MESSAGE, msg.replace("/>", "").trim());
+        // TODO: 内緒話を特殊ケースから一般ケースにする(正規表現わかりにくいよねぇ
+        if (msg.matches("/>[\\w]+\\s.*")) {
+            return new MessageEvent(creator, Command.SECRET_MESSAGE, msg.replace("/>", ""));
         }
         else if (msg.startsWith("/")) {
             String[] messages = msg.split(" ");

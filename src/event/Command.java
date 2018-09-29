@@ -71,8 +71,9 @@ public enum Command {
                 return "[a-zA-Z0-9]+";
             case SEND_MESSAGE:
                 return ".*";
-            case SECRET_MESSAGE:
-                return ".* .*";
+            // これがあると不都合があったりする。これだけないのが不自然だから直したい。
+            /*case SECRET_MESSAGE:
+                return ".* .*";*/
             case JOIN_ROOM:
                 return "[a-zA-Z0-9]+";
             case LEAVE_ROOM:
