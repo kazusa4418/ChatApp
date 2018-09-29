@@ -14,7 +14,7 @@ public class Registration {
     private static final String INSERT_SQL = "INSERT INTO users VALUES(?, ?, ?, false)";
 
     private static final String ID_REGEX = "[a-zA-Z0-9-_]{6,33}";
-    private static final String PW_REGEX = "[a-zA-Z0-9-_]{6,33}";
+    private static final String PW_REGEX = "[a-zA-Z0-9-_]{4,33}";
     private static final String NAME_REGEX = "[\\w]{1,65}";
 
     private static final String ID_EXIST_CHECK_SQL = "SELECT * FROM users WHERE user_name = ?";
@@ -29,7 +29,9 @@ public class Registration {
             String pw = inputPassword();
             String name = inputUserName();
 
-            mysql.prepareStatement(INSERT_SQL, id, pw, name);
+            mysql.prepareStatement(INSERT_SQL, id, pw, name).executeUpdate();
+
+            System.out.println("会員登録しました。");
         }
         catch (SQLException err) {
             System.err.println("データベースサーバーへの接続に失敗しました。");
@@ -59,7 +61,7 @@ public class Registration {
             System.out.print("パスワードを入力してください > ");
             String pw = sc.nextLine();
 
-            if (pw.matches(PW_REGEX)) {
+            if (!pw.matches(PW_REGEX)) {
                 System.out.println("パスワードは英数字かﾊｲﾌﾝ、ｱﾝﾀﾞｰｽｺｱの4文字以上32文字以下である必要があります。");
                 continue;
             }
@@ -73,7 +75,7 @@ public class Registration {
             String userName = sc.nextLine();
 
             if (!userName.matches(NAME_REGEX)) {
-                System.out.println("ユーザー名は英数字かｱﾝﾀﾞｰｽｺｱの4文字以上32文字以下である必要があります。");
+                System.out.println("ユーザー名は英数字かｱﾝﾀﾞｰｽｺｱの62文字以下である必要があります。");
                 continue;
             }
             ResultSet result = mysql.prepareStatement(ID_EXIST_CHECK_SQL, userName).executeQuery();
