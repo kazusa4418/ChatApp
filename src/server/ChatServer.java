@@ -160,8 +160,8 @@ public class ChatServer implements Runnable {
             return;
         }
 
-        String userName = body.split(" ")[0];
-        String message = body.split(" ")[1];
+        String userName = body.split(" ", 2)[0];
+        String message = body.split(" ", 2)[1];
 
         ChatRoom joinedRoom = roomList.getRoomWith(client);
         // 送るユーザーがルームにいなかった場合

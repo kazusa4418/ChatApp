@@ -73,7 +73,7 @@ public enum Command {
             case SEND_MESSAGE:
                 return ".*";
             case SECRET_MESSAGE:
-                return ".* .*";
+                return ".*\\s.*";
             case JOIN_ROOM:
                 return "[a-zA-Z0-9]+";
             case LEAVE_ROOM:
