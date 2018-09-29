@@ -13,6 +13,7 @@ public class Client implements Runnable {
     private Socket socket;
 
     private String name;
+    private Status status;
 
     private Thread thread;
 
@@ -51,16 +52,32 @@ public class Client implements Runnable {
     }
 
     private void authenticate() {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
-            send("user id > ");
-            String id = reader.readLine();
-            System.out.println("user_id: " + id);
-            send("user pw > ");
-            String pw = reader.readLine();
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-            Response response = Authenticator.authenticate(id, pw);
+            while (status != Status.AVAILABLE) {
+                send("user id > ");
+                String id = reader.readLine();
+                System.out.println("user_id: " + id);
+                send("user pw > ");
+                String pw = reader.readLine();
 
-            System.out.println(response.getStatus());
+                Response response = Authenticator.authenticate(id, pw);
+
+                switch (response.getStatus()) {
+                    case AVAILABLE:
+                        send("welcome! '" + response.getUserName() + "'.");
+                        break;
+                    case UNMATCHED:
+                        send("IDまたはパスワードが違います。");
+                        break;
+                    case EXCEPTION:
+                        send("問題が発生しました。");
+                        break;
+                }
+                status = response.getStatus();
+                name = response.getUserName();
+            }
         }
         catch (IOException err) {
             JLogger.log(Level.SEVERE, "I/O error.", err);

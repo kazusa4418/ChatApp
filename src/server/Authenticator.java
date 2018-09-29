@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 
 class Authenticator {
-    private static final String SELECT_SQL = "SELECT user_name FROM users WHERE user_id = ? and user_pw = ?";
+    private static final String SELECT_SQL = "SELECT user_name FROM users WHERE user_id = ? and password = ?";
 
     static Response authenticate(String id, String pw) {
         try (MySql mysql = new MySql()) {
