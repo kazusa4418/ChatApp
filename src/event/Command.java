@@ -10,7 +10,6 @@ import java.util.Map;
 import java.util.logging.Level;
 
 public enum Command {
-    LOGIN,
     LOGOUT,
     COMMAND_HELP,
     SEND_MESSAGE,
@@ -27,8 +26,6 @@ public enum Command {
 
     public static Command get(String msg) {
         switch(msg) {
-            case "/login":
-                return LOGIN;
             case "/logout":
                 return LOGOUT;
             case "/help":

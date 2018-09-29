@@ -50,8 +50,6 @@ public class ChatServer {
         String body = event.getBody().trim();
 
         switch (command) {
-            case LOGIN:
-                break;
             case LOGOUT:
                 logout(creator, body);
                 break;
@@ -110,10 +108,10 @@ public class ChatServer {
         }
         else {
             sendMessageToMembersExceptMyself(client, "## the user '" + client.getName() + "' log outs.");
-
-            // 参加しているルームを抜ける
-            roomList.getRoomWith(client).remove(client);
         }
+        // 参加しているルームを抜ける
+        roomList.getRoomWith(client).remove(client);
+
         client.disconnect();
     }
 
