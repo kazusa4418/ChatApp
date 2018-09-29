@@ -17,7 +17,8 @@ public class Registration {
     private static final String PW_REGEX = "[a-zA-Z0-9-_]{4,33}";
     private static final String NAME_REGEX = "[\\w]{1,65}";
 
-    private static final String ID_EXIST_CHECK_SQL = "SELECT * FROM users WHERE user_name = ?";
+    private static final String ID_EXIST_CHECK_SQL = "SELECT * FROM users WHERE user_id = ?";
+    private static final String USER_NAME_EXIST_CHECK_SQL = "SELECT * FROM users WHERE user_name = ?";
 
     public static void main(String... args) {
         System.out.println("新規会員登録をします。\n");
@@ -78,7 +79,7 @@ public class Registration {
                 System.out.println("ユーザー名は英数字かｱﾝﾀﾞｰｽｺｱの62文字以下である必要があります。");
                 continue;
             }
-            ResultSet result = mysql.prepareStatement(ID_EXIST_CHECK_SQL, userName).executeQuery();
+            ResultSet result = mysql.prepareStatement(USER_NAME_EXIST_CHECK_SQL, userName).executeQuery();
             if (result.next()) {
                 System.out.println("そのユーザー名は既に使われています。");
                 continue;
