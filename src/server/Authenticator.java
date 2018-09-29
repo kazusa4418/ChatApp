@@ -25,6 +25,7 @@ class Authenticator {
                 // ログインできたのでユーザーのログイン状況をログイン中にする
                 String userName = result.getString("user_name");
                 mysql.prepareStatement(NOW_LOGIN_ON_SQL, userName).executeUpdate();
+
                 return new Response(Status.AVAILABLE, userName);
             }
             else {

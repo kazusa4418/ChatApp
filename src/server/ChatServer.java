@@ -155,7 +155,6 @@ public class ChatServer implements Runnable {
     }
 
     private void sendSecretMessage(Client client, String body) {
-        System.out.println("asdfasdfasdfasdfasfdasfsadfas");
         if (!body.matches(Command.SECRET_MESSAGE.getArgumentRegex())) {
             sendUsage(client, Command.SECRET_MESSAGE);
             return;
@@ -167,7 +166,12 @@ public class ChatServer implements Runnable {
         ChatRoom joinedRoom = roomList.getRoomWith(client);
         // 送るユーザーがルームにいなかった場合
         if (!joinedRoom.existClient(userName)) {
-            client.send("## the user '" + userName + "' does not exist in '" + joinedRoom.getName() + "'.");
+            client.send("## fatal: the user '" + userName + "' does not exist in '" + joinedRoom.getName() + "'.");
+            return;
+        }
+        // 自分自身には送れない
+        if (joinedRoom.get(userName).getName().equals(client.getName())) {
+            client.send("## fatal: can not send secret message to yourself.");
             return;
         }
 
