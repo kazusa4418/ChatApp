@@ -1,4 +1,5 @@
 out/
 *.iml
 *.log
+*.lck
 .idea/
