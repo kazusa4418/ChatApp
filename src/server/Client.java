@@ -1,5 +1,6 @@
 package server;
 
+import event.Command;
 import event.MessageEvent;
 import event.MessageEventFactory;
 import util.JLogger;
@@ -17,13 +18,14 @@ public class Client implements Runnable {
 
     private Thread thread;
 
-    Client(ChatServer server, Socket socket, String name) {
+    Client(ChatServer server, Socket socket) {
         this.server = server;
         this.socket = socket;
 
+        authenticate();
+
         ChatRoom.getLobby().add(this);
 
-        this.name = name;
         this.thread = new Thread(this);
     }
 
@@ -32,8 +34,6 @@ public class Client implements Runnable {
     }
 
     public void run() {
-        authenticate();
-
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
             while (!socket.isClosed()) {
                 String msg = reader.readLine();
@@ -58,7 +58,6 @@ public class Client implements Runnable {
             while (status != Status.AVAILABLE) {
                 send("user id > ");
                 String id = reader.readLine();
-                System.out.println("user_id: " + id);
                 send("user pw > ");
                 String pw = reader.readLine();
 

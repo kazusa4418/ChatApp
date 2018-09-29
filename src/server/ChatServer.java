@@ -30,10 +30,10 @@ public class ChatServer {
             try {
                 // クライアントからのアクセスを待つ
                 Socket socket = server.accept();
-                Client client = new Client(this, socket, "empty");
+                Client client = new Client(this, socket);
+                // ユーザーがログインしたことを通知する
+                sendMessageToMembersExceptMyself(client, "## user '" + client.getName() + "' log in.");
                 client.start();
-                //TODO: ログインされたことをロビーに通知しているけど記述しているところが気に食わない
-                sendMessageToMembersExceptMyself(client, "## user '" + client.getName() + "' logged in.");
             }
             catch (IOException err) {
                 // server.acceptは待機中に例外が起こる可能性があるらしい。
@@ -79,9 +79,6 @@ public class ChatServer {
                 break;
             case COMMAND_HELP:
                 commandHelp(creator, body);
-                break;
-            case CHANGE_NAME:
-                changeName(creator, body);
                 break;
             case CLOSE_ROOM:
                 closeRoom(creator, body);
@@ -372,18 +369,6 @@ public class ChatServer {
         room.setAdmin(decidedClient);
 
         sendMessageToMembersExceptMyself(decidedClient, "## the user '" + decidedClient.getName() + "' had drawn this room's administrator.");
-    }
-
-    private void changeName(Client client, String newName) {
-        if (!newName.matches(Command.CHANGE_ADMIN.getArgumentRegex())) {
-            sendUsage(client, Command.CHANGE_ADMIN);
-            return;
-        }
-
-        String oldName = client.getName();
-        client.setName(newName);
-        client.send("## change name : '" + oldName + "' -> '" + newName + "'");
-        sendMessageToMembersExceptMyself(client,"## change name : '" + oldName + "' -> '" + client.getName() + "'");
     }
 
     private void closeRoom(Client client, String body) {

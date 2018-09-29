@@ -21,7 +21,6 @@ public enum Command {
     KICK_MEMBER,
     SHOW_MEMBERS,
     CHANGE_ADMIN,
-    CHANGE_NAME,
     NOT_FOUND;
 
     public static Command get(String msg) {
@@ -48,8 +47,6 @@ public enum Command {
                 return SHOW_MEMBERS;
             case "/change-admin":
                 return CHANGE_ADMIN;
-            case "/name":
-                return CHANGE_NAME;
             default:
                 return NOT_FOUND;
         }
@@ -87,8 +84,6 @@ public enum Command {
                 return "[a-zA-Z0-9-_]+";
             case SHOW_MEMBERS:
                 return ".{0}|[a-zA-Z0-9]+";
-            case CHANGE_NAME:
-                return "[a-zA-Z0-9-_]+";
             default:
                 return "";
         }
