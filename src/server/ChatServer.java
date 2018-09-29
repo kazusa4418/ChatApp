@@ -112,6 +112,14 @@ public class ChatServer {
         // 参加しているルームを抜ける
         roomList.getRoomWith(client).remove(client);
 
+        // TODO: クライアントが落ちるより先にdisconnectしてしまうと不具合が発生するから修正すること
+        try {
+            Thread.sleep(100);
+        }
+        catch (InterruptedException err) {
+            err.printStackTrace();
+        }
+
         client.disconnect();
     }
 
