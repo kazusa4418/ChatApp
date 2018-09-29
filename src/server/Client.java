@@ -2,10 +2,12 @@ package server;
 
 import event.MessageEvent;
 import event.MessageEventFactory;
+import mysql.MySql;
 import util.JLogger;
 
 import java.io.*;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.logging.Level;
 
 public class Client implements Runnable {
@@ -67,6 +69,9 @@ public class Client implements Runnable {
                     case UNMATCHED:
                         send("IDまたはパスワードが違います。");
                         break;
+                    case ALREADY:
+                        send("既にログインしています。");
+                        break;
                     case EXCEPTION:
                         send("問題が発生しました。");
                         break;
@@ -110,9 +115,15 @@ public class Client implements Runnable {
     void disconnect() {
         try {
             socket.close();
+            // TODO: 時間なくて応急処置。もっと良い方法考えろカス
+            MySql mysql = new MySql();
+            mysql.executeUpdate("UPDATE users SET now_login = false WHERE user_name = '" + name + "'");
         }
         catch (IOException err) {
             JLogger.log(Level.WARNING, "already closed.", err);
+        }
+        catch (SQLException err) {
+            JLogger.log(Level.SEVERE, "can not update now_login status in table 'users'", err);
         }
     }
 }

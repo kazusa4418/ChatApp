@@ -9,7 +9,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 
 class Authenticator {
-    private static final String SELECT_SQL = "SELECT user_name FROM users WHERE user_id = ? and password = ?";
+    private static final String SELECT_SQL = "SELECT user_name, now_login FROM users WHERE user_id = ? and password = ?";
+    private static final String NOW_LOGIN_ON_SQL = "UPDATE users SET now_login = true WHERE user_name = ?";
 
     static Response authenticate(String id, String pw) {
         try (MySql mysql = new MySql()) {
@@ -18,7 +19,13 @@ class Authenticator {
             ResultSet result = statement.executeQuery();
 
             if (result.next()) {
-                return new Response(Status.AVAILABLE, result.getString("user_name"));
+                if (result.getBoolean("now_login")) {
+                    return new Response(Status.ALREADY, "");
+                }
+                // ログインできたのでユーザーのログイン状況をログイン中にする
+                String userName = result.getString("user_name");
+                mysql.prepareStatement(NOW_LOGIN_ON_SQL, userName).executeUpdate();
+                return new Response(Status.AVAILABLE, userName);
             }
             else {
                 return new Response(Status.UNMATCHED, "");
@@ -34,6 +41,7 @@ class Authenticator {
 enum Status {
     AVAILABLE,
     UNMATCHED,
+    ALREADY,
     EXCEPTION
 }
 

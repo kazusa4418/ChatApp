@@ -32,8 +32,9 @@ public enum Command {
                 return COMMAND_HELP;
             case "/send":
                 return SEND_MESSAGE;
-            case "/>":
-                return SECRET_MESSAGE;
+            // これがあると不都合があったりする。これだけないのが不自然だから直したい。
+            /*case "/>":
+                return SECRET_MESSAGE;*/
             case "/join":
                 return JOIN_ROOM;
             case "/leave":
@@ -71,9 +72,8 @@ public enum Command {
                 return "[a-zA-Z0-9]+";
             case SEND_MESSAGE:
                 return ".*";
-            // これがあると不都合があったりする。これだけないのが不自然だから直したい。
-            /*case SECRET_MESSAGE:
-                return ".* .*";*/
+            case SECRET_MESSAGE:
+                return ".* .*";
             case JOIN_ROOM:
                 return "[a-zA-Z0-9]+";
             case LEAVE_ROOM:
