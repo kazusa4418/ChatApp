@@ -71,6 +71,8 @@ public enum Command {
                 return "[a-zA-Z0-9]+";
             case SEND_MESSAGE:
                 return ".*";
+            case SECRET_MESSAGE:
+                return ".* .*";
             case JOIN_ROOM:
                 return "[a-zA-Z0-9]+";
             case LEAVE_ROOM:
@@ -109,6 +111,7 @@ class HelpDictionary {
             USAGE_DICTIONARY.put(Command.LOGOUT, reader.getProperty("logout.usage"));
             USAGE_DICTIONARY.put(Command.COMMAND_HELP, reader.getProperty("help.usage"));
             USAGE_DICTIONARY.put(Command.SEND_MESSAGE, reader.getProperty("send.usage"));
+            USAGE_DICTIONARY.put(Command.SECRET_MESSAGE, reader.getProperty("secret.usage"));
             USAGE_DICTIONARY.put(Command.JOIN_ROOM, reader.getProperty("join.usage"));
             USAGE_DICTIONARY.put(Command.LEAVE_ROOM, reader.getProperty("leave.usage"));
             USAGE_DICTIONARY.put(Command.MAKE_ROOM, reader.getProperty("make.usage"));
@@ -136,6 +139,7 @@ class HelpDictionary {
             HELP_DICTIONARY.put(Command.LOGOUT, reader.getProperty("logout.help"));
             HELP_DICTIONARY.put(Command.COMMAND_HELP, reader.getProperty("help.help"));
             HELP_DICTIONARY.put(Command.SEND_MESSAGE, reader.getProperty("send.help"));
+            HELP_DICTIONARY.put(Command.SECRET_MESSAGE, reader.getProperty("secret.help"));
             HELP_DICTIONARY.put(Command.JOIN_ROOM, reader.getProperty("join.help"));
             HELP_DICTIONARY.put(Command.LEAVE_ROOM, reader.getProperty("leave.help"));
             HELP_DICTIONARY.put(Command.MAKE_ROOM, reader.getProperty("make.help"));

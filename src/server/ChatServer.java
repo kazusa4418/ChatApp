@@ -171,7 +171,7 @@ public class ChatServer implements Runnable {
         }
 
         Client dest = joinedRoom.get(userName);
-        dest.send(message);
+        dest.send(client.getName() + " > " + message);
     }
 
     private void makeRoom(Client client, String roomName) {

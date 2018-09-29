@@ -12,9 +12,14 @@ public class Tester {
     private static BufferedWriter writer;
 
     public static void main(String[] args) throws Exception {
-        MySql mysql = new MySql();
-        ResultSet result = mysql.executeQuery("SELECT * FROM user;");
-        System.out.println(result);
+        String regex = ".* .*";
+        String message = "asdfa sd fadf";
 
+        if (message.matches(regex)) {
+            System.out.println("ok");
+        }
+        else {
+            System.out.println("ng");
+        }
     }
 }
