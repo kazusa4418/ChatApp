@@ -23,8 +23,6 @@ public class Client implements Runnable {
 
         authenticate();
 
-        ChatRoom.getLobby().add(this);
-
         this.thread = new Thread(this);
     }
 
@@ -78,7 +76,10 @@ public class Client implements Runnable {
             }
         }
         catch (IOException err) {
-            JLogger.log(Level.SEVERE, "I/O error.", err);
+            // ソケットに何らかの異常が発生した場合
+            // 主に認証中にクライアントが強制終了した場合などに発生する
+            JLogger.log(Level.WARNING, "I/O error.", err);
+            status = Status.EXCEPTION;
         }
     }
 
@@ -100,6 +101,10 @@ public class Client implements Runnable {
 
     void setName(String name) {
         this.name = name;
+    }
+
+    Status getStatus() {
+        return status;
     }
 
     void disconnect() {

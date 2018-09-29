@@ -37,9 +37,16 @@ public class ChatServer implements Runnable {
                 // クライアントからのアクセスを待つ
                 Socket socket = server.accept();
                 Client client = new Client(this, socket);
-                // ユーザーがログインしたことを通知する
-                sendMessageToMembersExceptMyself(client, "## user '" + client.getName() + "' log in.");
-                client.start();
+                // クライアントが有効状態でなかったらコネクションを切る
+                if (client.getStatus() == Status.AVAILABLE) {
+                    // ロビーに入室し、メンバーにログインしたことを通知する
+                    ChatRoom.getLobby().add(client);
+                    sendMessageToMembersExceptMyself(client, "## user '" + client.getName() + "' log in.");
+                    client.start();
+                }
+                else {
+                    client.disconnect();
+                }
             }
             catch (IOException err) {
                 // server.acceptは待機中に例外が起こる可能性があるらしい。
