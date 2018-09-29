@@ -4,22 +4,19 @@ import server.Client;
 
 import java.io.Serializable;
 
-public class MessageEvent implements Serializable {
+public class MessageEvent {
     private Client creator;
     private Command command;
     private String body;
 
-    MessageEvent(Command command, String body) {
+    MessageEvent(Client creator, Command command, String body) {
+        this.creator = creator;
         this.command = command;
         this.body = body;
     }
 
     public Client getCreator() {
         return creator;
-    }
-
-    public void setCreator(Client client) {
-        this.creator = client;
     }
 
     public Command getCommand() {

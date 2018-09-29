@@ -25,8 +25,6 @@ public class ChatClient {
 
             sender.start();
             receiver.start();
-
-            sendMyNameToServer();
         }
         catch (FailedConnectToServerException err) {
             JLogger.log(Level.SEVERE, err.getLogMsg(), err.getCauseException());
