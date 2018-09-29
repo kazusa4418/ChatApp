@@ -14,12 +14,8 @@ public class ChatClient {
     private MessageSender sender;
     private MessageReceiver receiver;
 
-    private String name;
-
     public void start() {
         try {
-            inputMyName();
-
             connectServer(ClientConfiguration.getServerIpAddress(), ClientConfiguration.getServerPortNumber());
             openStream();
 
@@ -59,34 +55,5 @@ public class ChatClient {
                     err
             );
         }
-    }
-
-    // これ本当は使わないよ。応急処置。
-    // ログイン処理の実装間に合わなそうだからこれで代用
-    private void inputMyName() throws FailedConnectToServerException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        System.out.print("input my name > ");
-        try {
-            this.name = br.readLine();
-        }
-        catch (IOException err) {
-            throw new FailedConnectToServerException(
-                    "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-                    "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-                    err
-            );
-        }
-    }
-
-    // 名前を変えるリクエストを送信してるけど、
-    // 実際にはこの方法で最初の名前通知はしません。
-
-    // IOExceptionの例外処理していないのはわざと
-    private void sendMyNameToServer() {
-        try {
-            sender.sendToServer("/name " + name.trim());
-        }
-        catch (IOException ignore) {}
     }
 }
