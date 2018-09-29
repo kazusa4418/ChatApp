@@ -52,7 +52,9 @@ public class Client implements Runnable {
     }
 
     private void authenticate() {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
             while (status != Status.AVAILABLE) {
                 send("user id > ");
                 String id = reader.readLine();
