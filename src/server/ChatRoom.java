@@ -20,8 +20,37 @@ class ChatRoom {
         this.admin = admin;
     }
 
+    boolean isAdmin(Client client) {
+        return admin == client;
+    }
+
+    boolean existClient(String clientName) {
+        for (Client client : clients) {
+            if (client.getName().equals(clientName))
+                return true;
+        }
+        return false;
+    }
+
+    Client getAdmin(){
+        return admin;
+    }
+
+    void setAdmin(Client admin){
+        this.admin = admin;
+    }
+
     String getName() {
         return name;
+    }
+
+    Client get(String clientName) {
+        for (Client client : clients) {
+            if (client.getName().equals(clientName)) {
+                return client;
+            }
+        }
+        return null;
     }
 
     void add(Client client){

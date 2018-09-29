@@ -2,22 +2,24 @@ package client;
 
 import event.MessageEvent;
 import event.MessageEventFactory;
+import util.JLogger;
 
-import java.io.*;
+import java.io.ObjectOutputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
 import java.net.Socket;
+import java.util.logging.Level;
 
 class MessageSender implements Runnable {
+    private Socket socket;
     private ObjectOutputStream writer;
 
     private Thread thread;
 
-    MessageSender(Socket socket) {
-        try {
-            writer = new ObjectOutputStream(socket.getOutputStream());
-        }
-        catch (IOException err) {
-            throw new AssertionError(err);
-        }
+    MessageSender(Socket socket) throws IOException {
+        this.socket = socket;
+        this.writer = new ObjectOutputStream(socket.getOutputStream());
 
         thread = new Thread(this);
     }
@@ -28,26 +30,33 @@ class MessageSender implements Runnable {
 
     public void run() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            while (true) {
+            while (!socket.isClosed()) {
                 String msg = reader.readLine();
-                send(msg);
+
+                sendToServer(msg);
+
+                // 死ぬほど気に入らない
+                if (msg.equals("/logout")) {
+                    System.out.println("ログアウトしました。");
+                    System.exit(0);
+                }
             }
         }
         catch (IOException err) {
-            err.printStackTrace();
-            throw new AssertionError(err);
+            JLogger.log(Level.SEVERE, "the output stream failed to send the message.\n" +
+                                                            "at MessageSender#run I/O error occurred.", err);
+            System.err.println("サーバーとの接続が切れました。");
+            // これどうにかならないかな
+            System.exit(1);
         }
     }
 
-    private void send(String msg) {
-        try {
-            MessageEvent event = MessageEventFactory.createMessageEvent(msg);
+    void sendToServer(String msg) throws IOException {
+        MessageEvent event = MessageEventFactory.createMessageEvent(msg);
+
+        if (!socket.isClosed()) {
             writer.writeObject(event);
             writer.flush();
-        }
-        catch (IOException err) {
-            err.printStackTrace();
-            throw new AssertionError(err);
         }
     }
 }

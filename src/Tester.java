@@ -1,21 +1,20 @@
+import event.Command;
+import mysql.MySql;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
+import java.sql.ResultSet;
 
 public class Tester {
     private Socket socket;
     private static BufferedWriter writer;
 
-    public static void main(String[] args) throws IOException {
-        Socket socket = new Socket("127.0.0.1", 10000);
+    public static void main(String[] args) throws Exception {
+        MySql mysql = new MySql();
+        ResultSet result = mysql.executeQuery("SELECT * FROM user;");
+        System.out.println(result);
 
-        writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-    }
-
-    public void sendMessage(String msg) throws IOException {
-        writer.write(msg);
-        writer.newLine();
-        writer.flush();
     }
 }
