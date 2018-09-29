@@ -69,6 +69,9 @@ public class ChatServer implements Runnable {
             case SEND_MESSAGE:
                 sendMessageToMembersExceptMyself(creator, creator.getName() + " : " + body);
                 break;
+            case SECRET_MESSAGE:
+                sendSecretMessage(creator, body);
+                break;
             case MAKE_ROOM:
                 makeRoom(creator, body);
                 break;
@@ -149,6 +152,26 @@ public class ChatServer implements Runnable {
 
             client.send(message);
         }
+    }
+
+    private void sendSecretMessage(Client client, String body) {
+        if (!body.matches(Command.SECRET_MESSAGE.getArgumentRegex())) {
+            sendUsage(client, Command.SECRET_MESSAGE);
+            return;
+        }
+
+        String userName = body.split(" ")[0];
+        String message = body.split(" ")[1];
+
+        ChatRoom joinedRoom = roomList.getRoomWith(client);
+        // 送るユーザーがルームにいなかった場合
+        if (!joinedRoom.existClient(userName)) {
+            client.send("## the user '" + userName + "' does not exist in '" + joinedRoom.getName() + "'.");
+            return;
+        }
+
+        Client dest = joinedRoom.get(userName);
+        dest.send(message);
     }
 
     private void makeRoom(Client client, String roomName) {

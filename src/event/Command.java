@@ -13,6 +13,7 @@ public enum Command {
     LOGOUT,
     COMMAND_HELP,
     SEND_MESSAGE,
+    SECRET_MESSAGE,
     JOIN_ROOM,
     LEAVE_ROOM,
     MAKE_ROOM,
@@ -31,6 +32,8 @@ public enum Command {
                 return COMMAND_HELP;
             case "/send":
                 return SEND_MESSAGE;
+            case "/>":
+                return SECRET_MESSAGE;
             case "/join":
                 return JOIN_ROOM;
             case "/leave":

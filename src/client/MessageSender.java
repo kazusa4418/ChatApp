@@ -50,7 +50,7 @@ class MessageSender implements Runnable {
         }
     }
 
-    void sendToServer(String msg) throws IOException {
+    private void sendToServer(String msg) throws IOException {
         writer.write(msg);
         writer.newLine();
         writer.flush();
