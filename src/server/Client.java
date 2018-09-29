@@ -1,6 +1,5 @@
 package server;
 
-import event.Command;
 import event.MessageEvent;
 import event.MessageEventFactory;
 import util.JLogger;

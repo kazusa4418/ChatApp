@@ -9,7 +9,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Level;
 
-public class ChatServer {
+public class ChatServer implements Runnable {
     private ServerSocket server;
     private ChatRoomList roomList;
 
@@ -23,6 +23,12 @@ public class ChatServer {
         }
 
         roomList = new ChatRoomList();
+    }
+
+    public void start(int threadNum) {
+        for (int i = 0; i < threadNum; i++ ) {
+            new Thread(this).start();
+        }
     }
 
     public void run() {
