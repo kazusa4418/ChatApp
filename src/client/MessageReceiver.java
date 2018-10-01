@@ -1,12 +1,9 @@
 package client;
 
-import util.JLogger;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
-import java.util.logging.Level;
 
 public class MessageReceiver implements Runnable {
     private Socket socket;
@@ -34,8 +31,8 @@ public class MessageReceiver implements Runnable {
             }
         }
         catch (IOException err) {
-            JLogger.log(Level.SEVERE, "the input stream failed to receive the message.\n" +
-                                                                "at MessageReceiver#run I/O error occurred.", err);
+            //JLogger.log(Level.SEVERE, "the input stream failed to receive the message.\n" +
+            //                                                    "at MessageReceiver#run I/O error occurred.", err);
             System.err.println("サーバーとの接続が切れました。");
 
             // これどうにかならないかな

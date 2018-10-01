@@ -43,7 +43,7 @@ public class Client implements Runnable {
             }
         }
         catch (IOException err) {
-            JLogger.log(Level.WARNING, "connection with the client has expired.", err);
+            //JLogger.warning("connection with the client has expired.");
             // ソケットに異常があるのでログアウトさせる
             // 主にクライアントが/logoutコマンドを使用せず強制終了したときに実行される
             server.runAction(this, Command.LOGOUT);
@@ -86,7 +86,7 @@ public class Client implements Runnable {
         catch (IOException err) {
             // ソケットに何らかの異常が発生した場合
             // 主に認証中にクライアントが強制終了した場合などに発生する
-            JLogger.log(Level.WARNING, "I/O error.", err);
+            JLogger.log(Level.WARNING, "connection with the client has expired.", err);
             status = Status.EXCEPTION;
         }
         catch (SQLException err) {

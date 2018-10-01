@@ -340,11 +340,11 @@ public class ChatServer implements Runnable {
 
             // 管理者はadministrator表記を付ける
             if (room.isAdmin(member)) {
-                message.append(" <Administrator>");
+                message.append(" <administrator>");
             }
             // 自分自身だったらyourself表記を付ける
             if (member == client) {
-                message.append(" <Yourself>");
+                message.append(" <yourself>");
             }
             message.append("\n");
         }
