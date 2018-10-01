@@ -119,7 +119,7 @@ public class Client implements Runnable {
             socket.close();
         }
         catch (IOException err) {
-            JLogger.log(Level.WARNING, "already closed.", err);
+            JLogger.warning("already closed.");
         }
         catch (SQLException err) {
             JLogger.log(Level.SEVERE, "can not update now_login status in table 'users'", err);
