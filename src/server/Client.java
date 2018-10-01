@@ -64,7 +64,6 @@ public class Client implements Runnable {
 
                 switch (response.getStatus()) {
                     case AVAILABLE:
-                        DatabaseUtils.updateNowLogin(this, true);
                         send("welcome! '" + response.getUserName() + "'.");
                         break;
                     case UNMATCHED:
@@ -80,6 +79,9 @@ public class Client implements Runnable {
                 status = response.getStatus();
                 name = response.getUserName();
             }
+
+            // 認証に成功したのでステータスをログイン中にする
+            DatabaseUtils.updateNowLogin(this, true);
         }
         catch (IOException err) {
             // ソケットに何らかの異常が発生した場合
