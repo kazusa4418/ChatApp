@@ -18,7 +18,7 @@ public class DatabaseUtils {
         PreparedStatement statement = mysql.prepareStatement(sql);
 
         for (int i = 1; i <= args.length; i++ ) {
-            statement.setString(i, args[i]);
+            statement.setString(i, args[i - 1]);
         }
         statement.executeUpdate();
     }
