@@ -37,6 +37,7 @@ public class ChatServer implements Runnable {
                 // クライアントからのアクセスを待つ
                 Socket socket = server.accept();
                 Client client = new Client(this, socket);
+
                 // クライアントが有効状態でなかったらコネクションを切る
                 if (client.getStatus() == Status.AVAILABLE) {
                     // ロビーに入室し、メンバーにログインしたことを通知する。ちなみに気に入ってない。

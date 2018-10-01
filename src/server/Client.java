@@ -3,7 +3,6 @@ package server;
 import event.Command;
 import event.MessageEvent;
 import event.MessageEventFactory;
-import mysql.MySql;
 import util.DatabaseUtils;
 import util.JLogger;
 
@@ -65,6 +64,7 @@ public class Client implements Runnable {
 
                 switch (response.getStatus()) {
                     case AVAILABLE:
+                        DatabaseUtils.updateNowLogin(this, true);
                         send("welcome! '" + response.getUserName() + "'.");
                         break;
                     case UNMATCHED:
@@ -85,6 +85,11 @@ public class Client implements Runnable {
             // ソケットに何らかの異常が発生した場合
             // 主に認証中にクライアントが強制終了した場合などに発生する
             JLogger.log(Level.WARNING, "I/O error.", err);
+            status = Status.EXCEPTION;
+        }
+        catch (SQLException err) {
+            // ログインステータスの変更に失敗してる
+            JLogger.log(Level.SEVERE, "can not update now_login status.", err);
             status = Status.EXCEPTION;
         }
     }

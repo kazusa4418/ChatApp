@@ -3,7 +3,6 @@ package mysql;
 import util.JLogger;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.DriverManager;
@@ -35,12 +34,8 @@ public class MySql implements AutoCloseable {
         return connection.createStatement().executeUpdate(sql);
     }
 
-    public PreparedStatement prepareStatement(String sql, String... values) throws SQLException {
-        PreparedStatement statement = connection.prepareStatement(sql);
-        for (int i = 1; i <= values.length; i++ ) {
-            statement.setString(i, values[i - 1]);
-        }
-        return statement;
+    public PreparedStatement prepareStatement(String sql) throws SQLException {
+        return new PreparedStatement(connection.prepareStatement(sql));
     }
 
     public String getHostName() {
