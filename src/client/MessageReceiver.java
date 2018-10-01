@@ -1,9 +1,13 @@
 package client;
 
+import util.Console;
+import util.JLogger;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.logging.Level;
 
 public class MessageReceiver implements Runnable {
     private Socket socket;
@@ -25,18 +29,22 @@ public class MessageReceiver implements Runnable {
     public void run() {
         try {
             while (!socket.isClosed()) {
-                String msg = reader.readLine();
+                String msg = receiveMessage();
 
                 System.out.println(msg);
             }
         }
         catch (IOException err) {
-            //JLogger.log(Level.SEVERE, "the input stream failed to receive the message.\n" +
-            //                                                    "at MessageReceiver#run I/O error occurred.", err);
-            System.err.println("サーバーとの接続が切れました。");
+            JLogger.log(Level.SEVERE, "the input stream failed to receive the message.\n" +
+                                                                "at MessageReceiver#run I/O error occurred.", err);
+            Console.getInstance().pleaseEnter("サーバーとの接続が切れました。");
 
             // これどうにかならないかな
             System.exit(1);
         }
+    }
+
+    String receiveMessage() throws IOException {
+        return reader.readLine();
     }
 }

@@ -58,6 +58,7 @@ public class JLogger {
             Handler handler = new FileHandler("./log/chat_application.log");
             Formatter formatter = new SimpleFormatter();
             handler.setFormatter(formatter);
+            logger.setUseParentHandlers(false);
             logger.addHandler(handler);
 
             handler = new FileHandler("./log/chat_application.err.log");

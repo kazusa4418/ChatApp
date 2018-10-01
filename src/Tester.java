@@ -15,6 +15,7 @@ public class Tester {
         final String regex = "/>[a-zA-Z0-9-_]+";
         String message = "/>";
 
+        System.out.println("");
         if (message.matches(regex)) {
             System.out.println("ok");
         }

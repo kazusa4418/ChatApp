@@ -3,6 +3,9 @@ package server;
 import event.Command;
 import event.MessageEvent;
 import event.MessageEventFactory;
+import server.authentication.Authenticator;
+import server.authentication.Response;
+import server.authentication.Status;
 import util.DatabaseUtils;
 import util.JLogger;
 
@@ -43,7 +46,7 @@ public class Client implements Runnable {
             }
         }
         catch (IOException err) {
-            //JLogger.warning("connection with the client has expired.");
+            JLogger.warning("connection with the client has expired.");
             // ソケットに異常があるのでログアウトさせる
             // 主にクライアントが/logoutコマンドを使用せず強制終了したときに実行される
             server.runAction(this, Command.LOGOUT);
@@ -55,27 +58,12 @@ public class Client implements Runnable {
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
             while (status != Status.AVAILABLE) {
-                send("user id > ");
-                String id = reader.readLine();
-                send("user pw > ");
-                String pw = reader.readLine();
+                String[] idPw = reader.readLine().split("\\s");
 
-                Response response = Authenticator.authenticate(id, pw);
+                Response response = Authenticator.authenticate(idPw[0], idPw[1]);
 
-                switch (response.getStatus()) {
-                    case AVAILABLE:
-                        send("welcome! '" + response.getUserName() + "'.");
-                        break;
-                    case UNMATCHED:
-                        send("IDまたはパスワードが違います。");
-                        break;
-                    case ALREADY:
-                        send("既にログインしています。");
-                        break;
-                    case EXCEPTION:
-                        send("問題が発生しました。");
-                        break;
-                }
+                send(response.getStatus().toString());
+
                 status = response.getStatus();
                 name = response.getUserName();
             }
@@ -86,7 +74,7 @@ public class Client implements Runnable {
         catch (IOException err) {
             // ソケットに何らかの異常が発生した場合
             // 主に認証中にクライアントが強制終了した場合などに発生する
-            JLogger.log(Level.WARNING, "connection with the client has expired.", err);
+            JLogger.warning("connection with the client has expired.");
             status = Status.EXCEPTION;
         }
         catch (SQLException err) {

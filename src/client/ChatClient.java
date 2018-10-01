@@ -1,5 +1,6 @@
 package client;
 
+import util.Console;
 import util.JLogger;
 
 import java.io.BufferedReader;
@@ -19,12 +20,14 @@ public class ChatClient {
             connectServer(ClientConfiguration.getServerIpAddress(), ClientConfiguration.getServerPortNumber());
             openStream();
 
+            authenticate();
+
             sender.start();
             receiver.start();
         }
         catch (FailedConnectToServerException err) {
             JLogger.log(Level.SEVERE, err.getLogMsg(), err.getCauseException());
-            System.err.println(err.getErrMsg());
+            Console.getInstance().pleaseEnter(err.getErrMsg()/* + "⏎"*/);
         }
     }
 
@@ -52,6 +55,44 @@ public class ChatClient {
             throw new FailedConnectToServerException(
                     "サーバーに接続できませんでした。",
                     "failed to connect to the server",
+                    err
+            );
+        }
+    }
+
+    private void authenticate() throws FailedConnectToServerException {
+        Console console = Console.getInstance();
+
+        String status;
+        try {
+            do {
+                String id = console.readLine("user id > ");
+                String pw = console.readPassword("user password > ");
+
+                sender.sendToServer(id + " " + pw);
+                status = receiver.receiveMessage();
+
+                switch (status) {
+                    case "AVAILABLE":
+                        console.println("welcome! joined the lobby.");
+                        break;
+                    case "UNMATCHED":
+                        console.println("Sorry. try again.");
+                        break;
+                    case "ALREADY":
+                        console.println("this account is already logged in.");
+                        break;
+                    case "EXCEPTION":
+                        console.println("an error occurred.");
+                        break;
+                }
+            }
+            while (!status.equals("AVAILABLE"));
+        }
+        catch (IOException err) {
+            throw new FailedConnectToServerException(
+                    "サーバーとの接続が切れました。",
+                    "connection with the server has expired.",
                     err
             );
         }

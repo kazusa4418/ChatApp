@@ -1,5 +1,6 @@
 package client;
 
+import util.Console;
 import util.JLogger;
 
 import java.io.BufferedWriter;
@@ -28,29 +29,32 @@ class MessageSender implements Runnable {
     }
 
     public void run() {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            while (!socket.isClosed()) {
-                String msg = reader.readLine();
+        Console console = Console.getInstance();
 
-                sendToServer(msg);
+        while (!socket.isClosed()) {
+            String msg = console.readLine();
 
-                // 死ぬほど気に入らない
-                if (msg.equals("/logout")) {
-                    System.out.println("ログアウトしました。");
-                    System.exit(0);
-                }
+            // めっちゃ気に入らない。どうにかしたい・・・。
+            if (msg.equals("/logout")) {
+                Console.getInstance().sleep(100);
+                Console.getInstance().pleaseEnter("logged out.");
+                System.exit(0);
             }
-        }
-        catch (IOException err) {
-            JLogger.log(Level.SEVERE, "the output stream failed to send the message.\n" +
-                                                            "at MessageSender#run I/O error occurred.", err);
-            System.err.println("サーバーとの接続が切れました。");
-            // これどうにかならないかな
-            System.exit(1);
+
+            try {
+                sendToServer(msg);
+            }
+            catch (IOException err) {
+                JLogger.log(Level.SEVERE, "the output stream failed to send the message.\n" +
+                        "at MessageSender#run I/O error occurred.", err);
+                console.pleaseEnter("サーバーとの接続が切れました");
+                // これどうにかならないかな
+                System.exit(1);
+            }
         }
     }
 
-    private void sendToServer(String msg) throws IOException {
+    void sendToServer(String msg) throws IOException {
         writer.write(msg);
         writer.newLine();
         writer.flush();
