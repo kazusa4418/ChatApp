@@ -30,7 +30,7 @@ public class Registration {
             String pw = inputPassword();
             String name = inputUserName();
 
-            mysql.prepareStatement(INSERT_SQL, id, pw, name).executeUpdate();
+            mysql.prepareStatement(INSERT_SQL).set(id).set(pw).set(name).executeUpdate();
 
             System.out.println("会員登録しました。");
         }
@@ -48,7 +48,7 @@ public class Registration {
                 System.out.println("IDは英数字かﾊｲﾌﾝ、ｱﾝﾀﾞｰｽｺｱの4文字以上32文字以下である必要があります。");
                 continue;
             }
-            ResultSet result = mysql.prepareStatement(ID_EXIST_CHECK_SQL, id).executeQuery();
+            ResultSet result = mysql.prepareStatement(ID_EXIST_CHECK_SQL).set(id).executeQuery();
             if (result.next()) {
                 System.out.println("そのIDは既に使われています。");
                 continue;
@@ -79,7 +79,7 @@ public class Registration {
                 System.out.println("ユーザー名は英数字かｱﾝﾀﾞｰｽｺｱの62文字以下である必要があります。");
                 continue;
             }
-            ResultSet result = mysql.prepareStatement(USER_NAME_EXIST_CHECK_SQL, userName).executeQuery();
+            ResultSet result = mysql.prepareStatement(USER_NAME_EXIST_CHECK_SQL).set(userName).executeQuery();
             if (result.next()) {
                 System.out.println("そのユーザー名は既に使われています。");
                 continue;
