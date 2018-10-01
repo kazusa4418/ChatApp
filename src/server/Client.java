@@ -1,8 +1,10 @@
 package server;
 
+import event.Command;
 import event.MessageEvent;
 import event.MessageEventFactory;
 import mysql.MySql;
+import util.DatabaseUtils;
 import util.JLogger;
 
 import java.io.*;
@@ -45,8 +47,7 @@ public class Client implements Runnable {
             JLogger.log(Level.WARNING, "connection with the client has expired.", err);
             // ソケットに異常があるのでログアウトさせる
             // 主にクライアントが/logoutコマンドを使用せず強制終了したときに実行される
-            MessageEvent event = MessageEventFactory.createMessageEvent(this, "/logout");
-            server.receiveEvent(event);
+            server.runAction(this, Command.LOGOUT);
         }
     }
 
@@ -100,7 +101,7 @@ public class Client implements Runnable {
         }
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
@@ -114,10 +115,8 @@ public class Client implements Runnable {
 
     void disconnect() {
         try {
+            DatabaseUtils.updateNowLogin(this, false);
             socket.close();
-            // TODO: 時間なくて応急処置。もっと良い方法考えろカス
-            MySql mysql = new MySql();
-            mysql.executeUpdate("UPDATE users SET now_login = false WHERE user_name = '" + name + "'");
         }
         catch (IOException err) {
             JLogger.log(Level.WARNING, "already closed.", err);

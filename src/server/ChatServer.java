@@ -39,7 +39,7 @@ public class ChatServer implements Runnable {
                 Client client = new Client(this, socket);
                 // クライアントが有効状態でなかったらコネクションを切る
                 if (client.getStatus() == Status.AVAILABLE) {
-                    // ロビーに入室し、メンバーにログインしたことを通知する
+                    // ロビーに入室し、メンバーにログインしたことを通知する。ちなみに気に入ってない。
                     ChatRoom.getLobby().add(client);
                     sendMessageToMembersExceptMyself(client, "## user '" + client.getName() + "' log in.");
                     client.start();
@@ -62,45 +62,53 @@ public class ChatServer implements Runnable {
         Command command = event.getCommand();
         String body = event.getBody().trim();
 
+        runAction(creator, command, body);
+    }
+
+    void runAction(Client executor, Command command) {
+        runAction(executor, command, "");
+    }
+
+    void runAction(Client executor, Command command, String body) {
         switch (command) {
             case LOGOUT:
-                logout(creator, body);
+                logout(executor, body);
                 break;
             case SEND_MESSAGE:
-                sendMessageToMembersExceptMyself(creator, creator.getName() + " : " + body);
+                sendMessageToMembersExceptMyself(executor, executor.getName() + " : " + body);
                 break;
             case SECRET_MESSAGE:
-                sendSecretMessage(creator, body);
+                sendSecretMessage(executor, body);
                 break;
             case MAKE_ROOM:
-                makeRoom(creator, body);
+                makeRoom(executor, body);
                 break;
             case JOIN_ROOM:
-                joinRoom(creator, body);
+                joinRoom(executor, body);
                 break;
             case LEAVE_ROOM:
-                leaveRoom(creator, body);
+                leaveRoom(executor, body);
                 break;
             case SHOW_ROOMS:
-                showRooms(creator, body);
+                showRooms(executor, body);
                 break;
             case SHOW_MEMBERS:
-                showMembers(creator, body);
+                showMembers(executor, body);
                 break;
             case KICK_MEMBER:
-                kickMember(creator, body);
+                kickMember(executor, body);
                 break;
             case CHANGE_ADMIN:
-                changeAdmin(creator, body);
+                changeAdmin(executor, body);
                 break;
             case COMMAND_HELP:
-                commandHelp(creator, body);
+                commandHelp(executor, body);
                 break;
             case CLOSE_ROOM:
-                closeRoom(creator, body);
+                closeRoom(executor, body);
                 break;
             case NOT_FOUND:
-                creator.send("## this is a not system command.");
+                executor.send("## this is a not system command.");
                 break;
         }
     }
