@@ -27,7 +27,7 @@ public class ChatClient {
         }
         catch (FailedConnectToServerException err) {
             JLogger.log(Level.SEVERE, err.getLogMsg(), err.getCauseException());
-            Console.getInstance().pleaseEnter(err.getErrMsg()/* + "⏎"*/);
+            Console.getInstance().pleaseEnter(err.getErrMsg());
         }
     }
 
@@ -74,7 +74,7 @@ public class ChatClient {
 
                 switch (status) {
                     case "AVAILABLE":
-                        console.println("welcome! joined the lobby.");
+                        console.pleaseEnter("success to log in.");
                         break;
                     case "UNMATCHED":
                         console.println("Sorry. try again.");
@@ -88,6 +88,7 @@ public class ChatClient {
                 }
             }
             while (!status.equals("AVAILABLE"));
+            console.clear();
         }
         catch (IOException err) {
             throw new FailedConnectToServerException(

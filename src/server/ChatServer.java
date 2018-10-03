@@ -120,6 +120,7 @@ public class ChatServer implements Runnable {
     }
 
     private void logout(Client client, String args) {
+        System.err.println("RUNRUNRUN");
         if (!args.matches(Command.LOGOUT.getArgumentRegex())) {
             sendUsage(client, Command.LOGOUT);
             return;

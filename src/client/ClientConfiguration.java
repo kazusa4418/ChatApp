@@ -1,5 +1,6 @@
 package client;
 
+import util.Console;
 import util.JLogger;
 import util.PropertyReader;
 
@@ -27,12 +28,12 @@ class ClientConfiguration {
         }
         catch (FileNotFoundException err) {
             JLogger.log(Level.SEVERE, "the server.properties could not be found. path is './server.properties'", err);
-            System.err.println("サーバーへのアクセス情報が見つかりませんでした。");
+            Console.getInstance().pleaseEnter("サーバーへのアクセス情報が見つかりませんでした。");
             System.exit(2);
         }
         catch (IOException err) {
             JLogger.log(Level.SEVERE, "the server.properties could not be loaded.", err);
-            System.err.println("サーバーへのアクセス情報の読み込みに失敗しました。");
+            Console.getInstance().pleaseEnter("サーバーへのアクセス情報の読み込みに失敗しました。");
             System.exit(2);
         }
     }

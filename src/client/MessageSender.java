@@ -34,15 +34,11 @@ class MessageSender implements Runnable {
         while (!socket.isClosed()) {
             String msg = console.readLine();
 
-            // めっちゃ気に入らない。どうにかしたい・・・。
-            if (msg.equals("/logout")) {
-                Console.getInstance().sleep(100);
-                Console.getInstance().pleaseEnter("logged out.");
-                System.exit(0);
-            }
-
             try {
-                sendToServer(msg);
+                // これやだ
+                if (!msg.isEmpty()) {
+                    sendToServer(msg);
+                }
             }
             catch (IOException err) {
                 JLogger.log(Level.SEVERE, "the output stream failed to send the message.\n" +
@@ -50,6 +46,20 @@ class MessageSender implements Runnable {
                 console.pleaseEnter("サーバーとの接続が切れました");
                 // これどうにかならないかな
                 System.exit(1);
+            }
+
+            // めっちゃ気に入らない。どうにかしたい・・・。
+            if (msg.equals("/logout")) {
+                Console.getInstance().sleep(100);
+                try {
+                    socket.close();
+                }
+                catch (IOException err) {
+
+                }
+
+                Console.getInstance().pleaseEnter("logged out.");
+                System.exit(0);
             }
         }
     }

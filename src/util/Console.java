@@ -14,12 +14,12 @@ public class Console {
     private static final java.io.Console console = System.console();
 
     private Console() {
-        try {
-            new ProcessBuilder("chcp", "65001").inheritIO().start().waitFor();
-        }
-        catch (IOException | InterruptedException ignore) {
-            // TODO: いつか実装する・・・。
-        }
+//        try {
+//
+//        }
+//        catch (IOException | InterruptedException ignore) {
+//            // TODO: いつか実装する・・・。
+//        }
     }
 
     public String readLine() {
@@ -51,7 +51,7 @@ public class Console {
     }
 
     public void pleaseEnter(String msg) {
-        console.readPassword(msg + "");
+        console.readPassword(msg);
     }
 
     public void sleep(long millis) {

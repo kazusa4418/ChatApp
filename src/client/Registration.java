@@ -1,6 +1,7 @@
 package client;
 
 import mysql.MySql;
+import util.Console;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,7 +36,7 @@ public class Registration {
             System.out.println("会員登録しました。");
         }
         catch (SQLException err) {
-            System.err.println("データベースサーバーへの接続に失敗しました。");
+            Console.getInstance().pleaseEnter("データベースサーバーへの接続に失敗しました。");
         }
     }
 
@@ -45,7 +46,7 @@ public class Registration {
             String id = sc.nextLine();
 
             if (!id.matches(ID_REGEX)) {
-                System.out.println("IDは英数字かﾊｲﾌﾝ、ｱﾝﾀﾞｰｽｺｱの4文字以上32文字以下である必要があります。");
+                System.out.println("IDは英数字かﾊｲﾌﾝ、ｱﾝﾀﾞｰｽｺｱの6文字以上32文字以下である必要があります。");
                 continue;
             }
             ResultSet result = mysql.prepareStatement(ID_EXIST_CHECK_SQL).set(id).executeQuery();
@@ -76,7 +77,7 @@ public class Registration {
             String userName = sc.nextLine();
 
             if (!userName.matches(NAME_REGEX)) {
-                System.out.println("ユーザー名は英数字かｱﾝﾀﾞｰｽｺｱの62文字以下である必要があります。");
+                System.out.println("ユーザー名は英数字かｱﾝﾀﾞｰｽｺｱの64文字以下である必要があります。");
                 continue;
             }
             ResultSet result = mysql.prepareStatement(USER_NAME_EXIST_CHECK_SQL).set(userName).executeQuery();
