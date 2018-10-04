@@ -18,7 +18,7 @@ public class Client implements Runnable {
     private ChatServer server;
     private Socket socket;
 
-    private String name;
+    private String name = "";
     private Status status;
 
     private Thread thread;
@@ -49,7 +49,6 @@ public class Client implements Runnable {
             }
         }
         catch (IOException err) {
-            System.err.println("ERRERRERR");
             JLogger.warning("connection with the client has expired.");
             // ソケットに異常があるのでログアウトさせる
             // 主にクライアントが/logoutコマンドを使用せず強制終了したときに実行される
@@ -76,7 +75,6 @@ public class Client implements Runnable {
             DatabaseUtils.updateNowLogin(this, true);
         }
         catch (IOException err) {
-            System.err.println("ERRERRERRERRERRERR");
             // ソケットに何らかの異常が発生した場合
             // 主に認証中にクライアントが強制終了した場合などに発生する
             JLogger.warning("connection with the client has expired.");
@@ -95,7 +93,7 @@ public class Client implements Runnable {
             writer.write(msg);
             writer.newLine();
             writer.flush();
-            JLogger.info("[send] to " + name + " : " + msg);
+            JLogger.info("[send] to " + name + " " + socket.getInetAddress() + " : " + msg);
         }
         catch (IOException err) {
             JLogger.log(Level.SEVERE, "failed to send message.", err);

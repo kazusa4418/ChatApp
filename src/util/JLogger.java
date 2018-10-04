@@ -2,7 +2,9 @@ package util;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.logging.FileHandler;
 import java.util.logging.Formatter;
 import java.util.logging.Handler;
@@ -68,28 +70,28 @@ public class JLogger {
     public static void severe(String logMsg) {
         getErrorLogger().severe(logMsg);
     }
+
+    public static void close() {
+        Consumer<Handler[]> closeFunction = handlers -> {
+            for (Handler handler : handlers) {
+                handler.close();
+            }
+        };
+        loggers.getLoggers().stream().map(Logger::getHandlers).forEach(closeFunction);
+        loggers.getErrorLoggers().stream().map(Logger::getHandlers).forEach(closeFunction);
+    }
 }
 
 class LoggerList {
-    private final List<Logger> loggers = new ArrayList<>();
-    private final List<Logger> errLoggers = new ArrayList<>();
+    private final List<String> loggers = new ArrayList<>();
+    private final List<String> errLoggers = new ArrayList<>();
 
     Logger getLogger(String loggerName) {
-        for (Logger logger : loggers) {
-            if (exists(loggerName, loggers)) {
-                return logger;
-            }
-        }
-        return null;
+        return Logger.getLogger(loggerName);
     }
 
     Logger getErrorLogger(String loggerName) {
-        for (Logger logger : errLoggers) {
-            if (exists(loggerName, errLoggers)) {
-                return logger;
-            }
-        }
-        return null;
+        return Logger.getLogger(loggerName + ".err");
     }
 
     boolean existsLogger(String loggerName) {
@@ -97,12 +99,13 @@ class LoggerList {
     }
 
     boolean existsErrorLogger(String loggerName) {
-        return exists(loggerName, errLoggers);
+        return exists(loggerName + ".err", errLoggers);
     }
 
-    private boolean exists(String loggerName, List<Logger> loggers) {
-        for (Logger logger : loggers) {
-            if (logger.getName().equals(loggerName)) {
+    private boolean exists(String loggerName, List<String> loggers) {
+        for (String logger : loggers) {
+            System.err.println("DEBUG: [exists] " + logger.equals(loggerName));
+            if (logger.equals(loggerName)) {
                 return true;
             }
         }
@@ -124,6 +127,7 @@ class LoggerList {
         handler.setFormatter(formatter);
         logger.setUseParentHandlers(false);
         logger.addHandler(handler);
+        System.err.println("DEBUG: [createNewLogger] handler size " + logger.getHandlers().length);
         loggers.add(logger);
     }
 
@@ -143,6 +147,15 @@ class LoggerList {
         handler.setFormatter(formatter);
         logger.setUseParentHandlers(false);
         logger.addHandler(handler);
+        System.err.println("DEBUG: [createNewErrorLogger] handler size " + logger.getHandlers().length);
         errLoggers.add(logger);
+    }
+
+    List<Logger> getLoggers() {
+        return loggers;
+    }
+
+    List<Logger> getErrorLoggers() {
+        return errLoggers;
     }
 }

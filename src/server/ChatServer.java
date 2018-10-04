@@ -3,6 +3,7 @@ package server;
 import event.Command;
 import event.MessageEvent;
 import server.authentication.Status;
+import util.Console;
 import util.JLogger;
 
 import java.io.IOException;
@@ -29,6 +30,21 @@ public class ChatServer implements Runnable {
     public void start(int threadNum) {
         for (int i = 0; i < threadNum; i++ ) {
             new Thread(this).start();
+        }
+        startInput();
+    }
+
+    private void startInput() {
+        Console console = Console.getInstance();
+
+        while (!server.isClosed()) {
+            String msg = console.readLine();
+
+            if (msg.equals("/shutdown")) {
+                JLogger.close();
+                // だめなのは知ってます。めんどくさい。
+                System.exit(0);
+            }
         }
     }
 
