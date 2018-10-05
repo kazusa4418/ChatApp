@@ -20,6 +20,7 @@ public class JLogger {
         String className = ThreadUtils.getClassNameCalledThis(2);
 
         if (!loggers.existsLogger(className)) {
+            System.out.println("CREATE NEW LOGGER");
             loggers.createNewLogger(className);
         }
         return loggers.getLogger(className);
@@ -29,6 +30,7 @@ public class JLogger {
         String className = ThreadUtils.getClassNameCalledThis(2);
 
         if (!loggers.existsErrorLogger(className)) {
+            System.out.println("CREATE NEW ERROR LOGGER");
             loggers.createNewErrorLogger(className);
         }
         return loggers.getErrorLogger(className);
@@ -112,6 +114,16 @@ class LoggerList {
     }
 
     void createNewLogger(String loggerName) {
+        Logger newLogger = create(loggerName);
+        loggers.add(newLogger.getName());
+    }
+
+    void createNewErrorLogger(String loggerName) {
+        Logger newLogger = create(loggerName + ".err");
+        errLoggers.add(newLogger.getName());
+    }
+
+    private Logger create(String loggerName) {
         Logger logger = Logger.getLogger(loggerName);
 
         Handler handler = null;
@@ -119,34 +131,15 @@ class LoggerList {
             handler = new FileHandler("./log/" + loggerName + ".log");
         }
         catch (IOException err) {
-            // TODO: 正しく例外処理できてない
-            err.printStackTrace();
-            System.exit(1);
-        }
-        Formatter formatter = new SimpleFormatter();
-        handler.setFormatter(formatter);
-        logger.setUseParentHandlers(false);
-        logger.addHandler(handler);
-        loggers.add(logger.getName());
-    }
-
-    void createNewErrorLogger(String loggerName) {
-        Logger logger = Logger.getLogger(loggerName);
-
-        Handler handler = null;
-        try {
-            handler = new FileHandler("./log/" + loggerName + ".err.log");
-        }
-        catch (IOException err) {
+            // ワカラン
             err.printStackTrace();
             System.exit(1);
         }
 
         Formatter formatter = new SimpleFormatter();
         handler.setFormatter(formatter);
-        logger.setUseParentHandlers(false);
         logger.addHandler(handler);
-        errLoggers.add(logger.getName());
+        return logger;
     }
 
     List<String> getLoggerNames() {

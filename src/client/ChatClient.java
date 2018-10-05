@@ -67,9 +67,11 @@ public class ChatClient {
         try {
             do {
                 String id = console.readLine("user id > ");
-                String pw = console.readPassword("user password > ");
+                sender.sendToServer(id);
 
-                sender.sendToServer(id + " " + pw);
+                String pw = console.readPassword("user password > ");
+                sender.sendToServer(pw);
+
                 status = receiver.receiveMessage();
 
                 switch (status) {

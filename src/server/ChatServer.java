@@ -16,6 +16,8 @@ public class ChatServer implements Runnable {
     private ServerSocket server;
     private ChatRoomList roomList;
 
+
+
     public ChatServer() {
         try {
             ServerInitialize.main();
@@ -53,7 +55,6 @@ public class ChatServer implements Runnable {
         try {
             JLogger.info("shutdown...");
             JLogger.close();
-            ServerInitialize.main();
         }
         finally {
             System.exit(0);
@@ -73,6 +74,8 @@ public class ChatServer implements Runnable {
                     ChatRoom.getLobby().add(client);
                     sendMessageToMembersExceptMyself(client, "## user '" + client.getName() + "' log in.");
                     client.start();
+
+                    JLogger.info("[login] user '" + client.getName() + "' from: '" + socket.getInetAddress() + "'");
                 }
                 else {
                     client.disconnect();
@@ -99,7 +102,7 @@ public class ChatServer implements Runnable {
         runAction(executor, command, "");
     }
 
-    void runAction(Client executor, Command command, String body) {
+    private void runAction(Client executor, Command command, String body) {
         switch (command) {
             case LOGOUT:
                 logout(executor, body);
@@ -164,7 +167,7 @@ public class ChatServer implements Runnable {
         roomList.getRoomWith(client).remove(client);
 
         client.disconnect();
-        JLogger.info("[logout] user '" + client.getName());
+        JLogger.info("[logout] user '" + client.getName() + "'");
     }
 
     // TODO: メソッド名ながすぎませんか

@@ -62,16 +62,17 @@ public class Client implements Runnable {
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
             while (status != Status.AVAILABLE) {
-                String[] idPw = reader.readLine().split("\\s");
+                String id = reader.readLine();
+                String pw = reader.readLine();
 
-                Response response = Authenticator.authenticate(idPw[0], idPw[1]);
+                Response response = Authenticator.authenticate(id, pw);
 
                 send(response.getStatus().toString());
 
                 status = response.getStatus();
                 name = response.getUserName();
 
-                JLogger.info("[authenticate] status: '" + status + "' id: '" + idPw[0] + "' pw: '" + idPw[1] + "' from: '" + socket.getInetAddress() + "'");
+                JLogger.info("[authenticate] status: '" + status + "' id: '" + id + "' pw: '" + pw + "' from: '" + socket.getInetAddress() + "'");
             }
 
             // 認証に成功したのでステータスをログイン中にする

@@ -48,16 +48,9 @@ class MessageSender implements Runnable {
                 System.exit(1);
             }
 
-            // めっちゃ気に入らない。どうにかしたい・・・。
+            // めっちゃ気に入らない。
             if (msg.equals("/logout")) {
                 Console.getInstance().sleep(100);
-                try {
-                    socket.close();
-                }
-                catch (IOException err) {
-
-                }
-
                 Console.getInstance().pleaseEnter("logged out.");
                 System.exit(0);
             }

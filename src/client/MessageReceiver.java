@@ -31,6 +31,11 @@ public class MessageReceiver implements Runnable {
             while (!socket.isClosed()) {
                 String msg = receiveMessage();
 
+                // やだなーこれ
+                // 通信先のソケットがクローズされるとEOFになってnull帰ってくるっぽい
+                if (msg == null) {
+                    break;
+                }
                 System.out.println(msg);
             }
         }
