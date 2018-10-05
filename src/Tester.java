@@ -3,20 +3,28 @@ import mysql.MySql;
 import util.ThreadUtils;
 
 import javax.print.attribute.standard.MediaSize;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.sql.ResultSet;
+import java.util.Scanner;
 
 public class Tester {
-    private Socket socket;
-    private static BufferedWriter writer;
+    public static void main(String[] args) throws IOException {
+        File file = new File("./file.txt");
 
-    public static void main(String[] args) throws IOException, InterruptedException {
-        new ProcessBuilder("cmd", "/c", "chcp", "1200").inheritIO().start().waitFor();
+        if (!file.exists()) {
+            file.createNewFile();
+        }
 
-        System.out.print("⏎");
+        BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+
+        try {
+            bw.write("unko");
+            bw.flush();
+        }
+        finally {
+            bw.close();
+        }
     }
 }

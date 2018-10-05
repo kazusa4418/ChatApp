@@ -77,8 +77,8 @@ public class JLogger {
                 handler.close();
             }
         };
-        loggers.getLoggers().stream().map(Logger::getHandlers).forEach(closeFunction);
-        loggers.getErrorLoggers().stream().map(Logger::getHandlers).forEach(closeFunction);
+        loggers.getLoggerNames().stream().map(Logger::getLogger).map(Logger::getHandlers).forEach(closeFunction);
+        loggers.getErrorLoggerNames().stream().map(Logger::getLogger).map(Logger::getHandlers).forEach(closeFunction);
     }
 }
 
@@ -104,7 +104,6 @@ class LoggerList {
 
     private boolean exists(String loggerName, List<String> loggers) {
         for (String logger : loggers) {
-            System.err.println("DEBUG: [exists] " + logger.equals(loggerName));
             if (logger.equals(loggerName)) {
                 return true;
             }
@@ -120,6 +119,7 @@ class LoggerList {
             handler = new FileHandler("./log/" + loggerName + ".log");
         }
         catch (IOException err) {
+            // TODO: 正しく例外処理できてない
             err.printStackTrace();
             System.exit(1);
         }
@@ -127,8 +127,7 @@ class LoggerList {
         handler.setFormatter(formatter);
         logger.setUseParentHandlers(false);
         logger.addHandler(handler);
-        System.err.println("DEBUG: [createNewLogger] handler size " + logger.getHandlers().length);
-        loggers.add(logger);
+        loggers.add(logger.getName());
     }
 
     void createNewErrorLogger(String loggerName) {
@@ -147,15 +146,14 @@ class LoggerList {
         handler.setFormatter(formatter);
         logger.setUseParentHandlers(false);
         logger.addHandler(handler);
-        System.err.println("DEBUG: [createNewErrorLogger] handler size " + logger.getHandlers().length);
-        errLoggers.add(logger);
+        errLoggers.add(logger.getName());
     }
 
-    List<Logger> getLoggers() {
+    List<String> getLoggerNames() {
         return loggers;
     }
 
-    List<Logger> getErrorLoggers() {
+    List<String> getErrorLoggerNames() {
         return errLoggers;
     }
 }

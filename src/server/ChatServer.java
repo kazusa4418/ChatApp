@@ -5,6 +5,7 @@ import event.MessageEvent;
 import server.authentication.Status;
 import util.Console;
 import util.JLogger;
+import util.ServerInitialize;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -17,6 +18,7 @@ public class ChatServer implements Runnable {
 
     public ChatServer() {
         try {
+            ServerInitialize.main();
             server = new ServerSocket(33333);
         }
         catch (IOException err) {
@@ -34,17 +36,27 @@ public class ChatServer implements Runnable {
         startInput();
     }
 
+    // TODO: まだ適当
     private void startInput() {
         Console console = Console.getInstance();
-
         while (!server.isClosed()) {
             String msg = console.readLine();
 
             if (msg.equals("/shutdown")) {
-                JLogger.close();
-                // だめなのは知ってます。めんどくさい。
-                System.exit(0);
+                shutdown();
             }
+        }
+    }
+
+    private static void shutdown() {
+        //noinspection finally
+        try {
+            JLogger.info("shutdown...");
+            JLogger.close();
+            ServerInitialize.main();
+        }
+        finally {
+            System.exit(0);
         }
     }
 
@@ -136,7 +148,6 @@ public class ChatServer implements Runnable {
     }
 
     private void logout(Client client, String args) {
-        System.err.println("RUNRUNRUN");
         if (!args.matches(Command.LOGOUT.getArgumentRegex())) {
             sendUsage(client, Command.LOGOUT);
             return;
@@ -153,6 +164,7 @@ public class ChatServer implements Runnable {
         roomList.getRoomWith(client).remove(client);
 
         client.disconnect();
+        JLogger.info("[logout] user '" + client.getName());
     }
 
     // TODO: メソッド名ながすぎませんか
@@ -171,6 +183,7 @@ public class ChatServer implements Runnable {
 
             client.send(message);
         }
+        JLogger.info("[send] from '" + myself.getName() + "' to '" + room.getName() + "'s member' : \"" + message + "\"");
     }
 
     private void sendSecretMessage(Client client, String body) {
@@ -196,6 +209,7 @@ public class ChatServer implements Runnable {
 
         Client dest = joinedRoom.get(userName);
         dest.send(client.getName() + " >>> " + message);
+        JLogger.info("[secret] from '" + client.getName() + "' to '" + userName + "' : \"" + message + "\"");
     }
 
     private void makeRoom(Client client, String roomName) {
@@ -230,6 +244,8 @@ public class ChatServer implements Runnable {
         roomList.createNewRoom(roomName, client).add(client);
         // 作成したルームに参加したことを自分に通知する
         client.send("## made a new room ! welcome to '" + roomName + "' !");
+
+        JLogger.info("[make] user: '" + client.getName() + "' room's name: '" + roomName + "'");
     }
 
     private void joinRoom(Client client, String roomName) {
@@ -271,6 +287,8 @@ public class ChatServer implements Runnable {
         client.send("## you joined the room '" + joinedRoom.getName() + "'.");
         // 新しいメンバーが参加したことを参加したルームのメンバーに通知する
         sendMessageToMembersExceptMyself(client, "## user '" + client.getName() + "' joined this room.");
+
+        JLogger.info("[join] user: '" + client.getName() + "' from: '" + leavedRoom.getName() + "' to: '" + roomName);
     }
 
     private void leaveRoom(Client client, String args) {
@@ -301,6 +319,8 @@ public class ChatServer implements Runnable {
         // ロビーに参加（戻る）して自分にそのことを通知する
         ChatRoom.getLobby().add(client);
         client.send("## you returned to the lobby.");
+
+        JLogger.info("[leave] user: '" + client.getName() + "' from: '" + room.getName() + "'");
     }
 
     private void showRooms(Client client, String args) {
@@ -323,6 +343,8 @@ public class ChatServer implements Runnable {
             message.append("\n");
         }
         client.send(message.toString());
+
+        JLogger.info("[show rooms] user: '" + client.getName() + "'");
     }
 
     private void showMembers(Client client, String roomName) {
@@ -359,6 +381,8 @@ public class ChatServer implements Runnable {
             message.append("\n");
         }
         client.send(message.toString());
+
+        JLogger.info("[show members] user: '" + client.getName() + "' room's name: '" + roomName + "'");
     }
 
     private void kickMember(Client client, String userName) {
@@ -393,6 +417,8 @@ public class ChatServer implements Runnable {
         // クライアントを退会させる
         leaveRoom(kickedClient, "");
         client.send("## success: you kicked client '" + kickedClient.getName() + "'");
+
+        JLogger.info("[kick] from: '" + client.getName() + "' to: '" + userName + "' room's name: '" + room.getName() + "'");
     }
 
     private void changeAdmin(Client client, String userName){
@@ -429,6 +455,8 @@ public class ChatServer implements Runnable {
         room.setAdmin(decidedClient);
 
         sendMessageToMembersExceptMyself(decidedClient, "## the user '" + decidedClient.getName() + "' had drawn this room's administrator.");
+
+        JLogger.info("[change admin] from: '" + client.getName() + "' to: '" + userName + "' room's name: '" + room.getName() + "'");
     }
 
     private void closeRoom(Client client, String body) {
@@ -455,6 +483,8 @@ public class ChatServer implements Runnable {
             c.send("## you returned to the lobby.");
         }
         roomList.deleteRoom(joinedRoom);
+
+        JLogger.info("[close] user: '" + client.getName() + "' room's name: '" + joinedRoom.getName() + "'");
     }
 
     private void commandHelp(Client client, String commandStr) {
@@ -466,5 +496,7 @@ public class ChatServer implements Runnable {
         }
 
         client.send(Command.help(command));
+
+        JLogger.info("[help] to: '" + client.getName() + "' command: '" + command.name() + "'");
     }
 }

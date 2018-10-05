@@ -14,16 +14,15 @@ public class Authenticator {
         try (MySql mysql = new MySql()) {
             ResultSet result = mysql.prepareStatement(SELECT_SQL).set(id).set(pw).executeQuery();
 
-            if (result.next()) {
-                if (result.getBoolean("now_login")) {
-                    return new Response(Status.ALREADY, "");
-                }
-
-                return new Response(Status.AVAILABLE, result.getString("user_name"));
-            }
-            else {
+            if (!result.next()) {
                 return new Response(Status.UNMATCHED, "");
             }
+
+            if (result.getBoolean("now_login")) {
+                return new Response(Status.ALREADY, "");
+            }
+
+            return new Response(Status.AVAILABLE, result.getString("user_name"));
         }
         catch (SQLException err) {
             JLogger.log(Level.SEVERE, "failed to access to database.", err);

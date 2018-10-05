@@ -43,6 +43,7 @@ public class Client implements Runnable {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
             while (!socket.isClosed()) {
                 String msg = reader.readLine();
+                JLogger.info("[receive] from '" + name + "' " + socket.getInetAddress() + " : \"" + msg + "\"");
 
                 MessageEvent event = MessageEventFactory.createMessageEvent(this, msg);
                 server.receiveEvent(event);
@@ -69,6 +70,8 @@ public class Client implements Runnable {
 
                 status = response.getStatus();
                 name = response.getUserName();
+
+                JLogger.info("[authenticate] status: '" + status + "' id: '" + idPw[0] + "' pw: '" + idPw[1] + "' from: '" + socket.getInetAddress() + "'");
             }
 
             // 認証に成功したのでステータスをログイン中にする
@@ -93,7 +96,7 @@ public class Client implements Runnable {
             writer.write(msg);
             writer.newLine();
             writer.flush();
-            JLogger.info("[send] to " + name + " " + socket.getInetAddress() + " : " + msg);
+            JLogger.info("[send] to '" + name + "' " + socket.getInetAddress() + " : \""+ msg + "\"");
         }
         catch (IOException err) {
             JLogger.log(Level.SEVERE, "failed to send message.", err);
