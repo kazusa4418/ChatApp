@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 cd src/
 javac -d ../production/ChatApp/ client/*.java
 javac -d ../production/ChatApp/ event/*.java
