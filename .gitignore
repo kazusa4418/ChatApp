@@ -1,4 +1,12 @@
-out/
+production/ChatApp/client/
+production/ChatApp/event/
+production/ChatApp/lib/
+production/ChatApp/log/
+production/ChatApp/main/
+production/ChatApp/mysql/
+production/ChatApp/server/
+production/ChatApp/util/
+
 *.iml
 *.log
 *.lck

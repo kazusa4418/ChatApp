@@ -23,8 +23,8 @@ class ClientConfiguration {
         try (PropertyReader reader = new PropertyReader(propertyFile)) {
             reader.load();
 
-            SERVER_IP_ADDRESS = reader.getProperty("ip_address");
-            SERVER_PORT_NUMBER = reader.getIntProperty("port_number");
+            SERVER_IP_ADDRESS = reader.getProperty("hostName");
+            SERVER_PORT_NUMBER = reader.getIntProperty("portNumber");
         }
         catch (FileNotFoundException err) {
             JLogger.log(Level.SEVERE, "the server.properties could not be found. path is './server.properties'", err);
