@@ -6,13 +6,12 @@ import util.JLogger;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Scanner;
 import java.util.logging.Level;
 
 public class Registration {
     private static MySql mysql;
 
-    private static final Scanner sc = new Scanner(System.in);
+    private static final Console console = Console.getInstance();
 
     private static final String INSERT_SQL = "INSERT INTO users VALUES(?, ?, ?, false)";
 
@@ -45,8 +44,7 @@ public class Registration {
 
     private static String inputId() throws SQLException {
         while (true) {
-            System.out.print("ユーザーIDを入力してください > ");
-            String id = sc.nextLine();
+            String id = console.readLine("ユーザーIDを入力してください > ");
 
             if (!id.matches(ID_REGEX)) {
                 System.out.println("IDは英数字かﾊｲﾌﾝ、ｱﾝﾀﾞｰｽｺｱの6文字以上32文字以下である必要があります。");
@@ -63,8 +61,7 @@ public class Registration {
 
     private static String inputPassword() {
         while (true) {
-            System.out.print("パスワードを入力してください > ");
-            String pw = sc.nextLine();
+            String pw = console.readPassword("パスワードを入力してください > ");
 
             if (!pw.matches(PW_REGEX)) {
                 System.out.println("パスワードは英数字かﾊｲﾌﾝ、ｱﾝﾀﾞｰｽｺｱの4文字以上32文字以下である必要があります。");
@@ -76,8 +73,7 @@ public class Registration {
 
     private static String inputUserName() throws SQLException {
         while (true) {
-            System.out.print("ユーザー名を入力してください > ");
-            String userName = sc.nextLine();
+            String userName = console.readLine("ユーザー名を入力してください > ");
 
             if (!userName.matches(NAME_REGEX)) {
                 System.out.println("ユーザー名は英数字かｱﾝﾀﾞｰｽｺｱの64文字以下である必要があります。");
