@@ -1,3 +1,3 @@
 #!/bin/sh
-cd production/
+cd production/ChatApp
 javaw main.ServerMain
