@@ -2,397 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9f2c94a-875b-48e0-86c0-67d8398070af" name="Default Changelist" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/server/authentication/Response.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/server/authentication/Status.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/util/Console.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-5.5.16-winx64.msi" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/CHANGES" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/COPYING" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/README" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/README.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/build.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/mysql-connector-java-5.1.45-bin.jar" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/FabricCommunicationException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/FabricConnection.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/FabricStateResponse.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/HashShardMapping.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/RangeShardMapping.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/Response.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/Server.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/ServerGroup.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/ServerMode.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/ServerRole.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/ShardIndex.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/ShardMapping.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/ShardMappingFactory.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/ShardTable.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/ShardingType.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/hibernate/FabricMultiTenantConnectionProvider.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/jdbc/ErrorReportingExceptionInterceptor.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/jdbc/FabricMySQLConnection.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/jdbc/FabricMySQLConnectionProperties.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/jdbc/FabricMySQLConnectionProxy.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/jdbc/FabricMySQLDataSource.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/jdbc/FabricMySQLDriver.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/jdbc/JDBC4FabricMySQLConnection.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/jdbc/JDBC4FabricMySQLConnectionProxy.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/proto/xmlrpc/AuthenticatedXmlRpcMethodCaller.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/proto/xmlrpc/DigestAuthentication.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/proto/xmlrpc/InternalXmlRpcMethodCaller.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/proto/xmlrpc/ResultSetParser.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/proto/xmlrpc/XmlRpcClient.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/proto/xmlrpc/XmlRpcMethodCaller.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/xmlrpc/Client.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/xmlrpc/base/Array.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/xmlrpc/base/Data.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/xmlrpc/base/Fault.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/xmlrpc/base/Member.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/xmlrpc/base/MethodCall.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/xmlrpc/base/MethodResponse.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/xmlrpc/base/Param.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/xmlrpc/base/Params.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/xmlrpc/base/ResponseParser.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/xmlrpc/base/Struct.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/xmlrpc/base/Value.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/fabric/xmlrpc/exceptions/MySQLFabricException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/AbandonedConnectionCleanupThread.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/AssertionFailedException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/AuthenticationPlugin.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/BalanceStrategy.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/BestResponseTimeBalanceStrategy.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/Blob.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/BlobFromLocator.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/Buffer.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/BufferRow.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/ByteArrayRow.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/CacheAdapter.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/CacheAdapterFactory.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/CachedResultSetMetaData.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/CallableStatement.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/CharsetMapping.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/Charsets.properties" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/Clob.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/CommunicationsException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/CompressedInputStream.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/Connection.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/ConnectionFeatureNotAvailableException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/ConnectionGroup.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/ConnectionGroupManager.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/ConnectionImpl.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/ConnectionLifecycleInterceptor.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/ConnectionProperties.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/ConnectionPropertiesImpl.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/ConnectionPropertiesTransform.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/Constants.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/DatabaseMetaData.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/DatabaseMetaDataUsingInfoSchema.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/DocsConnectionPropsHelper.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/Driver.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/EscapeProcessor.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/EscapeProcessorResult.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/EscapeTokenizer.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/ExceptionInterceptor.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/ExportControlled.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/Extension.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/FailoverConnectionProxy.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/Field.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/IterateBlock.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/JDBC42CallableStatement.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/JDBC42Helper.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/JDBC42PreparedStatement.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/JDBC42ResultSet.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/JDBC42ServerPreparedStatement.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/JDBC42UpdatableResultSet.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/JDBC4CallableStatement.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/JDBC4ClientInfoProvider.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/JDBC4ClientInfoProviderSP.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/JDBC4CommentClientInfoProvider.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/JDBC4Connection.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/JDBC4DatabaseMetaData.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/JDBC4DatabaseMetaDataUsingInfoSchema.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/JDBC4LoadBalancedMySQLConnection.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/JDBC4MultiHostMySQLConnection.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/JDBC4MySQLConnection.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/JDBC4MysqlSQLXML.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/JDBC4NClob.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/JDBC4PreparedStatement.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/JDBC4PreparedStatementHelper.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/JDBC4ReplicationMySQLConnection.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/JDBC4ResultSet.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/JDBC4ServerPreparedStatement.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/JDBC4UpdatableResultSet.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/LicenseConfiguration.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/LoadBalanceExceptionChecker.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/LoadBalancedAutoCommitInterceptor.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/LoadBalancedConnection.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/LoadBalancedConnectionProxy.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/LoadBalancedMySQLConnection.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/LocalizedErrorMessages.properties" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/Messages.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/MiniAdmin.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/MultiHostConnectionProxy.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/MultiHostMySQLConnection.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/MySQLConnection.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/MysqlDataTruncation.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/MysqlDefs.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/MysqlErrorNumbers.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/MysqlIO.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/MysqlParameterMetadata.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/MysqlSavepoint.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/NamedPipeSocketFactory.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/NdbLoadBalanceExceptionChecker.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/NetworkResources.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/NoSubInterceptorWrapper.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/NonRegisteringDriver.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/NonRegisteringReplicationDriver.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/NotImplemented.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/NotUpdatable.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/OperationNotSupportedException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/OutputStreamWatcher.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/PacketTooBigException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/ParameterBindings.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/PerConnectionLRUFactory.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/PerVmServerConfigCacheFactory.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/PingTarget.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/PreparedStatement.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/ProfilerEventHandlerFactory.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/RandomBalanceStrategy.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/ReflectiveStatementInterceptorAdapter.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/ReplicationConnection.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/ReplicationConnectionGroup.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/ReplicationConnectionGroupManager.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/ReplicationConnectionProxy.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/ReplicationDriver.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/ReplicationMySQLConnection.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/ResultSetImpl.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/ResultSetInternalMethods.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/ResultSetMetaData.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/ResultSetRow.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/RowData.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/RowDataCursor.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/RowDataDynamic.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/RowDataStatic.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/SQLError.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/Security.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/SequentialBalanceStrategy.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/ServerAffinityStrategy.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/ServerPreparedStatement.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/SingleByteCharsetConverter.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/SocketFactory.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/SocketMetadata.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/SocksProxySocketFactory.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/StandardLoadBalanceExceptionChecker.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/StandardSocketFactory.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/Statement.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/StatementImpl.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/StatementInterceptor.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/StatementInterceptorV2.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/StreamingNotifiable.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/StringUtils.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/TimeUtil.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/TimeZoneMapping.properties" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/UpdatableResultSet.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/Util.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/V1toV2StatementInterceptorAdapter.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/WatchableOutputStream.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/WatchableWriter.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/Wrapper.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/WriterWatcher.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/authentication/MysqlClearPasswordPlugin.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/authentication/MysqlNativePasswordPlugin.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/authentication/MysqlOldPasswordPlugin.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/authentication/Sha256PasswordPlugin.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/configs/3-0-Compat.properties" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/configs/5-0-Compat.properties" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/configs/clusterBase.properties" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/configs/coldFusion.properties" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/configs/fullDebug.properties" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/configs/maxPerformance.properties" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/configs/solarisMaxPerformance.properties" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/exceptions/DeadlockTimeoutRollbackMarker.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/exceptions/MySQLDataException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/exceptions/MySQLIntegrityConstraintViolationException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/exceptions/MySQLInvalidAuthorizationSpecException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/exceptions/MySQLNonTransientConnectionException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/exceptions/MySQLNonTransientException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/exceptions/MySQLQueryInterruptedException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/exceptions/MySQLStatementCancelledException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/exceptions/MySQLSyntaxErrorException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/exceptions/MySQLTimeoutException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/exceptions/MySQLTransactionRollbackException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/exceptions/MySQLTransientConnectionException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/exceptions/MySQLTransientException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/exceptions/jdbc4/CommunicationsException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/exceptions/jdbc4/MySQLDataException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/exceptions/jdbc4/MySQLIntegrityConstraintViolationException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/exceptions/jdbc4/MySQLInvalidAuthorizationSpecException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/exceptions/jdbc4/MySQLNonTransientConnectionException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/exceptions/jdbc4/MySQLNonTransientException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/exceptions/jdbc4/MySQLQueryInterruptedException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/exceptions/jdbc4/MySQLSyntaxErrorException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/exceptions/jdbc4/MySQLTimeoutException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/exceptions/jdbc4/MySQLTransactionRollbackException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/exceptions/jdbc4/MySQLTransientConnectionException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/exceptions/jdbc4/MySQLTransientException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/integration/c3p0/MysqlConnectionTester.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/integration/jboss/ExtendedMysqlExceptionSorter.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/integration/jboss/MysqlValidConnectionChecker.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/interceptors/ResultSetScannerInterceptor.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/interceptors/ServerStatusDiffInterceptor.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/interceptors/SessionAssociationInterceptor.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/jdbc2/optional/CallableStatementWrapper.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/jdbc2/optional/ConnectionWrapper.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/jdbc2/optional/JDBC42CallableStatementWrapper.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/jdbc2/optional/JDBC42PreparedStatementWrapper.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/jdbc2/optional/JDBC4CallableStatementWrapper.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/jdbc2/optional/JDBC4ConnectionWrapper.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/jdbc2/optional/JDBC4MysqlPooledConnection.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/jdbc2/optional/JDBC4MysqlXAConnection.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/jdbc2/optional/JDBC4PreparedStatementWrapper.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/jdbc2/optional/JDBC4StatementWrapper.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/jdbc2/optional/JDBC4SuspendableXAConnection.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/jdbc2/optional/MysqlConnectionPoolDataSource.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/jdbc2/optional/MysqlDataSource.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/jdbc2/optional/MysqlDataSourceFactory.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/jdbc2/optional/MysqlPooledConnection.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/jdbc2/optional/MysqlXAConnection.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/jdbc2/optional/MysqlXADataSource.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/jdbc2/optional/MysqlXAException.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/jdbc2/optional/MysqlXid.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/jdbc2/optional/PreparedStatementWrapper.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/jdbc2/optional/StatementWrapper.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/jdbc2/optional/SuspendableXAConnection.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/jdbc2/optional/WrapperBase.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/jmx/LoadBalanceConnectionGroupManager.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/jmx/LoadBalanceConnectionGroupManagerMBean.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/jmx/ReplicationGroupManager.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/jmx/ReplicationGroupManagerMBean.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/log/Jdk14Logger.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/log/Log.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/log/LogFactory.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/log/LogUtils.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/log/NullLogger.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/log/Slf4JLogger.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/log/StandardLogger.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/profiler/LoggingProfilerEventHandler.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/profiler/ProfilerEvent.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/profiler/ProfilerEventHandler.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/util/Base64Decoder.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/util/BaseBugReport.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/util/ErrorMappingsDocGenerator.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/util/LRUCache.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/util/PropertiesDocGenerator.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/util/ReadAheadInputStream.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/util/ResultSetUtil.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/util/ServerController.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/util/TimezoneDump.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/com/mysql/jdbc/util/VersionFSHierarchyMaker.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/demo/fabric/Client1_Fabric.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/demo/fabric/Employee.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/demo/fabric/EmployeesDataSource.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/demo/fabric/EmployeesJdbc.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/demo/fabric/HibernateFabric.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/demo/fabric/resources/com/mysql/fabric/demo/employee.hbm.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/doc/sources/pom.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/lib/c3p0-0.9.1-pre6.jar" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/lib/c3p0-0.9.1-pre6.src.zip" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/lib/jboss-common-jdbc-wrapper-src.jar" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/lib/jboss-common-jdbc-wrapper.jar" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/lib/slf4j-api-1.6.1.jar" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/org/gjt/mm/mysql/Driver.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/BaseStatementInterceptor.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/BaseTestCase.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/UnreliableSocketFactory.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/fabric/BaseFabricTestCase.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/fabric/SetupFabricTestsuite.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/fabric/TestAdminCommands.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/fabric/TestDumpCommands.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/fabric/TestResultSetParser.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/fabric/TestShardMapping.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/fabric/TestXmlRpcCore.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/fabric/jdbc/TestBasicConnection.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/fabric/jdbc/TestFabricMySQLConnectionSharding.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/fabric/jdbc/TestHABasics.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/fabric/jdbc/TestHashSharding.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/fabric/jdbc/TestRegressions.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/perf/BasePerfTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/perf/LoadStorePerfTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/perf/RetrievalPerfTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/regression/BlobRegressionTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/regression/CachedRowsetTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/regression/CallableStatementRegressionTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/regression/CharsetRegressionTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/regression/ConnectionRegressionTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/regression/DataSourceRegressionTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/regression/EscapeProcessorRegressionTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/regression/MetaDataRegressionTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/regression/MicroPerformanceRegressionTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/regression/NumbersRegressionTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/regression/PooledConnectionRegressionTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/regression/ResultSetRegressionTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/regression/StatementRegressionTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/regression/StressRegressionTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/regression/StringRegressionTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/regression/SubqueriesRegressionTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/regression/SyntaxRegressionTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/regression/UtilsRegressionTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/regression/jdbc4/ConnectionRegressionTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/regression/jdbc4/ExceptionSubclassesTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/regression/jdbc4/MetaDataRegressionTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/regression/jdbc4/StatementRegressionTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/regression/jdbc42/ConnectionRegressionTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/regression/jdbc42/ResultSetRegressionTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/regression/jdbc42/StatementRegressionTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/BlobTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/CallableStatementTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/CharsetTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/ConnectionTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/DataSourceTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/DateTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/EscapeProcessingTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/MetadataTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/MiniAdminTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/MultiHostConnectionTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/NumbersTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/ReadOnlyCallableStatementTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/ResultSetTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/SSLTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/ServerControllerTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/SimpleTransformer.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/SplitDBdotNameTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/StatementsTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/StringUtilsTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/TestBug57662Logger.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/TestLifecycleInterceptor.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/TransactionTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/TraversalTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/UpdatabilityTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/UtilsTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/XATest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/jdbc4/StatementsTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/jdbc42/ConnectionTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/jdbc42/ResultSetTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/jdbc42/StatementsTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/simple/tb2-data.txt.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/ssl-test-certs/ca-cert.pem" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/ssl-test-certs/ca-key.pem" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/ssl-test-certs/ca-truststore" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/ssl-test-certs/certs_howto.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/ssl-test-certs/client-cert.pem" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/ssl-test-certs/client-key.pem" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/ssl-test-certs/client-keystore" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/ssl-test-certs/mykey.pem" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/ssl-test-certs/mykey.pub" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/ssl-test-certs/server-cert.pem" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/production/ChatApp/lib/mysql-connector-java-5.1.45/src/testsuite/ssl-test-certs/server-key.pem" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Tester.java" afterPath="$PROJECT_DIR$/src/Tester.java" />
-      <change beforePath="$PROJECT_DIR$/src/client/ChatClient.java" afterPath="$PROJECT_DIR$/src/client/ChatClient.java" />
-      <change beforePath="$PROJECT_DIR$/src/client/MessageReceiver.java" afterPath="$PROJECT_DIR$/src/client/MessageReceiver.java" />
-      <change beforePath="$PROJECT_DIR$/src/client/MessageSender.java" afterPath="$PROJECT_DIR$/src/client/MessageSender.java" />
-      <change beforePath="$PROJECT_DIR$/src/server/Authenticator.java" afterPath="$PROJECT_DIR$/src/server/authentication/Authenticator.java" />
-      <change beforePath="$PROJECT_DIR$/src/server/ChatServer.java" afterPath="$PROJECT_DIR$/src/server/ChatServer.java" />
+      <change beforePath="$PROJECT_DIR$/src/client/Registration.java" afterPath="$PROJECT_DIR$/src/client/Registration.java" />
       <change beforePath="$PROJECT_DIR$/src/server/Client.java" afterPath="$PROJECT_DIR$/src/server/Client.java" />
       <change beforePath="$PROJECT_DIR$/src/util/JLogger.java" afterPath="$PROJECT_DIR$/src/util/JLogger.java" />
     </list>
@@ -446,45 +56,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Authenticator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/server/authentication/Authenticator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="12" column="11" lean-forward="false" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ChatServer.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ChatServer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/server/ChatServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
-              <caret line="137" column="0" lean-forward="false" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ChatClient.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/client/ChatClient.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="550">
-              <caret line="33" column="40" lean-forward="false" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
+            <state relative-caret-position="3960">
+              <caret line="193" column="78" lean-forward="false" selection-start-line="193" selection-start-column="78" selection-end-line="193" selection-end-column="78" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClientConfiguration.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/client/ClientConfiguration.java">
+      <file leaf-file-name="start_production.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/start_production.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="10" column="6" lean-forward="false" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+            <state relative-caret-position="22">
+              <caret line="1" column="21" lean-forward="false" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="%start_registration.bat" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/%start_registration.bat">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="66">
+              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -493,49 +89,48 @@
       <file leaf-file-name="Client.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/server/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="45" column="13" lean-forward="false" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3000#3001#0" expanded="true" />
-                <element signature="e#3029#3030#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="66">
+              <caret line="57" column="64" lean-forward="false" selection-start-line="57" selection-start-column="64" selection-end-line="57" selection-end-column="64" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Console.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/util/Console.java">
+      <file leaf-file-name="Authenticator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/server/authentication/Authenticator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1034">
-              <caret line="61" column="27" lean-forward="true" selection-start-line="61" selection-start-column="27" selection-end-line="61" selection-end-column="27" />
-              <folding>
-                <element signature="e#641#642#0" expanded="true" />
-                <element signature="e#682#683#0" expanded="true" />
-                <element signature="e#724#725#0" expanded="true" />
-                <element signature="e#768#769#0" expanded="true" />
-                <element signature="e#804#805#0" expanded="true" />
-                <element signature="e#865#866#0" expanded="true" />
-                <element signature="e#911#912#0" expanded="true" />
-                <element signature="e#975#976#0" expanded="true" />
-                <element signature="e#1012#1013#0" expanded="true" />
-                <element signature="e#1055#1056#0" expanded="true" />
-                <element signature="e#1094#1095#0" expanded="true" />
-                <element signature="e#1139#1140#0" expanded="true" />
-                <element signature="e#1172#1173#0" expanded="true" />
-                <element signature="e#1210#1211#0" expanded="true" />
-                <element signature="e#1253#1254#0" expanded="true" />
-                <element signature="e#1299#1300#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="154">
+              <caret line="12" column="11" lean-forward="false" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Tester.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Tester.java">
+      <file leaf-file-name="Registration.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/client/Registration.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="17" column="28" lean-forward="false" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
+            <state relative-caret-position="-286">
+              <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChatClient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/client/ChatClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="15" lean-forward="false" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="%start_chat.bat" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/%start_chat.bat">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -544,18 +139,8 @@
       <file leaf-file-name="MessageSender.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/client/MessageSender.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="531">
-              <caret line="38" column="49" lean-forward="false" selection-start-line="38" selection-start-column="49" selection-end-line="38" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MessageReceiver.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/client/MessageReceiver.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="28" column="23" lean-forward="false" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
+            <state relative-caret-position="198">
+              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -564,8 +149,8 @@
       <file leaf-file-name="JLogger.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/util/JLogger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="18" column="28" lean-forward="false" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+            <state relative-caret-position="2310">
+              <caret line="137" column="40" lean-forward="false" selection-start-line="137" selection-start-column="40" selection-end-line="137" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -666,6 +251,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -676,23 +262,16 @@
             <path>
               <item name="ChatApp" type="b2602c69:ProjectViewProjectNode" />
               <item name="ChatApp" type="462c0819:PsiDirectoryNode" />
-              <item name="log" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ChatApp" type="b2602c69:ProjectViewProjectNode" />
               <item name="ChatApp" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ChatApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ChatApp" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
               <item name="production" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ChatApp" type="b2602c69:ProjectViewProjectNode" />
               <item name="ChatApp" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
               <item name="production" type="462c0819:PsiDirectoryNode" />
               <item name="ChatApp" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -751,14 +330,20 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="util" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ChatApp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChatApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="JLogger.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="AndroidView" />
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -888,40 +473,60 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79559000" />
+    <option name="totallyTimeSpent" value="79567000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32814237" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23025584" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="パレット" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23025584" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="パレット" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15705128" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="UI デザイナー" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="キャプチャー分析" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="デザイナー" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15865384" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="UI デザイナー" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="キャプチャー分析" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="デザイナー" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="パレット" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="UI デザイナー" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="デザイナー" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32814237" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23025584" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15705128" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="キャプチャー分析" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -982,21 +587,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/%compile.bat" />
-    <entry file="file://$USER_HOME$/Desktop/01.Chat Exam - Sample/%compile.bat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="6" lean-forward="false" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Desktop/01.Chat Exam - Sample/%compile.bat" />
     <entry file="file://$PROJECT_DIR$/src/util/now_login_off.bat" />
-    <entry file="file://$USER_HOME$/Desktop/01.Chat Exam - Sample/%start_chat.bat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Desktop/01.Chat Exam - Sample/%start_chat.bat" />
     <entry file="file://$PROJECT_DIR$/production/ChatApp/server.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1018,13 +611,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/production/ChatApp/%compile.bat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/production/ChatApp/%compile.bat" />
     <entry file="file://$PROJECT_DIR$/production/ChatApp/help.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="814">
@@ -1049,13 +636,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/production/ChatApp/%start_chat.bat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="28" lean-forward="false" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/production/ChatApp/%start_chat.bat" />
     <entry file="file://$PROJECT_DIR$/src/event/MessageEventFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -1064,32 +645,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/production/ChatApp/%server_initialize.bat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="6" lean-forward="false" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/production/ChatApp/%server_initialize.bat" />
     <entry file="file://$PROJECT_DIR$/src/client/Registration.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="880">
-          <caret line="44" column="38" lean-forward="false" selection-start-line="44" selection-start-column="38" selection-end-line="44" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/production/ChatApp/server/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="21" column="46" lean-forward="false" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
+        <state relative-caret-position="-286">
+          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/production/ChatApp/server/Client.java" />
     <entry file="file://$PROJECT_DIR$/src/main/ClientMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
@@ -1110,7 +675,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="53" column="22" lean-forward="false" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1125,7 +689,7 @@
     <entry file="file://$PROJECT_DIR$/%start_chat.bat">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
-          <caret line="7" column="18" lean-forward="true" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1134,7 +698,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1146,29 +709,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/out/production/ChatApp/server.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="17" lean-forward="false" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/out/production/ChatApp/server.properties" />
     <entry file="file://$PROJECT_DIR$/server.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="22">
           <caret line="1" column="10" lean-forward="false" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server/authentication/Authenticator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
+        <state relative-caret-position="154">
           <caret line="12" column="11" lean-forward="false" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1176,21 +729,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="6" column="63" lean-forward="false" selection-start-line="6" selection-start-column="63" selection-end-line="6" selection-end-column="63" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/out/production/ChatApp/log/chat_application.err.log">
-      <provider selected="true" editor-type-id="LogFileEditorProvider">
-        <state relative-caret-position="374">
-          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/out/production/ChatApp/log/chat_application.err.log" />
     <entry file="file://$PROJECT_DIR$/src/util/JLogger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="18" column="28" lean-forward="false" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+        <state relative-caret-position="2310">
+          <caret line="137" column="40" lean-forward="false" selection-start-line="137" selection-start-column="40" selection-end-line="137" selection-end-column="40" />
           <folding />
         </state>
       </provider>
@@ -1205,8 +751,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/client/MessageSender.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="531">
-          <caret line="38" column="49" lean-forward="false" selection-start-line="38" selection-start-column="49" selection-end-line="38" selection-end-column="49" />
+        <state relative-caret-position="198">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1215,19 +761,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
           <caret line="2" column="6" lean-forward="false" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="45" column="13" lean-forward="false" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3000#3001#0" expanded="true" />
-            <element signature="e#3029#3030#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="66">
+          <caret line="57" column="64" lean-forward="false" selection-start-line="57" selection-start-column="64" selection-end-line="57" selection-end-column="64" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1241,19 +782,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/client/ChatClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="33" column="40" lean-forward="false" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
+        <state relative-caret-position="0">
+          <caret line="0" column="15" lean-forward="false" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server/ChatServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="137" column="0" lean-forward="false" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="3960">
+          <caret line="193" column="78" lean-forward="false" selection-start-line="193" selection-start-column="78" selection-end-line="193" selection-end-column="78" />
+          <folding />
         </state>
       </provider>
     </entry>

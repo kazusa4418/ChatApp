@@ -137,6 +137,7 @@ class LoggerList {
         Formatter formatter = new SimpleFormatter();
         handler.setFormatter(formatter);
         logger.addHandler(handler);
+        logger.setUseParentHandlers(false);
         return logger;
     }
 

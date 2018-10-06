@@ -2,10 +2,12 @@ package client;
 
 import mysql.MySql;
 import util.Console;
+import util.JLogger;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
+import java.util.logging.Level;
 
 public class Registration {
     private static MySql mysql;
@@ -36,6 +38,7 @@ public class Registration {
             Console.getInstance().pleaseEnter("会員登録しました。");
         }
         catch (SQLException err) {
+            JLogger.log(Level.SEVERE, "failed to register", err);
             Console.getInstance().pleaseEnter("データベースサーバーへの接続に失敗しました。");
         }
     }

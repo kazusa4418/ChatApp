@@ -31,8 +31,6 @@ public class Client implements Runnable {
         this.server = server;
         this.socket = socket;
 
-        authenticate();
-
         this.thread = new Thread(this);
     }
 
