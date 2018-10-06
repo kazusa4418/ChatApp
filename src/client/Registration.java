@@ -62,7 +62,12 @@ public class Registration {
     private static String inputPassword() {
         while (true) {
             String pw = console.readPassword("パスワードを入力してください > ");
+            String again = console.readPassword("パスワードを再入力してください > ");
 
+            if (!pw.equals(again)) {
+                System.out.println("入力された2つのパスワードが一致しませんでした。");
+                continue;
+            }
             if (!pw.matches(PW_REGEX)) {
                 System.out.println("パスワードは英数字かﾊｲﾌﾝ、ｱﾝﾀﾞｰｽｺｱの4文字以上32文字以下である必要があります。");
                 continue;
