@@ -50,7 +50,9 @@ class MessageSender implements Runnable {
 
             // めっちゃ気に入らない。
             if (msg.equals("/logout")) {
-                Console.getInstance().sleep(100);
+                // サーバーのログアウト処理が完了するのを待つ必要がある
+                // なんとかしたいな
+                Console.getInstance().sleep(300);
                 Console.getInstance().pleaseEnter("logged out.");
                 System.exit(0);
             }

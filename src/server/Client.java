@@ -9,7 +9,11 @@ import server.authentication.Status;
 import util.DatabaseUtils;
 import util.JLogger;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
 import java.net.Socket;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -36,9 +40,27 @@ public class Client implements Runnable {
         thread.start();
     }
 
+    // なんかごちゃごちゃしてる気がする
     public void run() {
-        // ウェルカムメッセージを表示する
+        authenticate();
+
+        if (status != Status.AVAILABLE) {
+            return;
+        }
+
+        try {
+            DatabaseUtils.updateNowLogin(this, true);
+        }
+        catch (SQLException err) {
+            // TODO: どうするかまだ迷ってる
+            return;
+        }
+
+        ChatRoom.getLobby().add(this);
         send("## welcome! '" + name + "'.\n## joined the 'lobby'!");
+        server.runAction(this, Command.SEND_MESSAGE, "## user '" + name + "' log in.");
+        JLogger.info("[login] user '" + name + "' from: '" + socket.getInetAddress() + "'");
+
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
             while (!socket.isClosed()) {
@@ -74,19 +96,11 @@ public class Client implements Runnable {
 
                 JLogger.info("[authenticate] status: '" + status + "' id: '" + id + "' pw: '" + pw + "' from: '" + socket.getInetAddress() + "'");
             }
-
-            // 認証に成功したのでステータスをログイン中にする
-            DatabaseUtils.updateNowLogin(this, true);
         }
         catch (IOException err) {
             // ソケットに何らかの異常が発生した場合
             // 主に認証中にクライアントが強制終了した場合などに発生する
             JLogger.warning("connection with the client has expired.");
-            status = Status.EXCEPTION;
-        }
-        catch (SQLException err) {
-            // ログインステータスの変更に失敗してる
-            JLogger.log(Level.SEVERE, "can not update now_login status.", err);
             status = Status.EXCEPTION;
         }
     }
@@ -120,6 +134,7 @@ public class Client implements Runnable {
         try {
             DatabaseUtils.updateNowLogin(this, false);
             socket.close();
+            JLogger.info("[logout] user '" + name + "' host: '" + socket.getInetAddress() + "'");
         }
         catch (IOException err) {
             JLogger.warning("already closed.");

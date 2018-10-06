@@ -2,7 +2,6 @@ package server;
 
 import event.Command;
 import event.MessageEvent;
-import server.authentication.Status;
 import util.Console;
 import util.JLogger;
 import util.ServerInitialize;
@@ -15,8 +14,6 @@ import java.util.logging.Level;
 public class ChatServer implements Runnable {
     private ServerSocket server;
     private ChatRoomList roomList;
-
-
 
     public ChatServer() {
         try {
@@ -67,19 +64,7 @@ public class ChatServer implements Runnable {
                 // クライアントからのアクセスを待つ
                 Socket socket = server.accept();
                 Client client = new Client(this, socket);
-
-                // クライアントが有効状態でなかったらコネクションを切る
-                if (client.getStatus() == Status.AVAILABLE) {
-                    // ロビーに入室し、メンバーにログインしたことを通知する。ちなみに気に入ってない。
-                    ChatRoom.getLobby().add(client);
-                    sendMessageToMembersExceptMyself(client, "## user '" + client.getName() + "' log in.");
-                    client.start();
-
-                    JLogger.info("[login] user '" + client.getName() + "' from: '" + socket.getInetAddress() + "'");
-                }
-                else {
-                    client.disconnect();
-                }
+                client.start();
             }
             catch (IOException err) {
                 // server.acceptは待機中に例外が起こる可能性があるらしい。
@@ -102,13 +87,13 @@ public class ChatServer implements Runnable {
         runAction(executor, command, "");
     }
 
-    private void runAction(Client executor, Command command, String body) {
+    void runAction(Client executor, Command command, String body) {
         switch (command) {
             case LOGOUT:
                 logout(executor, body);
                 break;
             case SEND_MESSAGE:
-                sendMessageToMembersExceptMyself(executor, executor.getName() + " : " + body);
+                sendMessageToMembers(executor, body);
                 break;
             case SECRET_MESSAGE:
                 sendSecretMessage(executor, body);
@@ -161,7 +146,7 @@ public class ChatServer implements Runnable {
             closeRoom(client, "");
         }
         else {
-            sendMessageToMembersExceptMyself(client, "## the user '" + client.getName() + "' log outs.");
+            sendMessageToMembers(client, "## the user '" + client.getName() + "' log outs.");
         }
         // 参加しているルームを抜ける
         roomList.getRoomWith(client).remove(client);
@@ -171,11 +156,11 @@ public class ChatServer implements Runnable {
     }
 
     // TODO: メソッド名ながすぎませんか
-    private void sendMessageToMembersExceptMyself(Client myself, String message) {
-        sendMessageToMembersExceptMyself(myself, message, roomList.getRoomWith(myself));
+    private void sendMessageToMembers(Client myself, String message) {
+        sendMessageToMembers(myself, message, roomList.getRoomWith(myself));
     }
 
-    private void sendMessageToMembersExceptMyself(Client myself, String message, ChatRoom room) {
+    private void sendMessageToMembers(Client myself, String message, ChatRoom room) {
         // 引数で渡されたルームのメンバーを取得してくる
         Client[] clients = room.getMemberList();
 
@@ -230,7 +215,7 @@ public class ChatServer implements Runnable {
 
         // 現在入っているルームの管理者だったらそのルームを抜けちゃだめ
         if (joinedRoom.isAdmin(client)) {
-            client.send("## fatal: you are the administrator of the " + joinedRoom.getName() + "`.\n" +
+            client.send("## fatal: you are the administrator of the '" + joinedRoom.getName() + "'.\n" +
                              "##        should explicitly leave the room by running \"/change-admin or /close\" command.");
             return;
         }
@@ -239,7 +224,7 @@ public class ChatServer implements Runnable {
         // 抜けたことを自分に通知する
         client.send("## you left the room '" + joinedRoom.getName() + "'.");
         // メンバーが抜けたことを抜けたルームのメンバーに通知する
-        sendMessageToMembersExceptMyself(client, "## user '" + client.getName() +
+        sendMessageToMembers(client, "## user '" + client.getName() +
                                                             "' left '" + joinedRoom.getName() + "'.", joinedRoom);
 
         // 新しくルームを作り、ルームの管理者としてルームに入る
@@ -280,7 +265,7 @@ public class ChatServer implements Runnable {
         // 抜けたことを自分に通知する
         client.send("## you left the room '" + leavedRoom.getName() + "'.");
         // メンバーが抜けたことを抜けたルームのメンバーに通知する
-        sendMessageToMembersExceptMyself(client, "## user '" + client.getName() +
+        sendMessageToMembers(client, "## user '" + client.getName() +
                                                           "' left '" + leavedRoom.getName() + "'.", leavedRoom);
 
         // 新しいルームに入る
@@ -289,7 +274,7 @@ public class ChatServer implements Runnable {
         // 参加したことを自分に通知する
         client.send("## you joined the room '" + joinedRoom.getName() + "'.");
         // 新しいメンバーが参加したことを参加したルームのメンバーに通知する
-        sendMessageToMembersExceptMyself(client, "## user '" + client.getName() + "' joined this room.");
+        sendMessageToMembers(client, "## user '" + client.getName() + "' joined this room.");
 
         JLogger.info("[join] user: '" + client.getName() + "' from: '" + leavedRoom.getName() + "' to: '" + roomName);
     }
@@ -316,7 +301,7 @@ public class ChatServer implements Runnable {
         }
 
         room.remove(client);
-        sendMessageToMembersExceptMyself(client, "## the user '" + client.getName() +
+        sendMessageToMembers(client, "## the user '" + client.getName() +
                                                             "' left '" + room.getName() + "'.", room);
 
         // ロビーに参加（戻る）して自分にそのことを通知する
@@ -457,7 +442,7 @@ public class ChatServer implements Runnable {
 
         room.setAdmin(decidedClient);
 
-        sendMessageToMembersExceptMyself(decidedClient, "## the user '" + decidedClient.getName() + "' had drawn this room's administrator.");
+        sendMessageToMembers(decidedClient, "## the user '" + decidedClient.getName() + "' had drawn this room's administrator.");
 
         JLogger.info("[change admin] from: '" + client.getName() + "' to: '" + userName + "' room's name: '" + room.getName() + "'");
     }

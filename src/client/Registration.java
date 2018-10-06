@@ -33,7 +33,7 @@ public class Registration {
 
             mysql.prepareStatement(INSERT_SQL).set(id).set(pw).set(name).executeUpdate();
 
-            System.out.println("会員登録しました。");
+            Console.getInstance().pleaseEnter("会員登録しました。");
         }
         catch (SQLException err) {
             Console.getInstance().pleaseEnter("データベースサーバーへの接続に失敗しました。");

@@ -3,6 +3,7 @@ package util;
 import mysql.MySql;
 
 import java.sql.SQLException;
+import java.util.logging.Level;
 
 public class ServerInitialize {
     private static final String NOW_LOGIN_OFF_SQL = "UPDATE users SET now_login = false";
@@ -12,7 +13,7 @@ public class ServerInitialize {
             mysql.executeUpdate(NOW_LOGIN_OFF_SQL);
         }
         catch (SQLException err) {
-            throw new AssertionError();
+            JLogger.log(Level.SEVERE, "server initialize error", err);
         }
     }
 }

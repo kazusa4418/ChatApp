@@ -16,7 +16,7 @@ public class MessageEventFactory {
             return new MessageEvent(creator, Command.get(messages[0]), "");
         }
         else {
-            return new MessageEvent(creator, Command.SEND_MESSAGE, msg);
+            return new MessageEvent(creator, Command.SEND_MESSAGE, creator.getName() + " : " + msg);
         }
     }
 }

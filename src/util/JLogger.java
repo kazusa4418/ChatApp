@@ -20,7 +20,6 @@ public class JLogger {
         String className = ThreadUtils.getClassNameCalledThis(2);
 
         if (!loggers.existsLogger(className)) {
-            System.out.println("CREATE NEW LOGGER");
             loggers.createNewLogger(className);
         }
         return loggers.getLogger(className);
@@ -30,7 +29,6 @@ public class JLogger {
         String className = ThreadUtils.getClassNameCalledThis(2);
 
         if (!loggers.existsErrorLogger(className)) {
-            System.out.println("CREATE NEW ERROR LOGGER");
             loggers.createNewErrorLogger(className);
         }
         return loggers.getErrorLogger(className);
