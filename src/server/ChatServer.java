@@ -18,7 +18,7 @@ public class ChatServer implements Runnable {
     public ChatServer() {
         try {
             ServerInitialize.main();
-            server = new ServerSocket(33333);
+            server = new ServerSocket(33334);
         }
         catch (IOException err) {
             JLogger.log(Level.SEVERE, "could not open the socket", err);
