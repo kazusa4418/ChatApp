@@ -32,21 +32,10 @@ public class ChatServer implements Runnable {
         for (int i = 0; i < threadNum; i++ ) {
             new Thread(this).start();
         }
-        startInput();
     }
 
-    // TODO: まだ適当
-    private void startInput() {
-        Console console = Console.getInstance();
-        while (!server.isClosed()) {
-            String msg = console.readLine();
-
-            if (msg.equals("/shutdown")) {
-                shutdown();
-            }
-        }
-    }
-
+    // TODO: 未実装
+    @SuppressWarnings("unused")
     private static void shutdown() {
         //noinspection finally
         try {
