@@ -15,6 +15,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.IOException;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.util.logging.Level;
 
@@ -79,7 +80,7 @@ public class Client implements Runnable {
 
     private void authenticate() {
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
 
             while (status != Status.AVAILABLE) {
                 String id = reader.readLine();
@@ -105,7 +106,7 @@ public class Client implements Runnable {
 
     void send(String msg) {
         try {
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8));
             writer.write(msg);
             writer.newLine();
             writer.flush();

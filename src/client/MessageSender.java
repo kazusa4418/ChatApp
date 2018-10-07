@@ -7,6 +7,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 
 class MessageSender implements Runnable {
@@ -17,7 +18,7 @@ class MessageSender implements Runnable {
 
     MessageSender(Socket socket) throws IOException {
         this.socket = socket;
-        this.writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+        this.writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8));
 
         thread = new Thread(this);
     }
