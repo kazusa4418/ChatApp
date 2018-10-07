@@ -2,6 +2,7 @@ package util;
 
 import java.io.IOException;
 
+@SuppressWarnings("unused")
 public class Console {
     /* =============== SINGLETON =============== */
     private static final Console instance = new Console();
@@ -14,12 +15,6 @@ public class Console {
     private static final java.io.Console console = System.console();
 
     private Console() {
-//        try {
-//
-//        }
-//        catch (IOException | InterruptedException ignore) {
-//            // TODO: いつか実装する・・・。
-//        }
     }
 
     public String readLine() {

@@ -3,7 +3,6 @@ package util;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.logging.FileHandler;
@@ -88,7 +87,7 @@ public class JLogger {
 
     private static void createLogFolder() {
         File folder = new File("./log");
-        if (folder.exists()) {
+        if (!folder.exists()) {
             if (folder.mkdir()) {
                 info("create new log folder.");
             }

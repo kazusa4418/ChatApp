@@ -2,8 +2,6 @@ package event;
 
 import server.Client;
 
-import java.io.Serializable;
-
 public class MessageEvent {
     private Client creator;
     private Command command;

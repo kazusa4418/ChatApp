@@ -5,6 +5,7 @@ import java.util.List;
 
 class ChatRoom {
     /* =============== SINGLETON =============== */
+    @SuppressWarnings("StaticInitializerReferencesSubClass")
     private static final ChatRoom lobby = new Lobby();
     static ChatRoom getLobby() {
         return lobby;
@@ -24,6 +25,7 @@ class ChatRoom {
         return admin == client;
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     boolean existClient(String clientName) {
         for (Client client : clients) {
             if (client.getName().equals(clientName))

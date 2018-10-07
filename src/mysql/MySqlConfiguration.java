@@ -1,6 +1,7 @@
 package mysql;
 
 import util.JLogger;
+import util.PropertyReader;
 
 import java.io.File;
 import java.io.FileNotFoundException;

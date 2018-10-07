@@ -1,5 +1,6 @@
 package util;
 
+@SuppressWarnings("unused")
 public class ThreadUtils {
     public static String getCurrentMethodName() {
         return Thread.currentThread().getStackTrace()[2].getMethodName();
