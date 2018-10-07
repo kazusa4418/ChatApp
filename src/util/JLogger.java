@@ -1,5 +1,6 @@
 package util;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -15,6 +16,10 @@ import java.util.logging.SimpleFormatter;
 @SuppressWarnings("unused")
 public class JLogger {
     private static final LoggerList loggers = new LoggerList();
+
+    static {
+        createLogFolder();
+    }
 
     private static Logger getLogger() {
         String className = ThreadUtils.getClassNameCalledThis(2);
@@ -79,6 +84,18 @@ public class JLogger {
         };
         loggers.getLoggerNames().stream().map(Logger::getLogger).map(Logger::getHandlers).forEach(closeFunction);
         loggers.getErrorLoggerNames().stream().map(Logger::getLogger).map(Logger::getHandlers).forEach(closeFunction);
+    }
+
+    private static void createLogFolder() {
+        File folder = new File("./log");
+        if (folder.exists()) {
+            if (folder.mkdir()) {
+                info("create new log folder.");
+            }
+            else {
+                severe("failed to create new log folder.");
+            }
+        }
     }
 }
 
