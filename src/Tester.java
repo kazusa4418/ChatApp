@@ -19,6 +19,7 @@ public class Tester {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/test", "root", "");
 
             Statement statement = connection.createStatement();
+            var value = 14;
             ResultSet result = statement.executeQuery("SELECT * FROM test");
 
         }

@@ -16,6 +16,7 @@ public class ChatServer implements Runnable {
     private ChatRoomList roomList;
 
     public ChatServer() {
+        Runtime.getRuntime().addShutdownHook(new Thread(ChatServer::shutdown));
         try {
             ServerInitialize.main();
             server = new ServerSocket(33333);
@@ -38,13 +39,8 @@ public class ChatServer implements Runnable {
     @SuppressWarnings("unused")
     private static void shutdown() {
         //noinspection finally
-        try {
-            JLogger.info("shutdown...");
-            JLogger.close();
-        }
-        finally {
-            System.exit(0);
-        }
+        JLogger.info("shutdown...");
+        JLogger.close();
     }
 
     public void run() {
